@@ -54,5 +54,3 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 }
-
-//이것이 변경사항!
