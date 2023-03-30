@@ -3,6 +3,8 @@ package com.example.delegation_event;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -17,6 +19,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     CheckBox repeatCheckView;
     CheckBox vibrateCheckView;
     Switch switchView;
+
+    float initX;
+
+    long initTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,42 +43,65 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switchView.setOnClickListener(this);
     }
 
-    private void showToast(String message)
-    {
-        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-        toast.show();
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            initX = event.getRawX();
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+            float diffX = initX - event.getRawX();
+
+            if (diffX > 30) {
+                showToast("왼쪽으로 화면을 밀었습니다.");
+            } else if (diffX < -30) {
+                showToast("오른쪽으로 화면을 밀었습니다.");
+            }
+        }
+
+        return true;
     }
 
     @Override
-    public void onClick(View view)
-    {
-        if (view == bellTextView)
-        {
-            showToast("bell text click event...");
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (System.currentTimeMillis() - initTime > 3000) {
+                showToast("종료할려면 한번 더 누르세요.");
+                initTime = System.currentTimeMillis();
+            } else {
+                finish();
+            }
+
+            return true;
         }
 
-        else if (view == labelTextView)
-        {
-            showToast("label text click event...");
-        }
+        return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-    {
-        if (buttonView == repeatCheckView)
+
+        private void showToast (String message)
         {
-            showToast("repeat checkbox is " + isChecked);
+            Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+            toast.show();
         }
 
-        else if (buttonView == vibrateCheckView)
+        @Override
+        public void onClick (View view)
         {
-            showToast("repeat checkbox is " + isChecked);
+            if (view == bellTextView) {
+                showToast("bell text click event...");
+            } else if (view == labelTextView) {
+                showToast("label text click event...");
+            }
         }
 
-        else if (buttonView == switchView)
+        @Override
+        public void onCheckedChanged (CompoundButton buttonView,boolean isChecked)
         {
-            showToast("repeat checkbox is " + isChecked);
+            if (buttonView == repeatCheckView) {
+                showToast("repeat checkbox is " + isChecked);
+            } else if (buttonView == vibrateCheckView) {
+                showToast("repeat checkbox is " + isChecked);
+            } else if (buttonView == switchView) {
+                showToast("repeat checkbox is " + isChecked);
+            }
         }
     }
-}
