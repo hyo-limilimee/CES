@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "StudyingAndroid"
 include ':app'
 include ':vibrate_sound'
+include ':delegation_event'
