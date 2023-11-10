@@ -6,36 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".SplashActivity">
 
-    <TextView
-        android:id="@+id/tv_splash"
+
+    <ImageView
+        android:id="@+id/iv_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/yeongdo"
-        android:text="빌다"
-        android:textSize="70sp"
+        android:layout_marginTop="126dp"
+        android:src="@drawable/bilda_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.222" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_splash_signin"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="276dp"
         android:layout_marginEnd="32dp"
+        android:background="@color/blue"
         android:fontFamily="@font/suitebold"
         android:text="로그인"
         android:textColor="@color/black"
-        android:textSize="16sp"
-        android:background="@color/blue"
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_splash" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_splash_signup"
@@ -44,18 +44,17 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="105dp"
+        android:background="@color/wblue"
         android:fontFamily="@font/suitebold"
         android:text="회원가입"
         android:textColor="@color/black"
-        android:textSize="16sp"
-        android:background="@color/wblue"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_splash_signin"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.051" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
