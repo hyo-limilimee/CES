@@ -127,7 +127,7 @@
                 android:inputType="text"
                 android:maxLength="6"
                 android:paddingLeft="15dp"
-                android:textColorHint="#ACACAC"
+                android:textColorHint="@color/sgray"
                 android:textCursorDrawable="@null"
                 android:textSize="14dp"
                 tools:ignore="DuplicateIds" />
