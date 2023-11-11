@@ -170,11 +170,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/suiteregular"
+        android:fontFamily="@font/suitebold"
         android:text="@string/signup_resend"
         android:textColor="@color/black"
         android:textSize="12dp"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textinput_signup_auth" />
 
