@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Bilda"
         tools:targetApi="31">
         <activity
+            android:name=".PwInputActivity"
+            android:exported="false" />
+        <activity
             android:name=".EmailInputActivity"
             android:exported="false" />
         <activity
