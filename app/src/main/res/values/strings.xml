@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">bilda</string>
+    <string name="signup_resend"><u>인증코드 재전송</u></string>
 </resources>
