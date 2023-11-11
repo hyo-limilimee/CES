@@ -33,7 +33,7 @@
         app:passwordToggleEnabled="false">
 
     <FrameLayout
-        android:id="@+id/fl_signup_l1"
+        android:id="@+id/fl_signup_email_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -75,6 +75,7 @@
     android:id="@+id/tv_signup_error"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
     android:layout_marginStart="21dp"
     android:layout_marginEnd="21dp"
     android:text="*올바르지 않은 형식입니다"
@@ -111,7 +112,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_signup_email_auth">
 
         <FrameLayout
-            android:id="@+id/fl_signup_l2"
+            android:id="@+id/fl_signup_email_auth"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center">
