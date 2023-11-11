@@ -6,4 +6,207 @@
     android:layout_height="match_parent"
     tools:context=".EmailInputActivity">
 
+    <TextView
+        android:id="@+id/tv_signup_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="95dp"
+        android:fontFamily="@font/suiteregular"
+        android:text="숭실대학교 메일을 입력해주세요."
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinput_signup_email"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="21dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_email"
+        app:passwordToggleEnabled="false">
+
+    <FrameLayout
+        android:id="@+id/fl_signup_l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_email"
+        tools:layout_editor_absoluteX="21dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signup_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/wgray"
+            android:fontFamily="@font/suiteregular"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/sgray"
+            android:textCursorDrawable="@null"
+            android:textSize="16dp"
+            android:hint="bilda@soongsil.ac.kr"
+            tools:ignore="DuplicateIds" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_signup_sendauth"
+            android:layout_width="62dp"
+            android:layout_height="24dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/ic_blue_btn"
+            android:enabled="false"
+            android:fontFamily="@font/suiteregular"
+            android:text="인증번호 전송"
+            android:textColor="@color/white"
+            android:textSize="10dp" />
+    </FrameLayout>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+    android:id="@+id/tv_signup_error"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="21dp"
+    android:layout_marginEnd="21dp"
+    android:text="*올바르지 않은 형식입니다"
+    android:textColor="#C23F3F"
+    android:textSize="12dp"
+    android:visibility="invisible"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textinput_signup_email" />
+
+    <TextView
+        android:id="@+id/tv_signup_email_auth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/suiteregular"
+        android:text="메일로 전송된 인증번호를 입력해주세요."
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_error" />
+
+        <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinput_signup_auth"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginTop="11dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_email_auth">
+
+        <FrameLayout
+            android:id="@+id/fl_signup_l2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_signup_auth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/wgray"
+                android:fontFamily="@font/suiteregular"
+                android:hint="인증코드 6자리 입력"
+                android:inputType="text"
+                android:maxLength="6"
+                android:paddingLeft="15dp"
+                android:textColorHint="#ACACAC"
+                android:textCursorDrawable="@null"
+                android:textSize="14dp"
+                tools:ignore="DuplicateIds" />
+
+            <TextView
+                android:id="@+id/tv_signup_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="17dp"
+                android:layout_marginRight="65dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/suiteregular"
+                android:gravity="right"
+                android:text="5:00"
+                android:textColor="#C23F3F"
+                android:visibility="invisible" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_signup_checkauth"
+                android:layout_width="41dp"
+                android:layout_height="24dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="13dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="13dp"
+                android:background="@drawable/ic_blue_btn"
+                android:enabled="false"
+                android:fontFamily="@font/suiteregular"
+                android:text="확인"
+                android:textColor="@color/white"
+                android:textSize="10dp" />
+        </FrameLayout>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_signup_resend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/suiteregular"
+        android:text="@string/signup_resend"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textinput_signup_auth" />
+
+    <TextView
+        android:id="@+id/tv_signup_openmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/suiteregular"
+        android:text="학교 메일 열기"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signup_emailnext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_signup_emailnext"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="46dp"
+        android:background="@color/wblue"
+        android:fontFamily="@font/suiteregular"
+        android:text="다음"
+        android:textColor="@color/sgray"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
