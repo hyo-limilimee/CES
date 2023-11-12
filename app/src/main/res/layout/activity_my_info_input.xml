@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyInfoInputActivity">
+
+    <TextView
+        android:id="@+id/tv_signup_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="95dp"
+        android:fontFamily="@font/suiteregular"
+        android:text="이름을 입력해주세요."
+        android:inputType="text"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_signup_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/wgray"
+        android:layout_marginStart="21dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginTop="5dp"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_email" />
+
+    <TextView
+        android:id="@+id/tv_signup_studentid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/suiteregular"
+        android:text="학번을 입력해주세요."
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_name" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinput_signup_studentid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginEnd="21dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="8"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_studentid">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signup_studentid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/wgray"
+            android:fontFamily="@font/suiteregular"
+            android:textColor="@color/sgray"
+            android:maxLength="6"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>>
+
+    <TextView
+        android:id="@+id/tv_signup_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/suiteregular"
+        android:text="닉네임을 입력해주세요."
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textinput_signup_studentid" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinput_signup_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginEnd="21dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="6"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_nickname">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signup_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/wgray"
+            android:fontFamily="@font/suiteregular"
+            android:textColor="@color/sgray"
+            android:maxLength="6"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_signup_major"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/suiteregular"
+        android:inputType="text"
+        android:text="학과를 선택해주세요."
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textinput_signup_nickname" />
+
+    <Spinner
+        android:id="@+id/spinner_signup_major"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_major" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_signup_end"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="46dp"
+        android:background="@color/blue"
+        android:fontFamily="@font/suiteregular"
+        android:text="회원가입 완료"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
