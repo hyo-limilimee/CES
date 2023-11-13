@@ -3,4 +3,6 @@
     <string name="signup_resend"><u>인증코드 재전송</u></string>
     <string name="pw_reset"><u>비밀전호 재설정</u></string>
     <string name="signin_move"><u>회원가입 하러가기</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
