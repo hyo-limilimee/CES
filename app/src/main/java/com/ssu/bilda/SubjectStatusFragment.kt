@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class ProjectStatusFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class SubjectStatusFragment : Fragment() {    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+
         }
     }
 
@@ -18,6 +18,6 @@ class ProjectStatusFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_project_status, container, false)
+        return inflater.inflate(R.layout.fragment_subject_status, container, false)
     }
 }
