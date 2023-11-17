@@ -1,0 +1,356 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileFragment">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bnv_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/ll_ic_arrow_and_tv_mypage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="13dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <FrameLayout
+                    android:id="@+id/fl_black_left_arrow_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ic_black_left_arrow_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_black_left_arrow_btn" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_tv_mypage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="128dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_mypage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/suiteregular"
+                        android:textColor="@color/black"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        tools:text="마이페이지" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/fl_ic_setting_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ic_setting_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_setting_btn" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_ic_blue_profile_major_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@id/ll_ic_arrow_and_tv_mypage"
+                app:layout_constraintTop_toBottomOf="@id/ll_ic_arrow_and_tv_mypage">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ic_blue_profile_major_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_blue_profile_major_btn" />
+
+
+                <TextView
+                    android:id="@+id/tv_major_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/suiteregular"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    tools:text="컴퓨터학부" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tv_profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/fl_ic_blue_profile_major_btn"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_blue_profile_major_btn">
+
+                <TextView
+                    android:id="@+id/tv_profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/suiteregular"
+                    android:textColor="@color/black"
+                    android:textSize="29dp"
+                    android:textStyle="bold"
+                    tools:text="20231234 김숭실" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tv_rematch_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@id/ll_tv_profile_name"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_blue_profile_major_btn">
+
+                <TextView
+                    android:id="@+id/tv_profile_rematch_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/suiteregular"
+                    android:text="재매칭 희망률"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tv_rematch_percent_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@id/ll_tv_rematch_percent"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_blue_profile_major_btn">
+
+                <TextView
+                    android:id="@+id/tv_profile_rematch_percent_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/suiteregular"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    tools:text="100" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tv_rematch_percent_symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@id/ll_tv_rematch_percent_amount"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_blue_profile_major_btn">
+
+                <TextView
+                    android:id="@+id/tv_profile_rematch_percent_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/suiteregular"
+                    android:text="%"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_ic_gray_line_under_profile_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="@id/ll_tv_rematch_percent_symbol"
+                app:layout_constraintStart_toStartOf="@id/ll_tv_profile_name"
+                app:layout_constraintTop_toBottomOf="@id/ll_tv_profile_name">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ic_gray_line_under_profile_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_gray_line" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_ic_blue_profile_my_score_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:layout_constraintStart_toStartOf="@id/fl_ic_blue_profile_major_btn"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_profile_info">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ic_blue_profile_my_score_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_blue_profile_my_score_btn" />
+
+                <TextView
+                    android:id="@+id/tv_my_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/suiteregular"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    tools:text="나의 점수" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_mp_chart_my_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:layout_constraintStart_toStartOf="@id/fl_ic_blue_profile_my_score_btn"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_blue_profile_my_score_btn">
+
+                <com.github.mikephil.charting.charts.RadarChart
+                    android:id="@+id/mapsearchdetail_radar_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_ic_gray_line_under_my_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="@id/fl_ic_gray_line_under_profile_info"
+                app:layout_constraintStart_toStartOf="@id/fl_ic_gray_line_under_profile_info"
+                app:layout_constraintTop_toBottomOf="@id/fl_mp_chart_my_score">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ic_gray_line_under_my_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_gray_line" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_spinner_profile_select_semester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@id/fl_ic_blue_profile_my_score_btn"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_my_score">
+
+                <Spinner
+                    android:id="@+id/spinner_profile_select_semester"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="7dp" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_rv_selected_semester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@id/fl_spinner_profile_select_semester"
+                app:layout_constraintTop_toBottomOf="@id/fl_spinner_profile_select_semester">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_selected_semester"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@id/fl_spinner_profile_received_evaluation"
+                    app:layout_constraintStart_toStartOf="@id/fl_spinner_profile_received_evaluation"
+                    app:layout_constraintTop_toBottomOf="@id/fl_spinner_profile_received_evaluation"></androidx.recyclerview.widget.RecyclerView>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_ic_gray_line_under_select_semester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="@id/fl_ic_gray_line_under_profile_info"
+                app:layout_constraintStart_toStartOf="@id/fl_ic_gray_line_under_profile_info"
+                app:layout_constraintTop_toBottomOf="@id/fl_rv_selected_semester">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ic_gray_line_under_select_semester"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_gray_line" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_spinner_profile_received_evaluation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@id/fl_ic_blue_profile_my_score_btn"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_select_semester">
+
+                <Spinner
+                    android:id="@+id/spinner_profile_received_evaluation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="7dp" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_rv_received_evaluation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@id/fl_spinner_profile_received_evaluation"
+                app:layout_constraintTop_toBottomOf="@id/fl_spinner_profile_received_evaluation">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_recieved_evaluation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@id/fl_spinner_profile_received_evaluation"
+                    app:layout_constraintStart_toStartOf="@id/fl_spinner_profile_received_evaluation"
+                    app:layout_constraintTop_toBottomOf="@id/fl_spinner_profile_received_evaluation"></androidx.recyclerview.widget.RecyclerView>
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv_main"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:background="@drawable/shape_gray_line_rect"
+        app:itemHorizontalTranslationEnabled="false"
+        app:itemIconTint="@drawable/bnv_selector_color"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bnv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
