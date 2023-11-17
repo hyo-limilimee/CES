@@ -1,14 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TeamBuildOverviewFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tV_teambuild_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="53dp"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/suiteextrabold"
+        android:text="오픈 소스 기반\n기초 설계"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_teambuild_ss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:src="@drawable/img_ss_teambuild"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggle_teambuild"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="65dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tV_teambuild_subject">
+
+        <Button
+            android:id="@+id/btn_teambuild_ing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/suitesemibold"
+            android:text="모집중"
+            android:textColor="@color/black"/>
+<!--            android:background="@drawable/toggle_selector_color"/>-->
+
+        <Button
+            android:id="@+id/btn_teambuild_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/suitesemibold"
+            android:text="모집완료"
+            android:textColor="@color/black"/>
+<!--            android:background="@drawable/toggle_selector_color"/>-->
+
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_teambuild_write"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/ic_bnv_team"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@+id/toggle_teambuild"
+        app:layout_constraintTop_toBottomOf="@+id/tV_teambuild_subject" />
+
+    <ScrollView
+        android:id="@+id/scrollview_team"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/bnv_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggle_teambuild">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_teambuild_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv_main"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:background="@drawable/shape_gray_line_rect"
+        app:itemHorizontalTranslationEnabled="false"
+        app:itemIconTint="@drawable/bnv_selector_color"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bnv" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
