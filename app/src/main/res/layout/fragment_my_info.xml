@@ -79,13 +79,13 @@
             tools:text="김숭실" />
 
         <FrameLayout
-            android:id="@+id/fl_ic_gray_line"
+            android:id="@+id/fl_ic_gray_line_under_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_gray_line"
+                android:id="@+id/ic_gray_line_under_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_gray_line" />
@@ -122,13 +122,13 @@
             tools:text="20231111" />
 
         <FrameLayout
-            android:id="@+id/fl_ic_gray_line"
+            android:id="@+id/fl_ic_gray_line_under_student_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_gray_line"
+                android:id="@+id/ic_gray_line_under_student_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_gray_line" />
@@ -174,13 +174,13 @@
 
 
         <FrameLayout
-            android:id="@+id/fl_ic_gray_line"
+            android:id="@+id/fl_ic_gray_line_under_nick_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_gray_line"
+                android:id="@+id/ic_gray_line_under_nick_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_gray_line" />
@@ -244,13 +244,13 @@
             tools:text="12345@soongsil.ac.kr" />
 
         <FrameLayout
-            android:id="@+id/fl_ic_gray_line"
+            android:id="@+id/fl_ic_gray_line_under_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_gray_line"
+                android:id="@+id/ic_gray_line_under_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_gray_line" />
@@ -287,13 +287,13 @@
             tools:text="********" />
 
         <FrameLayout
-            android:id="@+id/fl_ic_gray_line"
+            android:id="@+id/fl_ic_gray_line_under_pw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_gray_line"
+                android:id="@+id/ic_gray_line_under_pw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_gray_line" />
