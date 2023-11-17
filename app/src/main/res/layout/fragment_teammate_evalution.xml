@@ -31,7 +31,7 @@
             android:id="@+id/ll_tv_evaluation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="142dp"
+            android:layout_marginStart="130dp"
             android:orientation="vertical">
 
             <TextView
@@ -189,6 +189,19 @@
             android:textSize="16dp"
             tools:text="저장" />
     </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv_main"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:background="@drawable/shape_gray_line_rect"
+        app:itemHorizontalTranslationEnabled="false"
+        app:itemIconTint="@drawable/bnv_selector_color"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bnv" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
