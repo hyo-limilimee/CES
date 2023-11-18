@@ -26,10 +26,10 @@ class TeammateEvalutionFragment : Fragment() {
         dividerSeekBar.setTextLocationMode(DividerSeekBar.TEXT_LOCATION_BOTTOM)
 
         // Find the FrameLayout container in the layout
-        val frameLayoutContainer: FrameLayout = rootView.findViewById(R.id.fl_seek_bar_container)
+//        val frameLayoutContainer: FrameLayout = rootView.findViewById(R.id.fl_seek_bar_container)
 
         // Add DividerSeekBar to FrameLayout
-        frameLayoutContainer.addView(dividerSeekBar)
+//        frameLayoutContainer.addView(dividerSeekBar)
 
         return rootView
     }
