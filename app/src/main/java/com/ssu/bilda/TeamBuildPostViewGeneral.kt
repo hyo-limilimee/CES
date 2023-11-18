@@ -13,10 +13,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [TeamBuildRequestJoinFragment.newInstance] factory method to
+ * Use the [TeamBuildPostViewGeneral.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TeamBuildRequestJoinFragment : Fragment() {
+class TeamBuildPostViewGeneral : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -34,7 +34,7 @@ class TeamBuildRequestJoinFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_team_build_request_join, container, false)
+        return inflater.inflate(R.layout.fragment_team_build_post_view_general, container, false)
     }
 
     companion object {
@@ -49,7 +49,7 @@ class TeamBuildRequestJoinFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            TeamBuildRequestJoinFragment().apply {
+            TeamBuildPostViewGeneral().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

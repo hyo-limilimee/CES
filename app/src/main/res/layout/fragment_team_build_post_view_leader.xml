@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TeamBuildRequestJoinFragment">
+    tools:context=".TeamBuildPostViewLeader">
 
     <LinearLayout
         android:id="@+id/ll_tv_subject_name"
@@ -100,7 +100,7 @@
         android:id="@+id/ll_teammate_status_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@id/fl_ic_teambuild_writing_bg_box"
         app:layout_constraintTop_toBottomOf="@+id/fl_ic_teambuild_writing_bg_box">
@@ -185,45 +185,53 @@
         </FrameLayout>
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/fl_ic_calendar"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="500dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ic_clendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_calendar_btn" />
-    </FrameLayout>
-
-
-    <FrameLayout
-        android:id="@+id/fl_teambuild_require_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginTop="180dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ll_tv_profile_each_member">
 
-        <Button
-            android:id="@+id/tv_teambuild_require_btn"
+        <FrameLayout
+            android:id="@+id/fl_teambuild_check_request_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/suiteregular"
-            android:outlineProvider="none"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            tools:text="참가 요청하기" />
-    </FrameLayout>
+            android:layout_marginStart="70dp">
+
+            <Button
+                android:id="@+id/tv_teambuild_check_request_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/suiteregular"
+                android:outlineProvider="none"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                tools:text="요청 확인" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_teambuild_finish_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp">
+
+            <Button
+                android:id="@+id/tv_teambuild_finish_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/suiteregular"
+                android:outlineProvider="none"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                tools:text="모집 종료" />
+        </FrameLayout>
+    </LinearLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_main"
