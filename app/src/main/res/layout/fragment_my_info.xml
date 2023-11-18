@@ -1,0 +1,412 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResetPasswordFragment">
+
+    <LinearLayout
+        android:id="@+id/ll_ic_arrow_and_tv_my_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="13dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/fl_black_left_arrow_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_black_left_arrow_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_black_left_arrow_btn" />
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_tv_my_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_my_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/suiteregular"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                tools:text="내 정보" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tv_my_info_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_ic_arrow_and_tv_my_info">
+
+        <TextView
+            android:id="@+id/tv_my_info_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/suiteregular"
+            android:text="이름"
+            android:textColor="@color/sgray"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tv_my_info_name_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/suiteregular"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            tools:text="김숭실" />
+
+        <FrameLayout
+            android:id="@+id/fl_ic_gray_line_under_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_gray_line_under_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_gray_line" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tv_my_info_student_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="14dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_tv_my_info_name">
+
+        <TextView
+            android:id="@+id/tv_my_info_student_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/suiteregular"
+            android:text="학번"
+            android:textColor="@color/sgray"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tv_my_info_student_id_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/suiteregular"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            tools:text="20231111" />
+
+        <FrameLayout
+            android:id="@+id/fl_ic_gray_line_under_student_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_gray_line_under_student_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_gray_line" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tv_my_info_nick_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="14dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_tv_my_info_student_id">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_my_info_nick_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/suiteregular"
+                android:text="닉네임"
+                android:textColor="@color/sgray"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_my_info_nick_name_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/suiteregular"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            tools:text="짱구" />
+
+
+        <FrameLayout
+            android:id="@+id/fl_ic_gray_line_under_nick_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_gray_line_under_nick_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_gray_line" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_ic_my_info_nick_name_change_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_tv_my_info_student_id">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ic_my_info_nick_name_change_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_my_info_change_btn" />
+
+        <TextView
+            android:id="@+id/tv_my_info_nick_name_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/suiteregular"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            tools:text="변경" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tv_my_info_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="14dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_tv_my_info_nick_name">
+
+        <TextView
+            android:id="@+id/tv_my_info_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/suiteregular"
+            android:text="이메일"
+            android:textColor="@color/sgray"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tv_my_info_email_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/suiteregular"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            tools:text="12345@soongsil.ac.kr" />
+
+        <FrameLayout
+            android:id="@+id/fl_ic_gray_line_under_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_gray_line_under_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_gray_line" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tv_my_info_pw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="14dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_tv_my_info_email">
+
+        <TextView
+            android:id="@+id/tv_my_info_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/suiteregular"
+            android:text="비밀번호"
+            android:textColor="@color/sgray"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tv_my_info_pw_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/suiteregular"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            tools:text="********" />
+
+        <FrameLayout
+            android:id="@+id/fl_ic_gray_line_under_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_gray_line_under_pw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_gray_line" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_ic_my_info_pw_change_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_tv_my_info_email">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ic_my_info_pw_change_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_my_info_change_btn" />
+
+        <TextView
+            android:id="@+id/tv_my_info_pw_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/suiteregular"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            tools:text="변경" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tv_my_info_major"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="14dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_tv_my_info_pw">
+
+        <TextView
+            android:id="@+id/tv_my_info_major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/suiteregular"
+            android:text="학과"
+            android:textColor="@color/sgray"
+            android:textSize="16dp" />
+
+        <Spinner
+            android:id="@+id/spinner_my_info_major"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="7dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_tv_my_info_major">
+
+        <TextView
+            android:id="@+id/tv_log_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/suiteregular"
+            android:text="로그아웃"
+            android:textColor="@color/sgray"
+            android:textSize="16dp" />
+
+
+        <TextView
+            android:id="@+id/tv_vertical_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/suiteregular"
+            android:text="|"
+            android:textColor="@color/gray"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tv_withdrawal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/suiteregular"
+            android:text="회원탈퇴"
+            android:textColor="@color/sgray"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv_main"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:background="@drawable/shape_gray_line_rect"
+        app:itemHorizontalTranslationEnabled="false"
+        app:itemIconTint="@drawable/bnv_selector_color"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bnv" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
