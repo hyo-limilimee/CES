@@ -1,5 +1,6 @@
 package com.ssu.bilda
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -44,8 +45,17 @@ class EmailInputActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
+        // 인증코드전송버튼 클릭
         binding.btnSignupSendauth.setOnClickListener {
             showEmailDialog()
+        }
+
+        // 다음 버튼 클릭
+        binding.btnSignupEmailnext.setOnClickListener {
+            val intent = Intent(this, PwInputActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
         }
     }
 
