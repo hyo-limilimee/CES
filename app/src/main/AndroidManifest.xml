@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Bilda"
         tools:targetApi="31">
         <activity
+            android:name=".TermsOfPrivacyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TermsOfUseActivity"
+            android:exported="false" />
+        <activity
             android:name=".BnvActivity"
             android:exported="false" />
         <activity
