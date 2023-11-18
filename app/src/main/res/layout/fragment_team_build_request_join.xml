@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TeamBuildWritingFragment">
+    tools:context=".TeamBuildRequestJoinFragment">
 
     <LinearLayout
         android:id="@+id/ll_tv_subject_name"
@@ -29,7 +29,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ll_tv_teambuild_writing_title"
+        android:id="@+id/ll_tv_teambuild_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -37,17 +37,17 @@
         app:layout_constraintTop_toBottomOf="@id/ll_tv_subject_name">
 
         <TextView
-            android:id="@+id/tv_teambuild_writing_title"
+            android:id="@+id/tv_teambuild_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="17dp"
             android:fontFamily="@font/suiteregular"
             android:textAlignment="textStart"
-            android:textColor="@color/sgray"
-            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:textSize="21dp"
             android:textStyle="bold"
-            tools:text="제목을 입력하세요" />
+            tools:text="멋진 프로젝트를 해봐요" />
     </LinearLayout>
 
     <FrameLayout
@@ -89,124 +89,140 @@
             android:layout_gravity="center|start"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/suiteregular"
-            android:textColor="@color/sgray"
+            android:maxWidth="285dp"
+            android:textColor="@color/black"
             android:textSize="16dp"
-            android:textStyle="bold"
-            tools:text="내용을 입력하세요" />
+            tools:text="계획하고 있는 프로젝트는 팀플 팀원 평가 앱이며 열심히 프로젝트를 하실 분을 찾습니다!
+시간 약속 엄수!!!요" />
     </FrameLayout>
 
     <LinearLayout
-        android:id="@+id/ll_tv_select_member_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@id/fl_ic_teambuild_writing_bg_box"
-        app:layout_constraintTop_toBottomOf="@id/fl_ic_teambuild_writing_bg_box">
-
-        <TextView
-            android:id="@+id/tv_teambuild_select_member_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/suiteregular"
-            android:textColor="@color/sgray"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            tools:text="모집할 인원을 선택하세요" />
-    </LinearLayout>
-
-
-    <FrameLayout
-        android:id="@+id/fl_spinner_select_member_num"
+        android:id="@+id/ll_teammate_status_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@id/ll_tv_select_member_num"
-        app:layout_constraintTop_toBottomOf="@id/ll_tv_select_member_num">
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/fl_ic_teambuild_writing_bg_box"
+        app:layout_constraintTop_toBottomOf="@+id/fl_ic_teambuild_writing_bg_box">
 
-        <Spinner
-            android:id="@+id/spinner_profile_select_member_num"
+        <FrameLayout
+            android:id="@+id/fl_ic_person"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="7dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp">
 
-    </FrameLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_person" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tv_teamate_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_teammate_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:fontFamily="@font/suiteregular"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                tools:text="3/5" />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ll_tv_select_term"
+        android:id="@+id/ll_tv_profile_each_member"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@id/fl_spinner_select_member_num"
-        app:layout_constraintTop_toBottomOf="@id/fl_spinner_select_member_num">
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="@id/ll_teammate_status_num"
+        app:layout_constraintTop_toBottomOf="@id/ll_teammate_status_num">
 
         <TextView
-            android:id="@+id/tv_teambuild_select_term"
+            android:id="@+id/tv_teammate_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="3dp"
             android:fontFamily="@font/suiteregular"
-            android:textColor="@color/sgray"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            tools:text="모집할 기간을 선택하세요" />
-    </LinearLayout>
-
-
-    <FrameLayout
-        android:id="@+id/fl_ic_select_term"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="45dp"
-        app:layout_constraintStart_toStartOf="@id/ll_tv_select_term"
-        app:layout_constraintTop_toBottomOf="@id/ll_tv_select_term">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_select_date_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_select_date_btn" />
-
-        <TextView
-            android:id="@+id/tv_selected_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/suiteregular"
+            android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="16dp"
             android:textStyle="bold"
-            tools:text="23.10.23" />
-    </FrameLayout>
+            tools:text="짱구" />
 
-    <FrameLayout
-        android:id="@+id/fl_ic_teambuild_writing_done_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fl_ic_select_term">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_teambuild_writing_done_btn"
+        <FrameLayout
+            android:id="@+id/fl_ic_profile_show_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_teambuild_writing_done_btn" />
+            android:layout_marginStart="30dp">
 
-        <TextView
-            android:id="@+id/tv_teambuild_writing_done"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_profile_show_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_profile_show_btn" />
+
+            <TextView
+                android:id="@+id/tv_show_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/suiteregular"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                tools:text="프로필 열람" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_ic_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="500dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ic_clendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_calendar_btn" />
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_teambuild_require_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_tv_profile_each_member">
+
+        <Button
+            android:id="@+id/tv_teambuild_require_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@android:color/transparent"
             android:fontFamily="@font/suiteregular"
-            android:textColor="@color/white"
+            android:outlineProvider="none"
+            android:textColor="@color/black"
             android:textSize="16dp"
             android:textStyle="bold"
-            tools:text="작성완료" />
+            tools:text="참가 요청하기" />
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -221,7 +237,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_bnv" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
