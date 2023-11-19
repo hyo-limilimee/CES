@@ -29,7 +29,9 @@
         android:layout_marginStart="21dp"
         android:layout_marginEnd="21dp"
         android:layout_marginTop="5dp"
+        android:paddingStart="10dp"
         android:inputType="text"
+        android:textColor="@color/sgray"
         app:layout_constraintTop_toBottomOf="@+id/tv_signup_name" />
 
     <TextView
@@ -63,8 +65,8 @@
             android:background="@color/wgray"
             android:fontFamily="@font/suiteregular"
             android:textColor="@color/sgray"
-            android:maxLength="6"
-            android:inputType="text" />
+            android:maxLength="8"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>>
 
     <TextView
