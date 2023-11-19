@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="KtlintProjectConfiguration">
+    <enableKtlint>false</enableKtlint>
     <disabledRules>
       <list>
         <option value="no-trailing-spaces" />
         <option value="trailing-comma-on-call-site" />
+        <option value="spacing-between-declarations-with-comments" />
       </list>
     </disabledRules>
   </component>
