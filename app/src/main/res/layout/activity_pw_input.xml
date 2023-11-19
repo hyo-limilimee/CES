@@ -60,7 +60,7 @@
             android:layout_marginEnd="21dp"
             android:fontFamily="@font/suiteregular"
             android:text="*영문자, 숫자 포함 8자 이상"
-            android:textColor="@color/sgray"
+            android:textColor="@color/red"
             android:textSize="12dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
