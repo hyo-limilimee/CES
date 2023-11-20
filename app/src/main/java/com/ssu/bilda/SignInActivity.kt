@@ -20,5 +20,12 @@ class SignInActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        // 로그인 버튼 클릭
+        binding.btnSignin.setOnClickListener {
+            val mIntent = Intent(this@SignInActivity, BnvActivity::class.java)
+            startActivity(mIntent)
+            finish()
+        }
     }
 }
