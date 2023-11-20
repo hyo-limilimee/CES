@@ -7,7 +7,7 @@
     tools:context=".BnvActivity">
 
     <FrameLayout
-        android:id="@+id/fl_bnv_l1"
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="@id/bnv_main"
