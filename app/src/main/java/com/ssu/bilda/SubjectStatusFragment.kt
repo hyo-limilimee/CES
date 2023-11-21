@@ -20,7 +20,7 @@ class SubjectStatusFragment : Fragment() {
         val teammateNameList = listOf("팀원 1", "팀원 2", "팀원 3")
 
         // adapter 생성, 설정
-        val adapter = SubjectAdapter(requireContext(), teammateNameList)
+        val adapter = TeammateNameAdapter(requireContext(), teammateNameList)
 
         // RecyclerView를 초기화, adapter 설정
         val rvTeammateNameList: RecyclerView = view.findViewById(R.id.rv_teammate_name_list)

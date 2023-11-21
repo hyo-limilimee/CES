@@ -62,7 +62,7 @@
                 android:fontFamily="@font/suiteregular"
                 android:textColor="@color/white"
                 android:textSize="16dp"
-                tools:text="평가하기" />
+                android:text="평가하기" />
         </FrameLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

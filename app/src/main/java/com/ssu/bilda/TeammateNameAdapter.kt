@@ -7,16 +7,21 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
 
-class TeammateNameAdapter(
-    private val context: Context,
-    private val teammateNameList: List<String>,
+class TeammateNameAdapter(private val context: Context, private val teammateNameList: List<String>) :
+    // RecyclerView.Adapter 클래스 상속 받음 & subjetViewHolder -> 제네릭
+    RecyclerView.Adapter<TeammateNameAdapter.TeammateNameViewHolder>() {
+
     private var onItemClick: ((View) -> Unit)? = null
-) : RecyclerView.Adapter<TeammateNameAdapter.TeammateNameViewHolder>() {
+
+    fun setOnItemClickListener(listener: (View) -> Unit) {
+        onItemClick = listener
+    }
 
     // 새로운 아이템 뷰 위한 뷰홀더 객체 생성, 초기화
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeammateNameViewHolder {
         val view =
-            LayoutInflater.from(context).inflate(R.layout.item_rcv_evalution_teammate_name, parent, false)
+            LayoutInflater.from(context)
+                .inflate(R.layout.item_rcv_evalution_teammate_name, parent, false)
 
         return TeammateNameViewHolder(view)
     }
