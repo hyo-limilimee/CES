@@ -1,7 +1,7 @@
 package com.ssu.bilda.presentation
 
-import ProfileFragment
-import ProjectStatusFragment
+import com.ssu.bilda.presentation.mypage.ProfileFragment
+import com.ssu.bilda.presentation.evaluate.ProjectStatusFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.FrameLayout

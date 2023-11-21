@@ -1,14 +1,11 @@
+package com.ssu.bilda.presentation.mypage
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.mikephil.charting.charts.RadarChart
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.RadarData
-import com.github.mikephil.charting.data.RadarDataSet
-import com.github.mikephil.charting.data.RadarEntry
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
 class ProfileFragment : Fragment() {
 
