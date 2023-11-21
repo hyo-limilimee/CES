@@ -46,7 +46,7 @@ class TeammateEvalutionFragment : Fragment() {
 
     private fun showSaveDialog() {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("저장") // 대화 상자의 제목 설정
+        builder.setTitle("") // 대화 상자의 제목 설정
         builder.setMessage("이 팀원과 다시 한 번 팀플 하시겠습니까?") // 메시지 설정
 
         // 대화 상자에 버튼 추가
