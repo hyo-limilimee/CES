@@ -1,6 +1,7 @@
 package com.ssu.bilda
 
 import ProfileFragment
+import ProjectStatusFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.FrameLayout
@@ -23,7 +24,7 @@ class BnvActivity : AppCompatActivity() {
         bn.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.bnv_home -> replaceFragment(HomeFragment())
-                R.id.bnv_team -> replaceFragment(SubjectStatusFragment())
+                R.id.bnv_team -> replaceFragment(ProjectStatusFragment())
                 R.id.bnv_person -> replaceFragment(ProfileFragment())
             }
             true
