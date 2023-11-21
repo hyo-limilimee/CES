@@ -1,9 +1,11 @@
-package com.ssu.bilda
+package com.ssu.bilda.presentation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.ssu.bilda.R
+import com.ssu.bilda.presentation.sign.SignInActivity
 
 class SplashActivity : AppCompatActivity() {
     private val SPLASH_DELAY: Long = 3000 // 3초

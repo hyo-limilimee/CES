@@ -1,4 +1,4 @@
-package com.ssu.bilda
+package com.ssu.bilda.presentation.sign
 
 import android.content.Intent
 import android.os.Bundle
@@ -25,12 +25,12 @@ class TermsActivity : AppCompatActivity() {
         }
         // 개인정보처리방침 페이지 이동_버튼
         binding.btnTermsMovePrivacy.setOnClickListener {
-            val mIntent = Intent(this,TermsOfPrivacyActivity::class.java)
+            val mIntent = Intent(this, TermsOfPrivacyActivity::class.java)
             startActivity(mIntent)
         }
         // 개인정보처리방침 페이지 이동_영역
         binding.llTermsL2.setOnClickListener {
-            val mIntent = Intent(this,TermsOfPrivacyActivity::class.java)
+            val mIntent = Intent(this, TermsOfPrivacyActivity::class.java)
             startActivity(mIntent)
         }
 

@@ -1,3 +1,5 @@
+package com.ssu.bilda.presentation.adapter
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View

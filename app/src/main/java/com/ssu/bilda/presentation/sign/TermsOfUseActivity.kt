@@ -1,4 +1,4 @@
-package com.ssu.bilda
+package com.ssu.bilda.presentation.sign
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

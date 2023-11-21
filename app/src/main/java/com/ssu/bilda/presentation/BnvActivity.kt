@@ -1,12 +1,14 @@
-package com.ssu.bilda
+package com.ssu.bilda.presentation
 
-import ProfileFragment
-import ProjectStatusFragment
+import com.ssu.bilda.presentation.mypage.ProfileFragment
+import com.ssu.bilda.presentation.evaluate.ProjectStatusFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.ssu.bilda.presentation.home.HomeFragment
+import com.ssu.bilda.R
 
 class BnvActivity : AppCompatActivity() {
     private val fl: FrameLayout by lazy {

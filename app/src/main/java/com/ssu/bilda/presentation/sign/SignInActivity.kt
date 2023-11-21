@@ -1,9 +1,10 @@
-package com.ssu.bilda
+package com.ssu.bilda.presentation.sign
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ssu.bilda.databinding.ActivitySignInBinding
+import com.ssu.bilda.presentation.BnvActivity
 
 class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
