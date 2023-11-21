@@ -16,44 +16,53 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
-            android:id="@+id/fl_evaluation_subject_btn"
+            android:id="@+id/fl_teammate_name_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="7dp">
+            android:layout_marginStart="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_gray_btn"
+                android:id="@+id/ic_gray_teammate_name_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_gray_btn" />
+                android:src="@drawable/ic_gray_teammate_name_btn" />
 
             <TextView
-                android:id="@+id/tv_evaluation_subject"
+                android:id="@+id/tv_teammate_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/suiteregular"
                 android:textColor="@color/black"
                 android:textSize="16dp"
-                android:textStyle="bold"
-                tools:text="오픈소스 기반 기초 설계" />
+                tools:text="강효림" />
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/fl_ic_gray_right_arrow"
+            android:id="@+id/fl_teammate_evaluation_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="3dp">
+            android:layout_marginStart = "20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_gray_right_arrow"
+                android:id="@+id/ic_blue_evaluation_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_gray_right_arrow" />
+                android:src="@drawable/ic_blue_evaluation_btn"/>
+
+            <TextView
+                android:id="@+id/tv_teammate_evaluation_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/suiteregular"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:text="평가하기" />
         </FrameLayout>
-
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
