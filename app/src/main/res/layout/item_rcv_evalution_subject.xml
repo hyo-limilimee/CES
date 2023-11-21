@@ -2,53 +2,57 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:paddingBottom="22dp">
 
-    <FrameLayout
-        android:id="@+id/fl_evalution_subject_btn"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_container"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="110dp"
-        android:layout_marginBottom="688dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_gray_btn"
+        <FrameLayout
+            android:id="@+id/fl_evaluation_subject_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_gray_btn" />
+            android:layout_marginEnd="7dp">
 
-        <TextView
-            android:id="@+id/tv_evaluation_subject"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_gray_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_gray_btn" />
+
+            <TextView
+                android:id="@+id/tv_evaluation_subject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/suiteregular"
+                tools:text="오픈소스 기반 기초 설계"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginEnd="10dp"
-            android:fontFamily="@font/suiteregular"
-            android:text="오픈 소스 기초 기반 설계"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-    </FrameLayout>
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="3dp">
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="7dp"
-        app:layout_constraintEnd_toEndOf="@+id/fl_evalution_subject_btn"
-        app:layout_constraintTop_toTopOf="@+id/fl_evalution_subject_btn">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_gray_right_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_gray_right_arrow" />
+        </FrameLayout>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_gray_right_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_gray_right_arrow" />
-
-    </FrameLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
