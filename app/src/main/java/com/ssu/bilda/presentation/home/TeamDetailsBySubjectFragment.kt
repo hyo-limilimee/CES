@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.ssu.bilda.ARG_PARAM1
-import com.ssu.bilda.ARG_PARAM2
 import com.ssu.bilda.R
 
 /**
@@ -22,8 +20,8 @@ class TeamDetailsBySubjectFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            param1 = it.getString(param1)
+            param2 = it.getString(param2)
         }
     }
 
@@ -49,8 +47,8 @@ class TeamDetailsBySubjectFragment : Fragment() {
         fun newInstance(param1: String, param2: String) =
             TeamDetailsBySubjectFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(param1, param1)
+                    putString(param2, param2)
                 }
             }
     }
