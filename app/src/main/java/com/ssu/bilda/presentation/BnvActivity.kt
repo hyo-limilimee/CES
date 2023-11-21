@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.ssu.bilda.HomeFragment
+import com.ssu.bilda.presentation.home.HomeFragment
 import com.ssu.bilda.R
 
 class BnvActivity : AppCompatActivity() {
