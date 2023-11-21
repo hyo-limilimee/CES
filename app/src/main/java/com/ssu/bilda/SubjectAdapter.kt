@@ -7,7 +7,6 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
-import com.ssu.bilda.SubjectStatusFragment
 
 class SubjectAdapter(private val context: Context, private val subjectList: List<String>) :
 // RecyclerView.Adapter 클래스 상속 받음 & subjetViewHolder -> 제네릭

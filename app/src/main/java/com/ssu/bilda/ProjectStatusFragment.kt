@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
-import com.ssu.bilda.SubjectStatusFragment
 
 class ProjectStatusFragment : Fragment() {
 
