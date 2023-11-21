@@ -17,7 +17,7 @@ class SubjectStatusFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_subject_status, container, false)
 
         // recyclerview 더미 데이터
-        val teammateNameList = listOf("과목 1", "과목 2", "과목 3")
+        val teammateNameList = listOf("팀원 1", "팀원 2", "팀원 3")
 
         // adapter 생성, 설정
         val adapter = SubjectAdapter(requireContext(), teammateNameList)

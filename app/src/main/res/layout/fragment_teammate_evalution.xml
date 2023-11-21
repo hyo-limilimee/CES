@@ -3,415 +3,430 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubjectStatusFragment">
+    tools:context=".TeammateEvalutionFragment">
 
-    <LinearLayout
-        android:id="@+id/ll_ic_arrow_and_tv_evaluation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="59dp"
-        android:layout_marginEnd="13dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bnv_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-        <FrameLayout
-            android:id="@+id/fl_black_left_arrow_btn"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_black_left_arrow_btn"
+            <LinearLayout
+                android:id="@+id/ll_ic_arrow_and_tv_evaluation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="59dp"
+                android:layout_marginEnd="13dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <FrameLayout
+                    android:id="@+id/fl_black_left_arrow_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ic_black_left_arrow_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_black_left_arrow_btn" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_tv_evaluation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="130dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_teammate_evaluation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/suiteregular"
+                        android:textColor="@color/black"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        tools:text="평가하기" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tv_team_project_with_me"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_black_left_arrow_btn" />
-        </FrameLayout>
+                android:layout_marginTop="59dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ll_ic_arrow_and_tv_evaluation">
 
-        <LinearLayout
-            android:id="@+id/ll_tv_evaluation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="130dp"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_team_project_with_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="13dp"
+                    android:fontFamily="@font/suiteregular"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    tools:text="제가 함께한 " />
 
-            <TextView
-                android:id="@+id/tv_teammate_evaluation"
+                <FrameLayout
+                    android:id="@+id/fl_blue_teammate_name_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ic_blue_teammate_name_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_blue_teammate_name_btn" />
+
+                    <TextView
+                        android:id="@+id/tv_teammate_evaluation_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/suiteregular"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        tools:text="강효림" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_team_project_is"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="13dp"
+                    android:fontFamily="@font/suiteregular"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    tools:text="은요!" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tv_evaluation_element_major"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="36dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_tv_team_project_with_me">
+
+                <TextView
+                    android:id="@+id/tv_evaluation_element_major"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/suiteregular"
+                    android:text="전공이해도 "
+                    android:textColor="@color/black"
+                    android:textSize="10dp" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_seek_bar_major"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="36dp"
+                app:layout_constraintEnd_toEndOf="@id/ll_tv_evaluation_element_major"
+                app:layout_constraintStart_toStartOf="@id/ll_tv_evaluation_element_major"
+                app:layout_constraintTop_toBottomOf="@id/ll_tv_evaluation_element_major">
+
+                <github.hongbeomi.dividerseekbar.DividerSeekBar
+                    android:id="@+id/dividerSeekBar_major"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    app:dividerActivatedTargetValue="3"
+                    app:dividerActiveMode="target"
+                    app:dividerColor="@color/light_blue_600"
+                    app:dividerSeaLineColor="@color/light_blue_600"
+                    app:dividerSeaLineStrokeWidth="@dimen/dp_1"
+                    app:dividerStrokeWidth="@dimen/dp_1"
+                    app:dividerTextColor="@color/black"
+                    app:dividerTextInterval="10"
+                    app:dividerTextLocationMode="bottom"
+                    app:dividerTextSize="@dimen/sp_12"
+                    app:dividerThumbActivatedDrawable="@drawable/bg_thumb_activated"
+                    app:dividerThumbDefaultDrawable="@drawable/bg_thumb_default" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tv_evaluation_element_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="36dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fl_seek_bar_major">
+
+                <TextView
+                    android:id="@+id/tv_evaluation_element_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/suiteregular"
+                    android:text="시간 준수 "
+                    android:textColor="@color/black"
+                    android:textSize="10dp" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_seek_bar_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="36dp"
+                app:layout_constraintEnd_toEndOf="@id/ll_tv_evaluation_element_time"
+                app:layout_constraintStart_toStartOf="@id/ll_tv_evaluation_element_time"
+                app:layout_constraintTop_toBottomOf="@id/ll_tv_evaluation_element_time">
+
+                <github.hongbeomi.dividerseekbar.DividerSeekBar
+                    android:id="@+id/dividerSeekBar_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    app:dividerActivatedTargetValue="3"
+                    app:dividerActiveMode="target"
+                    app:dividerColor="@color/light_blue_600"
+                    app:dividerSeaLineColor="@color/light_blue_600"
+                    app:dividerSeaLineStrokeWidth="@dimen/dp_1"
+                    app:dividerStrokeWidth="@dimen/dp_1"
+                    app:dividerTextColor="@color/black"
+                    app:dividerTextInterval="10"
+                    app:dividerTextLocationMode="bottom"
+                    app:dividerTextSize="@dimen/sp_12"
+                    app:dividerThumbActivatedDrawable="@drawable/bg_thumb_activated"
+                    app:dividerThumbDefaultDrawable="@drawable/bg_thumb_default" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tv_evaluation_element_communication"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="36dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fl_seek_bar_time">
+
+                <TextView
+                    android:id="@+id/tv_evaluation_element_communication"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/suiteregular"
+                    android:text="의사소통 능력 "
+                    android:textColor="@color/black"
+                    android:textSize="10dp" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_seek_bar_communication"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="36dp"
+                app:layout_constraintEnd_toEndOf="@id/ll_tv_evaluation_element_communication"
+                app:layout_constraintStart_toStartOf="@id/ll_tv_evaluation_element_communication"
+                app:layout_constraintTop_toBottomOf="@id/ll_tv_evaluation_element_communication">
+
+                <github.hongbeomi.dividerseekbar.DividerSeekBar
+                    android:id="@+id/dividerSeekBar_communication"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    app:dividerActivatedTargetValue="3"
+                    app:dividerActiveMode="target"
+                    app:dividerColor="@color/light_blue_600"
+                    app:dividerSeaLineColor="@color/light_blue_600"
+                    app:dividerSeaLineStrokeWidth="@dimen/dp_1"
+                    app:dividerStrokeWidth="@dimen/dp_1"
+                    app:dividerTextColor="@color/black"
+                    app:dividerTextInterval="10"
+                    app:dividerTextLocationMode="bottom"
+                    app:dividerTextSize="@dimen/sp_12"
+                    app:dividerThumbActivatedDrawable="@drawable/bg_thumb_activated"
+                    app:dividerThumbDefaultDrawable="@drawable/bg_thumb_default" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tv_evaluation_element_positiveness"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="36dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fl_seek_bar_communication">
+
+                <TextView
+                    android:id="@+id/tv_evaluation_element_positiveness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/suiteregular"
+                    android:text="적극성"
+                    android:textColor="@color/black"
+                    android:textSize="10dp" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_seek_bar_positiveness"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="36dp"
+                app:layout_constraintEnd_toEndOf="@id/ll_tv_evaluation_element_positiveness"
+                app:layout_constraintStart_toStartOf="@id/ll_tv_evaluation_element_positiveness"
+                app:layout_constraintTop_toBottomOf="@id/ll_tv_evaluation_element_positiveness">
+
+                <github.hongbeomi.dividerseekbar.DividerSeekBar
+                    android:id="@+id/dividerSeekBar_positiveness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    app:dividerActivatedTargetValue="3"
+                    app:dividerActiveMode="target"
+                    app:dividerColor="@color/light_blue_600"
+                    app:dividerSeaLineColor="@color/light_blue_600"
+                    app:dividerSeaLineStrokeWidth="@dimen/dp_1"
+                    app:dividerStrokeWidth="@dimen/dp_1"
+                    app:dividerTextColor="@color/black"
+                    app:dividerTextInterval="10"
+                    app:dividerTextLocationMode="bottom"
+                    app:dividerTextSize="@dimen/sp_12"
+                    app:dividerThumbActivatedDrawable="@drawable/bg_thumb_activated"
+                    app:dividerThumbDefaultDrawable="@drawable/bg_thumb_default" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tv_evaluation_element_responsibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="36dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fl_seek_bar_positiveness">
+
+                <TextView
+                    android:id="@+id/tv_evaluation_element_responsibility"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/suiteregular"
+                    android:text="책임감"
+                    android:textColor="@color/black"
+                    android:textSize="10dp" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_seek_bar_responsibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="36dp"
+                app:layout_constraintEnd_toEndOf="@id/ll_tv_evaluation_element_responsibility"
+                app:layout_constraintStart_toStartOf="@id/ll_tv_evaluation_element_responsibility"
+                app:layout_constraintTop_toBottomOf="@id/ll_tv_evaluation_element_responsibility">
+
+                <github.hongbeomi.dividerseekbar.DividerSeekBar
+                    android:id="@+id/dividerSeekBar_responsibility"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    app:dividerActivatedTargetValue="3"
+                    app:dividerActiveMode="target"
+                    app:dividerColor="@color/light_blue_600"
+                    app:dividerSeaLineColor="@color/light_blue_600"
+                    app:dividerSeaLineStrokeWidth="@dimen/dp_1"
+                    app:dividerStrokeWidth="@dimen/dp_1"
+                    app:dividerTextColor="@color/black"
+                    app:dividerTextInterval="10"
+                    app:dividerTextLocationMode="bottom"
+                    app:dividerTextSize="@dimen/sp_12"
+                    app:dividerThumbActivatedDrawable="@drawable/bg_thumb_activated"
+                    app:dividerThumbDefaultDrawable="@drawable/bg_thumb_default" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_blue_save_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/suiteregular"
-                android:textColor="@color/black"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                tools:text="평가하기" />
-        </LinearLayout>
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fl_seek_bar_responsibility">
 
-    </LinearLayout>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ic_blue_save_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_blue_save_btn" />
 
-    <LinearLayout
-        android:id="@+id/ll_tv_team_project_with_me"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="59dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ll_ic_arrow_and_tv_evaluation">
-
-        <TextView
-            android:id="@+id/tv_team_project_with_me"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="13dp"
-            android:fontFamily="@font/suiteregular"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            tools:text="제가 함께한 " />
-
-        <FrameLayout
-            android:id="@+id/fl_blue_teammate_name_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_blue_teammate_name_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_blue_teammate_name_btn" />
-
-            <TextView
-                android:id="@+id/tv_teammate_evaluation_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/suiteregular"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                tools:text="강효림" />
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/tv_team_project_is"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="13dp"
-            android:fontFamily="@font/suiteregular"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            tools:text="은요!" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_tv_evaluation_element_major"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="36dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_tv_team_project_with_me">
-
-        <TextView
-            android:id="@+id/tv_evaluation_element_major"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="13dp"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/suiteregular"
-            android:text="전공이해도 "
-            android:textColor="@color/black"
-            android:textSize="10dp" />
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/fl_seek_bar_major"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="36dp"
-        app:layout_constraintEnd_toEndOf="@id/ll_tv_evaluation_element_major"
-        app:layout_constraintStart_toStartOf="@id/ll_tv_evaluation_element_major"
-        app:layout_constraintTop_toBottomOf="@id/ll_tv_evaluation_element_major">
-
-        <github.hongbeomi.dividerseekbar.DividerSeekBar
-            android:id="@+id/dividerSeekBar_major"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="100"
-            app:dividerActivatedTargetValue="3"
-            app:dividerActiveMode="target"
-            app:dividerColor="@color/light_blue_600"
-            app:dividerSeaLineColor="@color/light_blue_600"
-            app:dividerSeaLineStrokeWidth="@dimen/dp_1"
-            app:dividerStrokeWidth="@dimen/dp_1"
-            app:dividerTextColor="@color/black"
-            app:dividerTextInterval="10"
-            app:dividerTextLocationMode="bottom"
-            app:dividerTextSize="@dimen/sp_12"
-            app:dividerThumbActivatedDrawable="@drawable/bg_thumb_activated"
-            app:dividerThumbDefaultDrawable="@drawable/bg_thumb_default" />
-    </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_tv_evaluation_element_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="36dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fl_seek_bar_major">
-
-        <TextView
-            android:id="@+id/tv_evaluation_element_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="13dp"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/suiteregular"
-            android:text="시간 준수 "
-            android:textColor="@color/black"
-            android:textSize="10dp" />
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/fl_seek_bar_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="36dp"
-        app:layout_constraintEnd_toEndOf="@id/ll_tv_evaluation_element_time"
-        app:layout_constraintStart_toStartOf="@id/ll_tv_evaluation_element_time"
-        app:layout_constraintTop_toBottomOf="@id/ll_tv_evaluation_element_time">
-
-        <github.hongbeomi.dividerseekbar.DividerSeekBar
-            android:id="@+id/dividerSeekBar_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="100"
-            app:dividerActivatedTargetValue="3"
-            app:dividerActiveMode="target"
-            app:dividerColor="@color/light_blue_600"
-            app:dividerSeaLineColor="@color/light_blue_600"
-            app:dividerSeaLineStrokeWidth="@dimen/dp_1"
-            app:dividerStrokeWidth="@dimen/dp_1"
-            app:dividerTextColor="@color/black"
-            app:dividerTextInterval="10"
-            app:dividerTextLocationMode="bottom"
-            app:dividerTextSize="@dimen/sp_12"
-            app:dividerThumbActivatedDrawable="@drawable/bg_thumb_activated"
-            app:dividerThumbDefaultDrawable="@drawable/bg_thumb_default" />
-    </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_tv_evaluation_element_communication"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="36dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fl_seek_bar_time">
-
-        <TextView
-            android:id="@+id/tv_evaluation_element_communication"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="13dp"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/suiteregular"
-            android:text="의사소통 능력 "
-            android:textColor="@color/black"
-            android:textSize="10dp" />
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/fl_seek_bar_communication"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="36dp"
-        app:layout_constraintEnd_toEndOf="@id/ll_tv_evaluation_element_communication"
-        app:layout_constraintStart_toStartOf="@id/ll_tv_evaluation_element_communication"
-        app:layout_constraintTop_toBottomOf="@id/ll_tv_evaluation_element_communication">
-
-        <github.hongbeomi.dividerseekbar.DividerSeekBar
-            android:id="@+id/dividerSeekBar_communication"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="100"
-            app:dividerActivatedTargetValue="3"
-            app:dividerActiveMode="target"
-            app:dividerColor="@color/light_blue_600"
-            app:dividerSeaLineColor="@color/light_blue_600"
-            app:dividerSeaLineStrokeWidth="@dimen/dp_1"
-            app:dividerStrokeWidth="@dimen/dp_1"
-            app:dividerTextColor="@color/black"
-            app:dividerTextInterval="10"
-            app:dividerTextLocationMode="bottom"
-            app:dividerTextSize="@dimen/sp_12"
-            app:dividerThumbActivatedDrawable="@drawable/bg_thumb_activated"
-            app:dividerThumbDefaultDrawable="@drawable/bg_thumb_default" />
-    </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_tv_evaluation_element_positiveness"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="36dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fl_seek_bar_communication">
-
-        <TextView
-            android:id="@+id/tv_evaluation_element_positiveness"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="13dp"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/suiteregular"
-            android:text="적극성"
-            android:textColor="@color/black"
-            android:textSize="10dp" />
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/fl_seek_bar_positiveness"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="36dp"
-        app:layout_constraintEnd_toEndOf="@id/ll_tv_evaluation_element_positiveness"
-        app:layout_constraintStart_toStartOf="@id/ll_tv_evaluation_element_positiveness"
-        app:layout_constraintTop_toBottomOf="@id/ll_tv_evaluation_element_positiveness">
-
-        <github.hongbeomi.dividerseekbar.DividerSeekBar
-            android:id="@+id/dividerSeekBar_positiveness"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="100"
-            app:dividerActivatedTargetValue="3"
-            app:dividerActiveMode="target"
-            app:dividerColor="@color/light_blue_600"
-            app:dividerSeaLineColor="@color/light_blue_600"
-            app:dividerSeaLineStrokeWidth="@dimen/dp_1"
-            app:dividerStrokeWidth="@dimen/dp_1"
-            app:dividerTextColor="@color/black"
-            app:dividerTextInterval="10"
-            app:dividerTextLocationMode="bottom"
-            app:dividerTextSize="@dimen/sp_12"
-            app:dividerThumbActivatedDrawable="@drawable/bg_thumb_activated"
-            app:dividerThumbDefaultDrawable="@drawable/bg_thumb_default" />
-    </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_tv_evaluation_element_responsibility"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="36dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fl_seek_bar_positiveness">
-
-        <TextView
-            android:id="@+id/tv_evaluation_element_responsibility"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="13dp"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/suiteregular"
-            android:text="책임감"
-            android:textColor="@color/black"
-            android:textSize="10dp" />
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/fl_seek_bar_responsibility"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="36dp"
-        app:layout_constraintEnd_toEndOf="@id/ll_tv_evaluation_element_responsibility"
-        app:layout_constraintStart_toStartOf="@id/ll_tv_evaluation_element_responsibility"
-        app:layout_constraintTop_toBottomOf="@id/ll_tv_evaluation_element_responsibility">
-
-        <github.hongbeomi.dividerseekbar.DividerSeekBar
-            android:id="@+id/dividerSeekBar_responsibility"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="100"
-            app:dividerActivatedTargetValue="3"
-            app:dividerActiveMode="target"
-            app:dividerColor="@color/light_blue_600"
-            app:dividerSeaLineColor="@color/light_blue_600"
-            app:dividerSeaLineStrokeWidth="@dimen/dp_1"
-            app:dividerStrokeWidth="@dimen/dp_1"
-            app:dividerTextColor="@color/black"
-            app:dividerTextInterval="10"
-            app:dividerTextLocationMode="bottom"
-            app:dividerTextSize="@dimen/sp_12"
-            app:dividerThumbActivatedDrawable="@drawable/bg_thumb_activated"
-            app:dividerThumbDefaultDrawable="@drawable/bg_thumb_default" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/fl_blue_save_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="535dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_blue_save_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_blue_save_btn" />
-
-        <TextView
-            android:id="@+id/tv_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/suiteregular"
-            android:textColor="@color/white"
-            android:textSize="16dp"
-            tools:text="저장" />
-    </FrameLayout>
+                <TextView
+                    android:id="@+id/tv_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/suiteregular"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:text="저장" />
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_main"

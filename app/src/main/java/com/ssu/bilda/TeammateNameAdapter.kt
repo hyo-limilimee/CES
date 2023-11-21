@@ -7,12 +7,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
 
-class TeammateNameAdapter(private val context: Context, private val teammateNameList: List<String>) :
-// RecyclerView.Adapter 클래스 상속 받음 & teammateNameViewHolder -> 제네릭
-    RecyclerView.Adapter<TeammateNameAdapter.TeammateNameViewHolder>() {
-
+class TeammateNameAdapter(
+    private val context: Context,
+    private val teammateNameList: List<String>,
     private var onItemClick: ((View) -> Unit)? = null
-
+) : RecyclerView.Adapter<TeammateNameAdapter.TeammateNameViewHolder>() {
 
     // 새로운 아이템 뷰 위한 뷰홀더 객체 생성, 초기화
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeammateNameViewHolder {
