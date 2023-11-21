@@ -1,4 +1,4 @@
-package com.ssu.bilda
+package com.ssu.bilda.presentation.sign
 
 import android.content.Intent
 import android.graphics.Color
@@ -14,6 +14,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import com.ssu.bilda.R
 import com.ssu.bilda.databinding.ActivityEmailInputBinding
 
 class EmailInputActivity : AppCompatActivity() {

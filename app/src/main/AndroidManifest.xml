@@ -13,31 +13,31 @@
         android:theme="@style/Theme.Bilda"
         tools:targetApi="31">
         <activity
-            android:name=".TermsOfPrivacyActivity"
+            android:name=".presentation.sign.TermsOfPrivacyActivity"
             android:exported="false" />
         <activity
-            android:name=".TermsOfUseActivity"
+            android:name=".presentation.sign.TermsOfUseActivity"
             android:exported="false" />
         <activity
-            android:name=".BnvActivity"
+            android:name=".presentation.BnvActivity"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".presentation.sign.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".MyInfoInputActivity"
+            android:name=".presentation.sign.MyInfoInputActivity"
             android:exported="false" />
         <activity
-            android:name=".PwInputActivity"
+            android:name=".presentation.sign.PwInputActivity"
             android:exported="false" />
         <activity
-            android:name=".EmailInputActivity"
+            android:name=".presentation.sign.EmailInputActivity"
             android:exported="false" />
         <activity
-            android:name=".TermsActivity"
+            android:name=".presentation.sign.TermsActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".presentation.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

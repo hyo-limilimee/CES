@@ -1,4 +1,4 @@
-package com.ssu.bilda
+package com.ssu.bilda.presentation.sign
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.ssu.bilda.R
 import com.ssu.bilda.databinding.ActivityMyInfoInputBinding
 
 class MyInfoInputActivity : AppCompatActivity() {
