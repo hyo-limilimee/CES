@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ssu.bilda.presentation.home.HomeFragment
 import com.ssu.bilda.R
+import com.ssu.bilda.presentation.evaluate.SubjectStatusFragment
+import com.ssu.bilda.presentation.mypage.MyInfoFragment
 
 class BnvActivity : AppCompatActivity() {
     private val fl: FrameLayout by lazy {
