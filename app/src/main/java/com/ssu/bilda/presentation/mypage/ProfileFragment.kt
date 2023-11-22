@@ -1,11 +1,14 @@
 package com.ssu.bilda.presentation.mypage
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import com.github.mikephil.charting.charts.RadarChart
+import com.ssu.bilda.R
 
 class ProfileFragment : Fragment() {
 
@@ -19,6 +22,7 @@ class ProfileFragment : Fragment() {
 //        val view = inflater.inflate(R.layout.fragment_profile, container, false)
 //        radarChart = view.findViewById(R.id.mapsearchdetail_radar_chart)
 //        makeChart()
+
         return view
     }
 
@@ -46,5 +50,9 @@ class ProfileFragment : Fragment() {
 //        val xAxis: XAxis = radarChart.xAxis
 //        xAxis.valueFormatter = IndexAxisValueFormatter(labels)
 //        radarChart.data = data
+
+
 //    }
+
+
 }
