@@ -45,7 +45,7 @@
                 android:textColor="@color/black"
                 android:textSize="25dp"
                 android:textStyle="bold"
-                tools:text="내 정보" />
+                android:text="내 정보" />
         </LinearLayout>
     </LinearLayout>
 
@@ -211,7 +211,7 @@
             android:fontFamily="@font/suiteregular"
             android:textColor="@color/black"
             android:textSize="16dp"
-            tools:text="변경" />
+            android:text="변경" />
     </FrameLayout>
 
     <LinearLayout
@@ -324,7 +324,7 @@
             android:fontFamily="@font/suiteregular"
             android:textColor="@color/black"
             android:textSize="16dp"
-            tools:text="변경" />
+            android:text="변경" />
     </FrameLayout>
 
     <LinearLayout

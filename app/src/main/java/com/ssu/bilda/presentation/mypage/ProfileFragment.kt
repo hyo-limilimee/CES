@@ -12,32 +12,29 @@ import com.ssu.bilda.R
 import com.ssu.bilda.databinding.FragmentProfileBinding
 import com.ssu.bilda.presentation.BnvActivity
 import com.ssu.bilda.presentation.evaluate.ProjectStatusFragment
+import com.ssu.bilda.presentation.evaluate.SubjectStatusFragment
 import com.ssu.bilda.presentation.home.HomeFragment
 
 class ProfileFragment : Fragment() {
-    private lateinit var binding: FragmentProfileBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentProfileBinding.inflate(inflater, container, false)
-        val view = binding.root
 
-        // radarChart = view.findViewById(R.id.mapsearchdetail_radar_chart)
-        // makeChart()
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        val settingButton: FrameLayout = view.findViewById(R.id.fl_ic_setting_btn)
+
+        settingButton.setOnClickListener { view ->
+            replaceFragment(MyInfoFragment())
+        }
 
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val flIcSetting = view.findViewById<FrameLayout>(R.id.fl_ic_setting_btn)
-
-        flIcSetting.setOnClickListener {
-            val bnvActivity = activity as BnvActivity
-            bnvActivity.changeToMyInfoFragment()
-        }
+    private fun replaceFragment(fragment: Fragment) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fl_content, fragment)
+            .commit()
     }
 }
 
