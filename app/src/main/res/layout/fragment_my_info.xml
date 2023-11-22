@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.mypage.ResetPasswordFragment">
+    tools:context=".presentation.mypage.MyInfoFragment">
 
     <LinearLayout
         android:id="@+id/ll_ic_arrow_and_tv_my_info"
@@ -17,24 +17,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:id="@+id/fl_black_left_arrow_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_black_left_arrow_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_black_left_arrow_btn" />
-        </FrameLayout>
-
-
         <LinearLayout
             android:id="@+id/ll_tv_my_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="140dp"
+            android:layout_marginStart="155dp"
             android:orientation="vertical">
 
             <TextView
