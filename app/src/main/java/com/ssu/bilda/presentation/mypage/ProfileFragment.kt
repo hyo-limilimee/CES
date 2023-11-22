@@ -1,7 +1,7 @@
 package com.ssu.bilda.presentation.mypage
 
-import android.app.AlertDialog
 import android.os.Bundle
+import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,22 +9,37 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.github.mikephil.charting.charts.RadarChart
 import com.ssu.bilda.R
+import com.ssu.bilda.databinding.FragmentProfileBinding
+import com.ssu.bilda.presentation.BnvActivity
+import com.ssu.bilda.presentation.evaluate.ProjectStatusFragment
+import com.ssu.bilda.presentation.home.HomeFragment
 
 class ProfileFragment : Fragment() {
-
-    private lateinit var radarChart: RadarChart
-
+    private lateinit var binding: FragmentProfileBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-//        val view = inflater.inflate(R.layout.fragment_profile, container, false)
-//        radarChart = view.findViewById(R.id.mapsearchdetail_radar_chart)
-//        makeChart()
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        // radarChart = view.findViewById(R.id.mapsearchdetail_radar_chart)
+        // makeChart()
 
         return view
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val flIcSetting = view.findViewById<FrameLayout>(R.id.fl_ic_setting_btn)
+
+        flIcSetting.setOnClickListener {
+            val bnvActivity = activity as BnvActivity
+            bnvActivity.changeToMyInfoFragment()
+        }
+    }
+}
 
 //    private fun dataValue(): ArrayList<RadarEntry> {
 //        val dataVals = ArrayList<RadarEntry>()
@@ -54,5 +69,3 @@ class ProfileFragment : Fragment() {
 
 //    }
 
-
-}
