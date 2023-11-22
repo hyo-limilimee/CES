@@ -18,6 +18,11 @@ class MyInfoFragment : Fragment() {
 
         val rootView = inflater.inflate(R.layout.fragment_my_info, container, false)
 
+        val llArrowMyInfo: View = rootView.findViewById(R.id.ll_ic_arrow_and_tv_my_info)
+        llArrowMyInfo.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
         val logOutButton: FrameLayout = rootView.findViewById(R.id.fl_tv_log_out)
 
         // "저장" 버튼에 클릭 리스너 설정
