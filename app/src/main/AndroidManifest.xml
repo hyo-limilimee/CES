@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Bilda"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.mypage.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.sign.TermsOfPrivacyActivity"
             android:exported="false" />
         <activity
