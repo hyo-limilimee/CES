@@ -39,10 +39,19 @@ class MyInfoFragment : Fragment() {
             showNickNameChangeDialog()
         }
 
+        val pwChangeButton: FrameLayout = rootView.findViewById(R.id.fl_ic_my_info_pw_change_btn)
 
-
+        pwChangeButton.setOnClickListener { view ->
+            replaceFragment(ResetPasswordFragment())
+        }
 
         return rootView
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fl_content, fragment)
+            .commit()
     }
 
     private fun showLogoutDialog() {

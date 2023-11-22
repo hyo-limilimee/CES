@@ -22,6 +22,7 @@ class ProfileFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
         val settingButton: FrameLayout = view.findViewById(R.id.fl_ic_setting_btn)
 
         settingButton.setOnClickListener { view ->
