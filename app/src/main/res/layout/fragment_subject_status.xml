@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubjectStatusFragment">
+    tools:context=".presentation.evaluate.SubjectStatusFragment">
 
     <LinearLayout
         android:id="@+id/ll_tv_evaluation"
