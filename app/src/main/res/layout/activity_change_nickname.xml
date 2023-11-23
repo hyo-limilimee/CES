@@ -6,7 +6,7 @@
     tools:context=".presentation.mypage.ChangePasswordActivity">
 
     <LinearLayout
-        android:id="@+id/ll_ic_arrow_and_tv_evaluation_reset_nickname"
+        android:id="@+id/ll_ic_arrow_and_change_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -57,7 +57,7 @@
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_ic_arrow_and_tv_evaluation_reset_nickname">
+        app:layout_constraintTop_toBottomOf="@id/ll_ic_arrow_and_change_nickname">
 
         <TextView
             android:id="@+id/tv_new_nickname_input"

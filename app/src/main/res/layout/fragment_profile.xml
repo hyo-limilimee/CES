@@ -29,18 +29,6 @@
                 android:orientation="horizontal"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <FrameLayout
-                    android:id="@+id/fl_black_left_arrow_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ic_black_left_arrow_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_black_left_arrow_btn" />
-                </FrameLayout>
-
                 <LinearLayout
                     android:id="@+id/ll_tv_mypage"
                     android:layout_width="wrap_content"

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.mypage.ResetPasswordFragment">
+    tools:context=".presentation.mypage.MyInfoFragment">
 
     <LinearLayout
         android:id="@+id/ll_ic_arrow_and_tv_my_info"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
-            android:id="@+id/fl_black_left_arrow_btn"
+            android:id="@+id/fl__my_info_black_left_arrow_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
