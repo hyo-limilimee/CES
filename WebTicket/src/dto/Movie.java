@@ -14,6 +14,9 @@ private static final long serialVersionUID = -4274700572038677000L;
 	private String genre;		// 장르 
 	private int remainingSeats;	// 남은 좌석 수 
 	private int totalSeats;		// 총 좌석 수
+	private String supervisor;	// 감독
+
+	
 	
 	public Movie() {
 		super();
@@ -87,5 +90,13 @@ private static final long serialVersionUID = -4274700572038677000L;
 	
 	public void setTotalSeats(int totalSeats) {
 	this.totalSeats = totalSeats;
+	}
+	
+	public String getSupervisor() {
+	return supervisor;
+	}
+	
+	public void setSupervisor(String supervisor) {
+	this.supervisor = supervisor;
 	}
 }
