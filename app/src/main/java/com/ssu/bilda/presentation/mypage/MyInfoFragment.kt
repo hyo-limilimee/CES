@@ -18,9 +18,17 @@ class MyInfoFragment : Fragment() {
 
         val rootView = inflater.inflate(R.layout.fragment_my_info, container, false)
 
-        val llArrowMyInfo: View = rootView.findViewById(R.id.ll_ic_arrow_and_tv_my_info)
-        llArrowMyInfo.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
+        val rightArrowBtn: FrameLayout = rootView.findViewById(R.id.fl__my_info_black_left_arrow_btn)
+
+        rightArrowBtn.setOnClickListener {
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            val profileFragment = ProfileFragment()
+
+            // main_layout에 homeFragment로 transaction 한다.
+            transaction.replace(R.id.fl_content, profileFragment)
+
+            // 꼭 commit을 해줘야 바뀐다.
+            transaction.commit()
         }
 
         val logOutButton: FrameLayout = rootView.findViewById(R.id.fl_tv_log_out)
