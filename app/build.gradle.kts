@@ -41,6 +41,23 @@ android {
 
 dependencies {
 
+    //OkHttp: 통신 로그 확인하기 위함
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+    //gson
+    implementation ("com.google.code.gson:gson:2.10.1")
+
+    //shard preference
+    implementation ("androidx.security:security-crypto-ktx:1.1.0-alpha06")
+
+    //레트로핏
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //OkHttp: 통신 로그 확인하기 위함
+    implementation ("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
     // recyclerview
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
