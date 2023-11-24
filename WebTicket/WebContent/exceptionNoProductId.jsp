@@ -2,7 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
-<title>상품아이디 오류</title>
+<title>상품 아이디 오류</title>
 </head>
 <body>
 	<jsp:include page="menu.jsp" />	

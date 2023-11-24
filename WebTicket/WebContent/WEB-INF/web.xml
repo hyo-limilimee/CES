@@ -10,7 +10,6 @@
 			<web-resource-name>WebMarket</web-resource-name>
 			<description></description>
 			<url-pattern>/addProduct.jsp</url-pattern>
-			<url-pattern>/editProduct.jsp</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<description>권한 관리자명</description>
@@ -26,39 +25,8 @@
 	</login-config>
 	
 	<error-page>
-		<error-code>404</error-code>
-		<location>/exceptionNoPage.jsp</location>
-	</error-page>	
+ 		<error-code>404</error-code>
+ 		<location>/exceptionNoPage.jsp</location>
+ 	</error-page>
 	
-	<filter>
-		<filter-name>LogFilter</filter-name>
-		<filter-class>filter.LogFilter</filter-class>     
-	</filter>
-	<filter-mapping>
-		<filter-name>LogFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>	
-	
-	<filter>
-		<filter-name>LogFileFilter</filter-name>
-		<filter-class>filter.LogFileFilter</filter-class>
-		<init-param>
-			<param-name>filename</param-name>
-			<param-value>c:\\logs\\webmarket.log</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>LogFileFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-	<servlet>
-		<servlet-name>BoardController</servlet-name>
-		<servlet-class>mvc.controller.BoardController</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>BoardController</servlet-name>
-		<url-pattern>*.do</url-pattern>
-	</servlet-mapping>
 </web-app>

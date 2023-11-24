@@ -3,6 +3,7 @@
 <%@ page import="java.net.URLDecoder"%>
 <%@ page import="dto.Product"%>
 <%@ page import="dao.ProductRepository"%>
+
 <%
 	request.setCharacterEncoding("UTF-8");
 
@@ -48,18 +49,19 @@
 			<h1 class="display-3">주문 정보</h1>
 		</div>
 	</div>
+
 	<div class="container col-8 alert alert-info">
 		<div class="text-center ">
 			<h1>영수증</h1>
 		</div>
 		<div class="row justify-content-between">
 			<div class="col-4" align="left">
-				<strong>배송 주소</strong> <br> 성명 : <% out.println(shipping_name); %><br> 
+				<strong>배송 주소</strong> <br> 성명 : <% out.println(shipping_name); %>	<br> 
 				우편번호 : <% 	out.println(shipping_zipCode);%><br> 
-				주소 : <%	out.println(shipping_addressName);%>(<%	out.println(shipping_country);%>)<br>
+				주소 : <%	out.println(shipping_addressName);%>(<%	out.println(shipping_country);%>) <br>
 			</div>
 			<div class="col-4" align="right">
-				<p>	<em>배송일: <% out.println(shipping_shippingDate);	%></em>
+				<p>	<em>배송일: <% out.println(shipping_shippingDate);%></em>
 			</div>
 		</div>
 		<div>
@@ -95,8 +97,9 @@
 				<td class="text-right">	<strong>총액: </strong></td>
 				<td class="text-center text-danger"><strong><%=sum%> </strong></td>
 			</tr>
-			</table>			
-				<a href="./ShippingInfo.jsp?cartId=<%=shipping_cartId%>"class="btn btn-secondary" role="button"> 이전 </a>
+			</table>
+			
+				<a href="./shippingInfo.jsp?cartId=<%=shipping_cartId%>"class="btn btn-secondary" role="button"> 이전 </a>
 				<a href="./thankCustomer.jsp"  class="btn btn-success" role="button"> 주문 완료 </a>
 				<a href="./checkOutCancelled.jsp" class="btn btn-secondary"	role="button"> 취소 </a>			
 		</div>

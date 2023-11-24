@@ -35,11 +35,11 @@
 	</div>
 	<div class="container">
 		<h2 class="alert alert-danger">주문해주셔서 감사합니다.</h2>
-		<p>주문은	<%	out.println(shipping_shippingDate);	%>에 배송될 예정입니다! !	
-		<p>주문번호 :	<%	out.println(shipping_cartId);	%>
+		<p>	주문은	<%	out.println(shipping_shippingDate);	%>에 배송될 예정입니다! !	
+		<p>	주문번호 :	<%	out.println(shipping_cartId);	%>		
 	</div>
 	<div class="container">
-		<p><a href="./products.jsp" class="btn btn-secondary"> &laquo; 상품 목록</a>
+		<p>	<a href="./products.jsp" class="btn btn-secondary"> &laquo; 상품 목록</a>		
 	</div>
 </body>
 </html>
@@ -49,19 +49,6 @@
 	for (int i = 0; i < cookies.length; i++) {
 		Cookie thisCookie = cookies[i];
 		String n = thisCookie.getName();
-		if (n.equals("Customer_Id"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Customer_name"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Customer_phoneNumber"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Customer_country"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Customer_zipCode"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Customer_addressName"))
-			thisCookie.setMaxAge(0);
-
 		if (n.equals("Shipping_cartId"))
 			thisCookie.setMaxAge(0);
 		if (n.equals("Shipping_name"))
