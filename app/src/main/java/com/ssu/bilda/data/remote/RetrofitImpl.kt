@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ssu.bilda.BuildConfig
 import com.ssu.bilda.data.remote.response.AuthorizedResponse
+import com.ssu.bilda.data.remote.response.BaseResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -80,10 +81,6 @@ object RetrofitImpl {
                 createRequestBuilder(request(), accessHeader, App.token_prefs.accessToken)
             var infoResponse = proceed(infoRequest)
 
-//            // 리프래시 test용
-//            var infoRequest =
-//                createRequestBuilder(request(), accessHeader, "aa")
-//            var infoResponse = proceed(infoRequest)
 
             Log.d("저장된 토큰 확인", "저장 토큰 확인 액세스 ${App.token_prefs.accessToken}")
             Log.d("저장된 토큰 확인", "저장 토큰 확인 리프래시 ${App.token_prefs.refreshToken}")
