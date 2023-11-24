@@ -1,9 +1,6 @@
 package dao;
 
-import java.util.ArrayList;
-
-import dto.Product;
-
+import dto.Movie;
 import java.util.ArrayList;
 
 public class MovieRepository {
