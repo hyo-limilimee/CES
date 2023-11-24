@@ -36,7 +36,7 @@ class TermsActivity : AppCompatActivity() {
 
         //모두 동의 버튼 클릭
         binding.btnTermsAgree.setOnClickListener {
-            val intent = Intent(this, EmailInputActivity::class.java)
+            val intent = Intent(this@TermsActivity, EmailInputActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
