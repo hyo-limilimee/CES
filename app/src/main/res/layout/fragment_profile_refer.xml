@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".presentation.evaluate.ProfileReferFragment">
 
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -231,6 +232,7 @@
                     android:id="@+id/rv_selected_semester"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    tools:listitem="@layout/item_rcv_profile_semester_subject"
                     app:layout_constraintStart_toStartOf="@id/fl_spinner_profile_received_evaluation"
                     app:layout_constraintTop_toBottomOf="@id/fl_spinner_profile_received_evaluation"></androidx.recyclerview.widget.RecyclerView>
             </FrameLayout>
@@ -277,6 +279,7 @@
                     android:id="@+id/rv_recieved_evaluation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    tools:listitem="@layout/item_rcv_profile_recieved_evaluation"
                     app:layout_constraintEnd_toEndOf="@id/fl_spinner_profile_received_comment"
                     app:layout_constraintStart_toStartOf="@id/fl_spinner_profile_received_comment"
                     app:layout_constraintTop_toBottomOf="@id/fl_spinner_profile_received_comment"></androidx.recyclerview.widget.RecyclerView>
