@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import com.ssu.bilda.R
+import com.ssu.bilda.presentation.mypage.ProfileFragment
 import github.hongbeomi.dividerseekbar.DividerSeekBar
 
 class TeammateEvalutionFragment : Fragment() {
@@ -22,6 +23,19 @@ class TeammateEvalutionFragment : Fragment() {
         val dividerSeekBar = DividerSeekBar(requireContext()).apply {
             max = 100
             // ... (Set other properties)
+        }
+
+        val rightArrowBtn: FrameLayout = rootView.findViewById(R.id.fl_evaluation_black_left_arrow_btn)
+
+        rightArrowBtn.setOnClickListener {
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            val profileFragment = ProfileFragment()
+
+            // main_layout에 homeFragment로 transaction 한다.
+            transaction.replace(R.id.fl_content, SubjectStatusFragment())
+
+            // 꼭 commit을 해줘야 바뀐다.
+            transaction.commit()
         }
 
         // Set additional properties after initializing the DividerSeekBar

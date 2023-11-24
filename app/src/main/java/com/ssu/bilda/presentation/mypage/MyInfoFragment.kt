@@ -1,55 +1,116 @@
 package com.ssu.bilda.presentation.mypage
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import com.ssu.bilda.R
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MyInfoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MyInfoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(param1)
-            param2 = it.getString(param2)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_info, container, false)
+
+        val rootView = inflater.inflate(R.layout.fragment_my_info, container, false)
+
+        val rightArrowBtn: FrameLayout = rootView.findViewById(R.id.fl__my_info_black_left_arrow_btn)
+
+        rightArrowBtn.setOnClickListener {
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            val profileFragment = ProfileFragment()
+
+            // main_layout에 homeFragment로 transaction 한다.
+            transaction.replace(R.id.fl_content, profileFragment)
+
+            // 꼭 commit을 해줘야 바뀐다.
+            transaction.commit()
+        }
+
+        val logOutButton: FrameLayout = rootView.findViewById(R.id.fl_tv_log_out)
+
+        // "저장" 버튼에 클릭 리스너 설정
+        logOutButton.setOnClickListener {
+            // "저장" 버튼을 클릭했을 때 대화 상자 표시
+            showLogoutDialog()
+        }
+
+        val withdrawalButton: FrameLayout = rootView.findViewById(R.id.fl_tv_withdrawal)
+
+        // "저장" 버튼에 클릭 리스너 설정
+        withdrawalButton.setOnClickListener {
+            // "저장" 버튼을 클릭했을 때 대화 상자 표시
+            showWithdrawalDialog()
+        }
+
+        rootView.findViewById<View>(R.id.fl_ic_my_info_pw_change_btn).setOnClickListener {
+            // ChangePassWordActivity로 전환하는 코드
+            val intent = Intent(activity, ChangePasswordActivity::class.java)
+            startActivity(intent)
+        }
+
+        rootView.findViewById<View>(R.id.fl_ic_my_info_nick_name_change_btn).setOnClickListener {
+            // ChangePassWordActivity로 전환하는 코드
+            val intent = Intent(activity, ChangeNicknameActivity::class.java)
+            startActivity(intent)
+        }
+
+        return rootView
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MyInfoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MyInfoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(param1, param1)
-                    putString(param2, param2)
-                }
-            }
+    private fun replaceFragment(fragment: Fragment) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fl_content, fragment)
+            .commit()
     }
+
+    private fun showLogoutDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("") // 대화 상자의 제목 설정
+        builder.setMessage("정말 로그아웃 하시겠습니까?") // 메시지 설정
+
+        // 대화 상자에 버튼 추가
+        builder.setPositiveButton("로그아웃") { dialog, which ->
+            // "저장" 버튼 클릭 처리 (저장 동작)
+            // 여기에 저장 로직을 추가할 수 있습니다.
+            dialog.dismiss() // 대화 상자 닫기
+        }
+
+        builder.setNegativeButton("취소") { dialog, which ->
+            // "취소" 버튼 클릭 처리 (취소 동작)
+            dialog.dismiss() // 대화 상자 닫기
+        }
+
+        // 대화 상자 생성 및 표시
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
+    private fun showWithdrawalDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("") // 대화 상자의 제목 설정
+        builder.setMessage("정말 탈퇴 하시겠습니까?") // 메시지 설정
+
+        // 대화 상자에 버튼 추가
+        builder.setPositiveButton("네") { dialog, which ->
+            // "저장" 버튼 클릭 처리 (저장 동작)
+            // 여기에 저장 로직을 추가할 수 있습니다.
+            dialog.dismiss() // 대화 상자 닫기
+        }
+
+        builder.setNegativeButton("아니오") { dialog, which ->
+            // "취소" 버튼 클릭 처리 (취소 동작)
+            dialog.dismiss() // 대화 상자 닫기
+        }
+
+        // 대화 상자 생성 및 표시
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
+
 }

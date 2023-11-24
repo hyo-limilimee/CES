@@ -1,0 +1,124 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.mypage.ChangePasswordActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_ic_arrow_and_change_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="13dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/fl_black_left_arrow_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_black_left_arrow_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_black_left_arrow_btn" />
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_tv_reset_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_reset_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/suiteregular"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:text="닉네임 변경" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tv_new_nickname_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_ic_arrow_and_change_nickname">
+
+        <TextView
+            android:id="@+id/tv_new_nickname_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/suiteregular"
+            android:textColor="@color/sblue"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:text="변경할 닉네임을 입력해주세요" />
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinput_reset_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginTop="20dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="6"
+        app:layout_constraintTop_toBottomOf="@+id/ll_tv_new_nickname_input">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_reset_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/wgray"
+            android:fontFamily="@font/suiteregular"
+            android:textColor="@color/sgray"
+            android:maxLength="6"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_blue_nickname_change_completed_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textinput_reset_nickname">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ic_blue_nickname_change_completed_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_blue_next_btn" />
+
+        <TextView
+            android:id="@+id/tv_nickname_change_completed_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop = "10dp"
+            android:fontFamily="@font/suiteregular"
+            android:text="변경 완료"
+            android:textColor="@color/white"
+            android:textSize="21dp" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
