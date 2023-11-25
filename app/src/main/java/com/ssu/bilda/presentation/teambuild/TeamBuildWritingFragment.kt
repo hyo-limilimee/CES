@@ -1,55 +1,54 @@
 package com.ssu.bilda.presentation.teambuild
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.ssu.bilda.R
+import java.util.Calendar
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TeamBuildWritingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TeamBuildWritingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(param1)
-            param2 = it.getString(param2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_team_build_writing, container, false)
 
-        return inflater.inflate(R.layout.fragment_team_build_writing, container, false)
+        val flIcSelectTerm: FrameLayout = view.findViewById(R.id.fl_ic_select_term)
+        val tvSelectedDate: TextView = view.findViewById(R.id.tv_selected_date)
+
+        flIcSelectTerm.setOnClickListener {
+            showDatePickerDialog(tvSelectedDate)
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TeamBuildWritingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TeamBuildWritingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(param1, param1)
-                    putString(param2, param2)
-                }
-            }
+    private fun showDatePickerDialog(tvSelectedDate: TextView) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, selectedYear, selectedMonth, selectedDay ->
+                // 선택된 날짜로 할 작업
+                val selectedDate = "$selectedYear.${selectedMonth + 1}.$selectedDay"
+                tvSelectedDate.text = selectedDate
+            },
+            year, month, day
+        )
+
+        // 다이얼로그에 특정 날짜 이전으로 이동할 수 있도록 설정 (선택 사항)
+        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+
+        datePickerDialog.show()
     }
 }

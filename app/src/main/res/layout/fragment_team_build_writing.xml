@@ -36,12 +36,13 @@
         app:layout_constraintStart_toStartOf="@id/ll_tv_subject_name"
         app:layout_constraintTop_toBottomOf="@id/ll_tv_subject_name">
 
-        <TextView
+        <EditText
             android:id="@+id/tv_teambuild_writing_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="17dp"
+            android:background="@null"
             android:fontFamily="@font/suiteregular"
             android:textAlignment="textStart"
             android:textColor="@color/sgray"
@@ -82,12 +83,13 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_teambuild_writing_bg_box" />
 
-        <TextView
+        <EditText
             android:id="@+id/tv_teambuild_writing_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|start"
             android:layout_marginStart="10dp"
+            android:background="@null"
             android:fontFamily="@font/suiteregular"
             android:textColor="@color/sgray"
             android:textSize="16dp"
@@ -110,10 +112,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/suiteregular"
+            android:text="모집할 인원을 선택하세요"
             android:textColor="@color/sgray"
             android:textSize="18dp"
-            android:textStyle="bold"
-            tools:text="모집할 인원을 선택하세요" />
+            android:textStyle="bold" />
     </LinearLayout>
 
 
@@ -148,10 +150,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/suiteregular"
+            android:text="모집할 기간을 선택하세요"
             android:textColor="@color/sgray"
             android:textSize="18dp"
-            android:textStyle="bold"
-            tools:text="모집할 기간을 선택하세요" />
+            android:textStyle="bold" />
     </LinearLayout>
 
 
@@ -203,10 +205,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/suiteregular"
+            android:text="작성완료"
             android:textColor="@color/white"
             android:textSize="16dp"
-            android:textStyle="bold"
-            tools:text="작성완료" />
+            android:textStyle="bold" />
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
