@@ -33,7 +33,7 @@ class MyInfoFragment : Fragment() {
 
         val logOutButton: FrameLayout = rootView.findViewById(R.id.fl_tv_log_out)
 
-        // "저장" 버튼에 클릭 리스너 설정
+        // "로그아웃" 버튼에 클릭 리스너 설정
         logOutButton.setOnClickListener {
             // "저장" 버튼을 클릭했을 때 대화 상자 표시
             showLogoutDialog()

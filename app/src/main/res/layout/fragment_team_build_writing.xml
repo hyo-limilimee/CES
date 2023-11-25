@@ -5,209 +5,228 @@
     android:layout_height="match_parent"
     tools:context=".presentation.teambuild.TeamBuildWritingFragment">
 
-    <LinearLayout
-        android:id="@+id/ll_tv_subject_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="48dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_subject_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/suiteregular"
-            android:maxWidth="156dp"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            tools:text="오픈 소스 기반 기초 설계" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_tv_teambuild_writing_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@id/ll_tv_subject_name"
-        app:layout_constraintTop_toBottomOf="@id/ll_tv_subject_name">
-
-        <TextView
-            android:id="@+id/tv_teambuild_writing_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="17dp"
-            android:fontFamily="@font/suiteregular"
-            android:textAlignment="textStart"
-            android:textColor="@color/sgray"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            tools:text="제목을 입력하세요" />
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/fl_ss_teambuild_half"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="55dp"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bnv_main"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/ic_ss_teambuild_half"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:src="@drawable/ic_ss_teambuild_half" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/fl_ic_teambuild_writing_bg_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="45dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fl_ss_teambuild_half">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_gray_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_teambuild_writing_bg_box" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_teambuild_writing_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|start"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/suiteregular"
-            android:textColor="@color/sgray"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            tools:text="내용을 입력하세요" />
-    </FrameLayout>
+            <LinearLayout
+                android:id="@+id/ll_tv_subject_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="48dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:id="@+id/ll_tv_select_member_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@id/fl_ic_teambuild_writing_bg_box"
-        app:layout_constraintTop_toBottomOf="@id/fl_ic_teambuild_writing_bg_box">
+                <TextView
+                    android:id="@+id/tv_subject_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/suiteregular"
+                    android:maxWidth="156dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    tools:text="오픈 소스 기반 기초 설계" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_teambuild_select_member_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/suiteregular"
-            android:textColor="@color/sgray"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            tools:text="모집할 인원을 선택하세요" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_tv_teambuild_writing_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/ll_tv_subject_name"
+                app:layout_constraintTop_toBottomOf="@id/ll_tv_subject_name">
+
+                <EditText
+                    android:id="@+id/tv_teambuild_writing_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="17dp"
+                    android:background="@null"
+                    android:fontFamily="@font/suiteregular"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/sgray"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    tools:text="제목을 입력하세요" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_ss_teambuild_half"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="68dp"
+                android:layout_marginEnd="55dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ic_ss_teambuild_half"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="120dp"
+                    android:src="@drawable/ic_ss_teambuild_half" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_ic_teambuild_writing_bg_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="45dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fl_ss_teambuild_half">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ic_gray_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_teambuild_writing_bg_box" />
+
+                <EditText
+                    android:id="@+id/tv_teambuild_writing_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="10dp"
+                    android:background="@null"
+                    android:fontFamily="@font/suiteregular"
+                    android:textColor="@color/sgray"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    tools:text="내용을 입력하세요" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tv_select_member_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="38dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/fl_ic_teambuild_writing_bg_box"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_teambuild_writing_bg_box">
+
+                <TextView
+                    android:id="@+id/tv_teambuild_select_member_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/suiteregular"
+                    android:text="모집할 인원을 선택하세요"
+                    android:textColor="@color/sgray"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
 
-    <FrameLayout
-        android:id="@+id/fl_spinner_select_member_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@id/ll_tv_select_member_num"
-        app:layout_constraintTop_toBottomOf="@id/ll_tv_select_member_num">
+            <FrameLayout
+                android:id="@+id/fl_spinner_select_member_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@id/ll_tv_select_member_num"
+                app:layout_constraintTop_toBottomOf="@id/ll_tv_select_member_num">
 
-        <Spinner
-            android:id="@+id/spinner_profile_select_member_num"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="7dp" />
+                <Spinner
+                    android:id="@+id/spinner_profile_select_member_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="7dp" />
 
-    </FrameLayout>
+            </FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_tv_select_term"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@id/fl_spinner_select_member_num"
-        app:layout_constraintTop_toBottomOf="@id/fl_spinner_select_member_num">
+            <LinearLayout
+                android:id="@+id/ll_tv_select_term"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="38dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/fl_spinner_select_member_num"
+                app:layout_constraintTop_toBottomOf="@id/fl_spinner_select_member_num">
 
-        <TextView
-            android:id="@+id/tv_teambuild_select_term"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/suiteregular"
-            android:textColor="@color/sgray"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            tools:text="모집할 기간을 선택하세요" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_teambuild_select_term"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/suiteregular"
+                    android:text="모집할 기간을 선택하세요"
+                    android:textColor="@color/sgray"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
 
-    <FrameLayout
-        android:id="@+id/fl_ic_select_term"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="45dp"
-        app:layout_constraintStart_toStartOf="@id/ll_tv_select_term"
-        app:layout_constraintTop_toBottomOf="@id/ll_tv_select_term">
+            <FrameLayout
+                android:id="@+id/fl_ic_select_term"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="45dp"
+                app:layout_constraintStart_toStartOf="@id/ll_tv_select_term"
+                app:layout_constraintTop_toBottomOf="@id/ll_tv_select_term">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_select_date_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_select_date_btn" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ic_select_date_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_select_date_btn" />
 
-        <TextView
-            android:id="@+id/tv_selected_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/suiteregular"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            tools:text="23.10.23" />
-    </FrameLayout>
+                <TextView
+                    android:id="@+id/tv_selected_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/suiteregular"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    tools:text="23.10.23" />
+            </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/fl_ic_teambuild_writing_done_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fl_ic_select_term">
+            <FrameLayout
+                android:id="@+id/fl_ic_teambuild_writing_done_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_select_term">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_teambuild_writing_done_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_teambuild_writing_done_btn" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ic_teambuild_writing_done_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_teambuild_writing_done_btn" />
 
-        <TextView
-            android:id="@+id/tv_teambuild_writing_done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/suiteregular"
-            android:textColor="@color/white"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            tools:text="작성완료" />
-    </FrameLayout>
+                <TextView
+                    android:id="@+id/tv_teambuild_writing_done"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/suiteregular"
+                    android:text="작성완료"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_main"

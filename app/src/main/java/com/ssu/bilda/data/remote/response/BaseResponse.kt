@@ -1,4 +1,4 @@
-package com.ssu.bilda.data.remote
+package com.ssu.bilda.data.remote.response
 
 data class BaseResponse<T>(
     val success: Boolean,
