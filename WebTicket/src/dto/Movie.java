@@ -15,7 +15,7 @@ private static final long serialVersionUID = -4274700572038677000L;
 	private int remainingSeats;	// 남은 좌석 수 
 	private int totalSeats;		// 총 좌석 수
 	private String supervisor;	// 감독
-
+	private String filename; // 영화 이미지
 	
 	
 	public Movie() {
@@ -28,6 +28,14 @@ private static final long serialVersionUID = -4274700572038677000L;
 		this.price = price;
 	}
 	
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
 	public String getMovieId() {
 		return movieId;
 	    }
