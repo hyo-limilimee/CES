@@ -39,14 +39,13 @@ class TeamBuildWritingFragment : Fragment() {
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDay ->
-                // 선택된 날짜로 할 작업
+
                 val selectedDate = "$selectedYear.${selectedMonth + 1}.$selectedDay"
                 tvSelectedDate.text = selectedDate
             },
             year, month, day
         )
 
-        // 다이얼로그에 특정 날짜 이전으로 이동할 수 있도록 설정 (선택 사항)
         datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
 
         datePickerDialog.show()
