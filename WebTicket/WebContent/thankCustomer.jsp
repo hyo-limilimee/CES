@@ -3,7 +3,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
-<title>주문 완료</title>
+<title>티켓 구매 완료</title>
 </head>
 <body>
 	<%
@@ -30,11 +30,11 @@
 	<jsp:include page="menu.jsp" />
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">주문 완료</h1>
+			<h1 class="display-3">티켓 구매 완료</h1>
 		</div>
 	</div>
 	<div class="container">
-		<h2 class="alert alert-danger">주문해주셔서 감사합니다.</h2>
+		<h2 class="alert alert-danger">구매해주셔서 감사합니다.</h2>
 		<p>	주문은	<%	out.println(shipping_shippingDate);	%>에 배송될 예정입니다! !	
 		<p>	주문번호 :	<%	out.println(shipping_cartId);	%>		
 	</div>

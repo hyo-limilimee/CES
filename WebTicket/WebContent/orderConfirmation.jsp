@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.net.URLDecoder"%>
-<%@ page import="dto.Product"%>
-<%@ page import="dao.ProductRepository"%>
+<%@ page import="dto.Movie"%>
+<%@ page import="dao.MovieRepository"%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -40,19 +40,19 @@
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
-<title>주문 정보</title>
+<title>구매 티켓 정보</title>
 </head>
 <body>
 	<jsp:include page="menu.jsp" />
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">주문 정보</h1>
+			<h1 class="display-3">구매 티켓 정보</h1>
 		</div>
 	</div>
 
 	<div class="container col-8 alert alert-info">
 		<div class="text-center ">
-			<h1>영수증</h1>
+			<h1>Ticket</h1>
 		</div>
 		<div class="row justify-content-between">
 			<div class="col-4" align="left">
@@ -67,25 +67,25 @@
 		<div>
 			<table class="table table-hover">			
 			<tr>
-				<th class="text-center">도서</th>
+				<th class="text-center">티켓</th>
 				<th class="text-center">#</th>
 				<th class="text-center">가격</th>
 				<th class="text-center">소계</th>
 			</tr>
 			<%
 				int sum = 0;
-				ArrayList<Product> cartList = (ArrayList<Product>) session.getAttribute("cartlist");
+				ArrayList<Movie> cartList = (ArrayList<Movie>) session.getAttribute("cartlist");
 				if (cartList == null)
-					cartList = new ArrayList<Product>();
+					cartList = new ArrayList<Movie>();
 				for (int i = 0; i < cartList.size(); i++) { // 상품리스트 하나씩 출력하기
-					Product product = cartList.get(i);
-					int total = product.getUnitPrice() * product.getQuantity();
+					Movie movie = cartList.get(i);
+					int total = movie.getPrice() * movie.getQuantity();
 					sum = sum + total;
 			%>
 			<tr>
-				<td class="text-center"><em><%=product.getPname()%> </em></td>
-				<td class="text-center"><%=product.getQuantity()%></td>
-				<td class="text-center"><%=product.getUnitPrice()%>원</td>
+				<td class="text-center"><em><%=movie.getTitle()%> </em></td>
+				<td class="text-center"><%=movie.getQuantity()%></td>
+				<td class="text-center"><%=movie.getPrice()%>원</td>
 				<td class="text-center"><%=total%>원</td>
 			</tr>
 			<%
