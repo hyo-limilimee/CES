@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="dto.Product"%>
-<%@ page import="dao.ProductRepository"%>
+<%@ page import="dto.Movie" %>
+<%@ page import="dao.MovieRepository" %>
 
 <%
 	String id = request.getParameter("id");
@@ -10,18 +10,18 @@
 		return;
 	}
 
-	ProductRepository dao = ProductRepository.getInstance();
+	MovieRepository dao = MovieRepository.getInstance();
 	
-	Product product = dao.getProductById(id);
-	if (product == null) {
+	Movie movie = dao.getMovieById(id);
+	if (movie == null) {
 		response.sendRedirect("exceptionNoProductId.jsp");
 	}
 
-	ArrayList<Product> cartList = (ArrayList<Product>) session.getAttribute("cartlist");
-	Product goodsQnt = new Product();
+	ArrayList<Movie> cartList = (ArrayList<Movie>) session.getAttribute("cartlist");
+	Movie goodsQnt = new Movie();
 	for (int i = 0; i < cartList.size(); i++) { // 상품리스트 하나씩 출력하기
 		goodsQnt = cartList.get(i);
-		if (goodsQnt.getProductId().equals(id)) {
+		if (goodsQnt.getMovieId().equals(id)) {
 			cartList.remove(goodsQnt);
 		}
 	}
