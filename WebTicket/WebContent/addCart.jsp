@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="dto.Product"%>
-<%@ page import="dao.ProductRepository"%>
+<%@ page import="dto.Movie" %>
+<%@ page import="dao.MovieRepository" %>
 
 <%
 	String id = request.getParameter("id");
@@ -10,33 +10,33 @@
 		return;
 	}
 
-	ProductRepository dao = ProductRepository.getInstance();
+	MovieRepository dao = MovieRepository.getInstance();
 
-	Product product = dao.getProductById(id);
-	if (product == null) {
+	Movie movie = dao.getMovieById(id);
+	if (movie == null) {
 		response.sendRedirect("exceptionNoProductId.jsp");
 	}
 
-	ArrayList<Product> goodsList = dao.getAllProducts();
-	Product goods = new Product();
+	ArrayList<Movie> goodsList = dao.getAllMovies();
+	Movie goods = new Movie();
 	for (int i = 0; i < goodsList.size(); i++) {
 		goods = goodsList.get(i);
-		if (goods.getProductId().equals(id)) { 			
+		if (goods.getMovieId().equals(id)) { 			
 			break;
 		}
 	}
 	
-	ArrayList<Product> list = (ArrayList<Product>) session.getAttribute("cartlist");
+	ArrayList<Movie> list = (ArrayList<Movie>) session.getAttribute("cartlist");
 	if (list == null) { 
-		list = new ArrayList<Product>();
+		list = new ArrayList<Movie>();
 		session.setAttribute("cartlist", list);
 	}
 
 	int cnt = 0;
-	Product goodsQnt = new Product();
+	Movie goodsQnt = new Movie();
 	for (int i = 0; i < list.size(); i++) {
 		goodsQnt = list.get(i);
-		if (goodsQnt.getProductId().equals(id)) {
+		if (goodsQnt.getMovieId().equals(id)) {
 			cnt++;
 			int orderQuantity = goodsQnt.getQuantity() + 1;
 			goodsQnt.setQuantity(orderQuantity);
