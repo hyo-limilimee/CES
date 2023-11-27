@@ -61,15 +61,41 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <FrameLayout
+                android:id="@+id/fl_ic_blue_profile_major_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@id/ll_ic_arrow_and_tv_profile"
+                app:layout_constraintTop_toBottomOf="@id/ll_ic_arrow_and_tv_profile">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ic_blue_profile_major_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_blue_profile_major_btn" />
+
+
+                <TextView
+                    android:id="@+id/tv_major_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/suiteregular"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    tools:text="컴퓨터학부" />
+
+            </FrameLayout>
+
             <LinearLayout
                 android:id="@+id/ll_tv_profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ll_ic_arrow_and_tv_profile">
+                app:layout_constraintStart_toStartOf="@id/fl_ic_blue_profile_major_btn"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_blue_profile_major_btn">
 
                 <TextView
                     android:id="@+id/tv_profile_name"
@@ -77,90 +103,99 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/suiteregular"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     android:textStyle="bold"
-                    tools:text="철수" />
+                    tools:text="짱구" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_tv_profile_name_s"
+                android:id="@+id/ll_tv_rematch_percent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginStart="190dp"
                 android:orientation="vertical"
                 app:layout_constraintStart_toEndOf="@id/ll_tv_profile_name"
-                app:layout_constraintTop_toBottomOf="@id/ll_ic_arrow_and_tv_profile">
-
-            <TextView
-                android:id="@+id/tv_profile_name_s"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/suiteregular"
-                android:textColor="@color/black"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                android:text="의" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_tv_profile_s_say"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="30dp"
-                android:orientation="vertical"
-                app:layout_constraintStart_toEndOf="@id/ll_tv_profile_name"
-                app:layout_constraintTop_toBottomOf="@id/ll_ic_arrow_and_tv_profile">
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_blue_profile_major_btn">
 
                 <TextView
-                    android:id="@+id/tv_profile_name_s_say"
+                    android:id="@+id/tv_profile_rematch_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/suiteregular"
+                    android:text="재매칭 희망률"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_tv_rematch_percent_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@id/ll_tv_rematch_percent"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_blue_profile_major_btn">
+
+                <TextView
+                    android:id="@+id/tv_profile_rematch_percent_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/suiteregular"
                     android:textColor="@color/black"
-                    android:textSize="25dp"
+                    android:textSize="16dp"
                     android:textStyle="bold"
-                    android:text="한마디" />
+                    tools:text="100" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tv_rematch_percent_symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@id/ll_tv_rematch_percent_amount"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_blue_profile_major_btn">
+
+                <TextView
+                    android:id="@+id/tv_profile_rematch_percent_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/suiteregular"
+                    android:text="%"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <FrameLayout
-                android:id="@+id/fl_ic_profile_reference_comment"
+                android:id="@+id/fl_ic_gray_line_under_profile_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="@id/ll_tv_rematch_percent_symbol"
                 app:layout_constraintStart_toStartOf="@id/ll_tv_profile_name"
                 app:layout_constraintTop_toBottomOf="@id/ll_tv_profile_name">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ic_blue_profile_my_score_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_profile_reference_comment" />
-
-                <TextView
-                    android:id="@+id/tv_profile_reference_comment"
+                    android:id="@+id/ic_gray_line_under_profile_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/suiteregular"
-                    android:textColor="@color/black"
-                    android:layout_gravity="center"
-                    android:textSize="19dp"
-                    android:textStyle="bold"
-                    tools:text="발표도 PPT도 자신 있어요!" />
+                    android:src="@drawable/ic_gray_line" />
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/fl_ic_blue_profile_reference_score_btn"
+                android:id="@+id/fl_ic_blue_profile_my_score_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                app:layout_constraintStart_toStartOf="@id/fl_ic_profile_reference_comment"
-                app:layout_constraintTop_toBottomOf="@id/fl_ic_profile_reference_comment">
+                android:layout_marginTop="25dp"
+                app:layout_constraintStart_toStartOf="@id/fl_ic_blue_profile_major_btn"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_profile_info">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ic_blue_profile_reference_score_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:id="@+id/ic_blue_profile_my_score_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/ic_blue_profile_my_score_btn" />
 
                 <TextView
@@ -169,18 +204,18 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/suiteregular"
+                    android:text="종합 점수"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
-                    tools:text="전체 점수" />
+                    android:textSize="16dp" />
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/fl_mp_chart_reference_score"
+                android:id="@+id/fl_mp_chart_my_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                app:layout_constraintStart_toStartOf="@id/fl_ic_blue_profile_reference_score_btn"
-                app:layout_constraintTop_toBottomOf="@id/fl_ic_blue_profile_reference_score_btn">
+                app:layout_constraintStart_toStartOf="@id/fl_ic_blue_profile_my_score_btn"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_blue_profile_my_score_btn">
 
                 <com.github.mikephil.charting.charts.RadarChart
                     android:id="@+id/mapsearchdetail_radar_chart"
@@ -190,15 +225,16 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/fl_ic_gray_line_under_reference_score"
+                android:id="@+id/fl_ic_gray_line_under_my_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                app:layout_constraintTop_toBottomOf="@id/fl_mp_chart_reference_score"
-                app:layout_constraintStart_toStartOf="@id/fl_mp_chart_reference_score">
+                app:layout_constraintEnd_toEndOf="@id/fl_ic_gray_line_under_profile_info"
+                app:layout_constraintStart_toStartOf="@id/fl_ic_gray_line_under_profile_info"
+                app:layout_constraintTop_toBottomOf="@id/fl_mp_chart_my_score">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ic_gray_line_under_reference_score"
+                    android:id="@+id/ic_gray_line_under_my_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_gray_line" />
@@ -209,8 +245,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                app:layout_constraintStart_toStartOf="@id/fl_ic_gray_line_under_reference_score"
-                app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_reference_score">
+                app:layout_constraintStart_toStartOf="@id/fl_ic_blue_profile_my_score_btn"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_my_score">
 
                 <Spinner
                     android:id="@+id/spinner_profile_select_semester"
@@ -232,7 +268,7 @@
                     android:id="@+id/rv_selected_semester"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_rcv_profile_semester_subject"
+                    app:layout_constraintEnd_toEndOf="@id/fl_spinner_profile_received_evaluation"
                     app:layout_constraintStart_toStartOf="@id/fl_spinner_profile_received_evaluation"
                     app:layout_constraintTop_toBottomOf="@id/fl_spinner_profile_received_evaluation"></androidx.recyclerview.widget.RecyclerView>
             </FrameLayout>
@@ -242,7 +278,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                app:layout_constraintStart_toStartOf="@id/fl_ic_gray_line_under_reference_score"
+                app:layout_constraintEnd_toEndOf="@id/fl_ic_gray_line_under_profile_info"
+                app:layout_constraintStart_toStartOf="@id/fl_ic_gray_line_under_profile_info"
                 app:layout_constraintTop_toBottomOf="@id/fl_rv_selected_semester">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -253,14 +290,15 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id = "@+id/fl_spinner_profile_received_comment"
+                android:id="@+id/fl_spinner_profile_received_evaluation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@id/fl_ic_gray_line_under_select_semester"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@id/fl_ic_blue_profile_my_score_btn"
                 app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_select_semester">
 
                 <Spinner
-                    android:id="@+id/spinner_profile_received_comment"
+                    android:id="@+id/spinner_profile_received_evaluation"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="7dp" />
@@ -268,22 +306,23 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/fl_rv_received_comment"
+                android:id="@+id/fl_rv_received_evaluation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                app:layout_constraintStart_toStartOf="@id/fl_spinner_profile_received_comment"
-                app:layout_constraintTop_toBottomOf="@id/fl_spinner_profile_received_comment">
+                app:layout_constraintStart_toStartOf="@id/fl_spinner_profile_received_evaluation"
+                app:layout_constraintTop_toBottomOf="@id/fl_spinner_profile_received_evaluation">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_recieved_evaluation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_rcv_profile_recieved_evaluation"
-                    app:layout_constraintEnd_toEndOf="@id/fl_spinner_profile_received_comment"
-                    app:layout_constraintStart_toStartOf="@id/fl_spinner_profile_received_comment"
-                    app:layout_constraintTop_toBottomOf="@id/fl_spinner_profile_received_comment"></androidx.recyclerview.widget.RecyclerView>
+                    app:layout_constraintEnd_toEndOf="@id/fl_spinner_profile_received_evaluation"
+                    app:layout_constraintStart_toStartOf="@id/fl_spinner_profile_received_evaluation"
+                    app:layout_constraintTop_toBottomOf="@id/fl_spinner_profile_received_evaluation"></androidx.recyclerview.widget.RecyclerView>
             </FrameLayout>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
