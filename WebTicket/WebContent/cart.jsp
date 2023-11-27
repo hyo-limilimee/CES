@@ -1,7 +1,7 @@
 ﻿<%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="dto.Movie" %>
-<%@ page import="dao.MovieRepository" %>
+<%@ page import="dto.Movie"%>
+<%@ page import="dao.MovieRepository"%>
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
@@ -29,7 +29,7 @@
 		<div style="padding-top: 50px">
 			<table class="table table-hover">
 				<tr>
-					<th>상품</th>
+					<th>영화 제목</th>
 					<th>가격</th>
 					<th>수량</th>
 					<th>소계</th>
@@ -47,8 +47,8 @@
 						sum = sum + total;
 				%>
 				<tr>
-					<td><%=movie.getMovieId()()%> - <%=movie.getTitle()()%></td>
-					<td><%=movie.getPrice()()%></td>
+					<td><%=movie.getMovieId()%> - <%=movie.getTitle()%></td>
+					<td><%=movie.getPrice()%></td>
 					<td><%=movie.getQuantity()%></td>
 					<td><%=total%></td>
 					<td><a href="./removeCart.jsp?id=<%=movie.getMovieId()%>" class="badge badge-danger">삭제</a></td>

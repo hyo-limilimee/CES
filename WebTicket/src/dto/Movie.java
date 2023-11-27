@@ -16,6 +16,7 @@ private static final long serialVersionUID = -4274700572038677000L;
 	private int totalSeats;		// 총 좌석 수
 	private String supervisor;	// 감독
 	private String filename; // 영화 이미지
+	private int quantity;   // 구매 티켓 수
 	
 	
 	public Movie() {
@@ -107,6 +108,12 @@ private static final long serialVersionUID = -4274700572038677000L;
 	public void setSupervisor(String supervisor) {
 	this.supervisor = supervisor;
 	}
-	
-	
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 }
