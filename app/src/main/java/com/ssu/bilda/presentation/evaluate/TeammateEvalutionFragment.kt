@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.ssu.bilda.R
 import com.ssu.bilda.presentation.mypage.ProfileFragment
@@ -19,14 +20,10 @@ class TeammateEvalutionFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_teammate_evalution, container, false)
 
-        // Initialize DividerSeekBar
-        val dividerSeekBar = DividerSeekBar(requireContext()).apply {
-            max = 100
-            // ... (Set other properties)
-        }
+        val rightArrowBtn: FrameLayout =
+            rootView.findViewById(R.id.fl_evaluation_black_left_arrow_btn)
 
-        val rightArrowBtn: FrameLayout = rootView.findViewById(R.id.fl_evaluation_black_left_arrow_btn)
-
+        // 뒤로가기 화살표 클릭시 처리
         rightArrowBtn.setOnClickListener {
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             val profileFragment = ProfileFragment()
@@ -38,15 +35,33 @@ class TeammateEvalutionFragment : Fragment() {
             transaction.commit()
         }
 
+        //시크바에 대한 처리
+        // 시크바 초기화
+        val dividerSeekBar = DividerSeekBar(requireContext()).apply {
+            max = 100
+            setOffActivatedEvent()
+            setOnActivatedEvent()
+            setTextLocationMode(DividerSeekBar.TEXT_LOCATION_BOTTOM)
+            setTextInterval(10)
+            setTextColor(R.color.black)
+            setSeaLineColor(R.color.ssblue)
+            setSeaLineStrokeWidth(R.dimen.dp_1)
+            setDividerInterval(10)
+            setDividerColor(R.color.ssblue)
+            setDividerStrokeWidth(R.dimen.dp_1)
+            setActiveMode(DividerSeekBar.ACTIVE_MODE_MINIMUM)
+            setActivateTargetValue(10)
+        }
+
         // Set additional properties after initializing the DividerSeekBar
         dividerSeekBar.setTextLocationMode(DividerSeekBar.TEXT_LOCATION_BOTTOM)
+        dividerSeekBar.setTextInterval(10)
+        dividerSeekBar.setDividerInterval(10)
+        dividerSeekBar.setDividerStrokeWidth(R.dimen.dp_1)
 
-        // Find the FrameLayout container in the layout
-//        val frameLayoutContainer: FrameLayout = rootView.findViewById(R.id.fl_seek_bar_container)
 
-        // Add DividerSeekBar to FrameLayout
-//        frameLayoutContainer.addView(dividerSeekBar)
 
+        //저장 누르는 버튼에 대한 처리
         // "저장" 버튼을 위한 FrameLayout 찾기
         val saveButton: FrameLayout = rootView.findViewById(R.id.fl_blue_save_btn)
 
