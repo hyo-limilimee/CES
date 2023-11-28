@@ -6,68 +6,69 @@
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
 <%
-	String cartId = session.getId();
+    String cartId = session.getId();
 %>
 <title>장바구니</title>
 </head>
 <body>
-	<jsp:include page="menu.jsp" />
-	<div class="jumbotron">
-		<div class="container">
-			<h1 class="display-3">장바구니</h1>
-		</div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<table width="100%">
-				<tr>
-					<td align="left"><a href="./deleteCart.jsp?cartId=<%=cartId%>" class="btn btn-danger">삭제하기</a></td>
-					<td align="right"><a href="./shippingInfo.jsp?cartId=<%= cartId %>" class="btn btn-success">주문하기</a></td>
-				</tr>
-			</table>
-		</div>
-		<div style="padding-top: 50px">
-			<table class="table table-hover">
-				<tr>
-					<th>영화 제목</th>
-					<th>가격</th>
-					<th>수량</th>
-					<th>소계</th>
-					<th>비고</th>
-				</tr>
-				<%				
-					int sum = 0;
-					ArrayList<Movie> cartList = (ArrayList<Movie>) session.getAttribute("cartlist");
-					if (cartList == null)
-						cartList = new ArrayList<Movie>();
+    <jsp:include page="menu.jsp" />
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">장바구니</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <table width="100%">
+                <tr>
+                    <td align="left"><a href="./deleteCart.jsp?cartId=<%=cartId%>" class="btn btn-danger">삭제하기</a></td>
+                    <td align="right"><a href="./shippingInfo.jsp?cartId=<%= cartId %>" class="btn btn-success">주문하기</a></td>
+                </tr>
+            </table>
+        </div>
+        <div style="padding-top: 20px">
+            <div class="row">
+                <%
+                    int sum = 0;
+                    ArrayList<Movie> cartList = (ArrayList<Movie>) session.getAttribute("cartlist");
+                    if (cartList == null)
+                        cartList = new ArrayList<Movie>();
 
-					for (int i = 0; i < cartList.size(); i++) { // 상품리스트 하나씩 출력하기
-						Movie movie = cartList.get(i);
-						int total = movie.getPrice() * movie.getQuantity();
-						sum = sum + total;
-				%>
-				<tr>
-					<td><%=movie.getTitle()%></td>
-					<td><%=movie.getPrice()%></td>
-					<td><%=movie.getQuantity()%></td>
-					<td><%=total%></td>
-					<td><a href="./removeCart.jsp?id=<%=movie.getMovieId()%>" class="badge badge-danger">삭제</a></td>
-				</tr>
-				<%
-					}
-				%>
-				<tr>
-					<th></th>
-					<th></th>
-					<th>총액</th>
-					<th><%=sum%></th>
-					<th></th>
-				</tr>
-			</table>
-			<a href="./products.jsp" class="btn btn-secondary"> &laquo; 쇼핑 계속하기</a>
-		</div>
-		<hr>
-	</div>
-	<jsp:include page="footer.jsp" />
+                    for (int i = 0; i < cartList.size(); i++) {
+                        Movie movie = cartList.get(i);
+                        int total = movie.getPrice() * movie.getQuantity();
+                        sum = sum + total;
+                %>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="c:/upload/<%=movie.getFilename()%>" style="width: 100%" />
+                        <div class="card-body">
+                            <h5 class="card-title"><%=movie.getTitle()%></h5>
+                            <p class="card-text"><%=movie.getPrice()%>원</p>
+                            <p class="card-text">수량: <%=movie.getQuantity()%></p>
+                            <p class="card-text">소계: <%=total%>원</p>
+                            <a href="./removeCart.jsp?id=<%=movie.getMovieId()%>" class="btn btn-danger">삭제</a>
+                        </div>
+                    </div>
+                </div>
+                <%
+                    }
+                %>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">총액</h5>
+                            <p class="card-text"><%=sum%>원</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="./products.jsp" class="btn btn-secondary mt-3"> &laquo; 쇼핑 계속하기</a>
+        </div>
+        <hr>
+    </div>
+    <jsp:include page="footer.jsp" />
 </body>
 </html>
