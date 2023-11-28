@@ -47,7 +47,7 @@
 						sum = sum + total;
 				%>
 				<tr>
-					<td><%=movie.getMovieId()%> - <%=movie.getTitle()%></td>
+					<td><%=movie.getTitle()%></td>
 					<td><%=movie.getPrice()%></td>
 					<td><%=movie.getQuantity()%></td>
 					<td><%=total%></td>
