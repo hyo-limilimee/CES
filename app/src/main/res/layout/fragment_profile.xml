@@ -214,11 +214,12 @@
 
             <FrameLayout
                 android:id="@+id/fl_mp_chart_my_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                app:layout_constraintStart_toStartOf="@id/fl_ic_blue_profile_my_score_btn"
-                app:layout_constraintTop_toBottomOf="@id/fl_ic_blue_profile_my_score_btn">
+                android:layout_width="400dp"
+                android:layout_height="400dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fl_ic_blue_profile_my_score_btn"
+                app:layout_constraintBottom_toTopOf="@+id/fl_ic_gray_line_under_my_score">
 
                 <com.github.mikephil.charting.charts.RadarChart
                     android:id="@+id/mapsearchdetail_radar_chart"
@@ -229,8 +230,8 @@
 
             <FrameLayout
                 android:id="@+id/fl_ic_gray_line_under_my_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="@id/fl_ic_gray_line_under_profile_info"
                 app:layout_constraintStart_toStartOf="@id/fl_ic_gray_line_under_profile_info"
@@ -238,8 +239,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ic_gray_line_under_my_score"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:src="@drawable/ic_gray_line" />
             </FrameLayout>
 
