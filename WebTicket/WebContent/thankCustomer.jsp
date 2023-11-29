@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.net.URLDecoder"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="dto.Movie"%>
+<%@ page import="dao.MovieRepository"%>
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
@@ -26,6 +29,15 @@
 					shipping_shippingDate = URLDecoder.decode((thisCookie.getValue()), "utf-8");
 			}
 		}
+	
+        ArrayList<Movie> cartList = (ArrayList<Movie>) session.getAttribute("cartlist");
+        if (cartList == null)
+            cartList = new ArrayList<Movie>();
+
+        for (int i = 0; i < cartList.size(); i++) {
+            Movie movie = cartList.get(i);
+            movie.setRemainingSeats(movie.getRemainingSeats() - 1);
+    
 	%>
 	<jsp:include page="menu.jsp" />
 	<div class="jumbotron">
