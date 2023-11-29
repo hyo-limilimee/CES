@@ -35,31 +35,41 @@ class TeammateEvalutionFragment : Fragment() {
             transaction.commit()
         }
 
-        //시크바에 대한 처리
-        // 시크바 초기화
-        val dividerSeekBar = DividerSeekBar(requireContext()).apply {
+        // 시크바 초기화 및 설정
+        val dividerSeekBar: DividerSeekBar =
+            rootView.findViewById(R.id.dividerSeekBar_major)
+
+        dividerSeekBar.apply {
             max = 100
             setOffActivatedEvent()
             setOnActivatedEvent()
             setTextLocationMode(DividerSeekBar.TEXT_LOCATION_BOTTOM)
             setTextInterval(10)
             setTextColor(R.color.black)
+            setTextSize(R.dimen.sp_12)
             setSeaLineColor(R.color.ssblue)
             setSeaLineStrokeWidth(R.dimen.dp_1)
             setDividerInterval(10)
             setDividerColor(R.color.ssblue)
             setDividerStrokeWidth(R.dimen.dp_1)
             setActiveMode(DividerSeekBar.ACTIVE_MODE_MINIMUM)
-            setActivateTargetValue(10)
+            setActivateTargetValue(0)
+            setOnDividerSeekBarChangeStateListener(
+                object : DividerSeekBar.OnDividerSeekBarChangeStateListener {
+                    override fun onProgressEnabled(dividerSeekBar: DividerSeekBar, progress: Int) {
+//                        textView_test.apply {
+//                            text = "$progress"
+//                            setTextColor(resources.getColor(R.color.ssblue))
+//                        }
+                    }
+                    override fun onProgressDisabled(dividerSeekBar: DividerSeekBar, progress: Int) {
+//                        textView_test.apply {
+//                            text = "$progress"
+//                            setTextColor(resources.getColor(R.color.black))
+//                        }
+                    }
+                })
         }
-
-        // Set additional properties after initializing the DividerSeekBar
-        dividerSeekBar.setTextLocationMode(DividerSeekBar.TEXT_LOCATION_BOTTOM)
-        dividerSeekBar.setTextInterval(10)
-        dividerSeekBar.setDividerInterval(10)
-        dividerSeekBar.setDividerStrokeWidth(R.dimen.dp_1)
-
-
 
         //저장 누르는 버튼에 대한 처리
         // "저장" 버튼을 위한 FrameLayout 찾기
