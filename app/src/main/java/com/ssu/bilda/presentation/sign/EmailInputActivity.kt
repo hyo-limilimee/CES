@@ -170,7 +170,7 @@ class EmailInputActivity : AppCompatActivity() {
 
     // 이메일 전송 API 호출
     private fun sendEmail(email: String) {
-        val verifyEmailRequest = VerifyEmailRequest(email)
+        val verifyEmailRequest = VerifyEmailRequest(email = email) // VerifyEmailRequest 생성
         emailService.sendEmail(verifyEmailRequest).enqueue(object : Callback<BaseResponse<Void>> {
             override fun onResponse(
                 call: Call<BaseResponse<Void>>,
@@ -181,67 +181,19 @@ class EmailInputActivity : AppCompatActivity() {
                     if (code == 200) {
                         // 성공한 경우
                         Log.d("SendEmail", "이메일 전송 성공")
-                        showEmailDialog("인증코드 전송완료", 0, true)
+                        showEmailDialog("인증코드 전송완료.", 0, true)
                     } else {
                         // 실패한 경우
-                        Log.d("SendEmail", "이메일 전송 실패 / code = $code")
+                        Log.d("SendEmailDebug", "이메일 전송 실패")
                     }
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<Void>>, t: Throwable) {
                 // 네트워크 에러 처리
-                Log.d("SendEmailDebug", "네트워크 오류: ${t.message}")
+                Log.d("SendEmail", "네트워크 오류: " + t.message.toString())
             }
         })
     }
 
-//    // 이메일 인증 API 호출
-//    private fun certifyEmail(email: String, code: String) {
-//        emailService.certifyEmail(email, code).enqueue(object : Callback<String> {
-//            override fun onResponse(call: Call<String>, response: Response<String>) {
-//                if (response.isSuccessful) {
-//                    // 인증 성공한 경우
-//                    Log.d("CertifyEmail", "이메일 인증 성공")
-//                    showEmailDialog("이메일 인증 성공", 1, true)
-//
-//                    // 이메일 인증이 완료되었으므로 버튼 활성화 및 상태 변경
-//                    isEmailCertified = true
-//                    binding.btnSignupEmailnext.isEnabled = true
-//                    countDownTimer?.cancel()
-//                } else {
-//                    // 인증 실패한 경우
-//                    Log.d("CertifyEmail", "이메일 인증 실패")
-//                    showEmailDialog("이메일 인증 실패", 1, false)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<String>, t: Throwable) {
-//                // 네트워크 에러 처리
-//                Log.d("SendEmail", "네트워크 오류: " + t.message.toString())
-//            }
-//        })
-//    }
-
-//    // 이메일 재전송 API 호출
-//    private fun resendEmail(email: String) {
-//        emailService.sendEmail(email).enqueue(object : Callback<String> {
-//            override fun onResponse(call: Call<String>, response: Response<String>) {
-//                if (response.isSuccessful) {
-//                        // 성공한 경우
-//                        Log.d("ResendEmailDebug", "이메일 재전송 성공")
-//                        showEmailDialog("인증코드 재전송 성공",0,true)
-//                    } else {
-//                        // 실패한 경우
-//                        Log.d("ResendEmailDebug", "이메일 재전송 실패")
-//                        showEmailDialog("이메일 재전송 실패",0,false)
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<String>, t: Throwable) {
-//                // 네트워크 에러 처리
-//                Log.d("ResendEmailDebug", "네트워크 오류: " + t.message.toString())
-//            }
-//        })
-//    }
 }
