@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.SeekBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.ssu.bilda.R
@@ -35,40 +36,226 @@ class TeammateEvalutionFragment : Fragment() {
             transaction.commit()
         }
 
-        // 시크바 초기화 및 설정
-        val dividerSeekBar: DividerSeekBar =
-            rootView.findViewById(R.id.dividerSeekBar_major)
+        // 전공 이해도 시크바
+        val dividerSeekBar_major: DividerSeekBar = rootView.findViewById(R.id.dividerSeekBar_major)
 
-        dividerSeekBar.apply {
+        // 10씩 끊기게 설정
+        val divisionDataList_major = mutableListOf<Int>()
+        for (i in 0..10) {
+            divisionDataList_major.add(i * 10)
+        }
+
+        dividerSeekBar_major.apply {
             max = 100
             setOffActivatedEvent()
             setOnActivatedEvent()
             setTextLocationMode(DividerSeekBar.TEXT_LOCATION_BOTTOM)
             setTextInterval(10)
-            setTextColor(R.color.black)
+            setTextColor(R.color.sgray)
             setTextSize(R.dimen.sp_12)
-            setSeaLineColor(R.color.ssblue)
+            setSeaLineColor(R.color.sgray)
             setSeaLineStrokeWidth(R.dimen.dp_1)
             setDividerInterval(10)
-            setDividerColor(R.color.ssblue)
+            setDividerColor(R.color.sgray)
             setDividerStrokeWidth(R.dimen.dp_1)
             setActiveMode(DividerSeekBar.ACTIVE_MODE_MINIMUM)
             setActivateTargetValue(0)
-            setOnDividerSeekBarChangeStateListener(
-                object : DividerSeekBar.OnDividerSeekBarChangeStateListener {
-                    override fun onProgressEnabled(dividerSeekBar: DividerSeekBar, progress: Int) {
-//                        textView_test.apply {
-//                            text = "$progress"
-//                            setTextColor(resources.getColor(R.color.ssblue))
-//                        }
+
+            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    // 사용자가 시크바를 조작했을 때의 동작
+                    if (progress !in divisionDataList_major) {
+                        // 허용된 값 외에 다른 값이 선택된 경우 특정 값으로 자동으로 이동
+                        val nearestValue = divisionDataList_major.minByOrNull { Math.abs(it - progress) } ?: 0
+                        seekBar?.progress = nearestValue
                     }
-                    override fun onProgressDisabled(dividerSeekBar: DividerSeekBar, progress: Int) {
-//                        textView_test.apply {
-//                            text = "$progress"
-//                            setTextColor(resources.getColor(R.color.black))
-//                        }
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                    // 사용자가 조작을 시작할 때의 동작
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                    // 사용자가 조작을 끝낼 때의 동작
+                }
+            })
+        }
+
+        // 시간 준수 시크바
+        val dividerSeekBar_time: DividerSeekBar = rootView.findViewById(R.id.dividerSeekBar_time)
+
+        // 10씩 끊기게 설정
+        val divisionDataList_time = mutableListOf<Int>()
+        for (i in 0..10) {
+            divisionDataList_time.add(i * 10)
+        }
+
+        dividerSeekBar_time.apply {
+            max = 100
+            setOffActivatedEvent()
+            setOnActivatedEvent()
+            setTextLocationMode(DividerSeekBar.TEXT_LOCATION_BOTTOM)
+            setTextInterval(10)
+            setTextColor(R.color.sgray)
+            setTextSize(R.dimen.sp_12)
+            setSeaLineColor(R.color.sgray)
+            setSeaLineStrokeWidth(R.dimen.dp_1)
+            setDividerInterval(10)
+            setDividerColor(R.color.sgray)
+            setDividerStrokeWidth(R.dimen.dp_1)
+            setActiveMode(DividerSeekBar.ACTIVE_MODE_MINIMUM)
+            setActivateTargetValue(0)
+
+            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    // 사용자가 시크바를 조작했을 때의 동작
+                    if (progress !in divisionDataList_time) {
+                        // 허용된 값 외에 다른 값이 선택된 경우 특정 값으로 자동으로 이동
+                        val nearestValue = divisionDataList_time.minByOrNull { Math.abs(it - progress) } ?: 0
+                        seekBar?.progress = nearestValue
                     }
-                })
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                    // 사용자가 조작을 시작할 때의 동작
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                    // 사용자가 조작을 끝낼 때의 동작
+                }
+            })
+        }
+
+        val dividerSeekBar_communication: DividerSeekBar = rootView.findViewById(R.id.dividerSeekBar_communication)
+
+        // 10씩 끊기게 설정
+        val divisionDataList_communication = mutableListOf<Int>()
+        for (i in 0..10) {
+            divisionDataList_communication.add(i * 10)
+        }
+
+        dividerSeekBar_communication.apply {
+            max = 100
+            setOffActivatedEvent()
+            setOnActivatedEvent()
+            setTextLocationMode(DividerSeekBar.TEXT_LOCATION_BOTTOM)
+            setTextInterval(10)
+            setTextColor(R.color.sgray)
+            setTextSize(R.dimen.sp_12)
+            setSeaLineColor(R.color.sgray)
+            setSeaLineStrokeWidth(R.dimen.dp_1)
+            setDividerInterval(10)
+            setDividerColor(R.color.sgray)
+            setDividerStrokeWidth(R.dimen.dp_1)
+            setActiveMode(DividerSeekBar.ACTIVE_MODE_MINIMUM)
+            setActivateTargetValue(0)
+
+            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    // 사용자가 시크바를 조작했을 때의 동작
+                    if (progress !in divisionDataList_communication) {
+                        // 허용된 값 외에 다른 값이 선택된 경우 특정 값으로 자동으로 이동
+                        val nearestValue = divisionDataList_communication.minByOrNull { Math.abs(it - progress) } ?: 0
+                        seekBar?.progress = nearestValue
+                    }
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                    // 사용자가 조작을 시작할 때의 동작
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                    // 사용자가 조작을 끝낼 때의 동작
+                }
+            })
+        }
+
+        val dividerSeekBar_positiveness: DividerSeekBar = rootView.findViewById(R.id.dividerSeekBar_positiveness)
+
+        // 10씩 끊기게 설정
+        val divisionDataList_positiveness = mutableListOf<Int>()
+        for (i in 0..10) {
+            divisionDataList_positiveness.add(i * 10)
+        }
+
+        dividerSeekBar_positiveness.apply {
+            max = 100
+            setOffActivatedEvent()
+            setOnActivatedEvent()
+            setTextLocationMode(DividerSeekBar.TEXT_LOCATION_BOTTOM)
+            setTextInterval(10)
+            setTextColor(R.color.sgray)
+            setTextSize(R.dimen.sp_12)
+            setSeaLineColor(R.color.sgray)
+            setSeaLineStrokeWidth(R.dimen.dp_1)
+            setDividerInterval(10)
+            setDividerColor(R.color.sgray)
+            setDividerStrokeWidth(R.dimen.dp_1)
+            setActiveMode(DividerSeekBar.ACTIVE_MODE_MINIMUM)
+            setActivateTargetValue(0)
+
+            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    // 사용자가 시크바를 조작했을 때의 동작
+                    if (progress !in divisionDataList_positiveness) {
+                        // 허용된 값 외에 다른 값이 선택된 경우 특정 값으로 자동으로 이동
+                        val nearestValue = divisionDataList_positiveness.minByOrNull { Math.abs(it - progress) } ?: 0
+                        seekBar?.progress = nearestValue
+                    }
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                    // 사용자가 조작을 시작할 때의 동작
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                    // 사용자가 조작을 끝낼 때의 동작
+                }
+            })
+        }
+
+        val dividerSeekBar_responsibility: DividerSeekBar = rootView.findViewById(R.id.dividerSeekBar_responsibility)
+
+        // 10씩 끊기게 설정
+        val divisionDataList_responsibility = mutableListOf<Int>()
+        for (i in 0..10) {
+            divisionDataList_responsibility.add(i * 10)
+        }
+
+        dividerSeekBar_responsibility.apply {
+            max = 100
+            setOffActivatedEvent()
+            setOnActivatedEvent()
+            setTextLocationMode(DividerSeekBar.TEXT_LOCATION_BOTTOM)
+            setTextInterval(10)
+            setTextColor(R.color.sgray)
+            setTextSize(R.dimen.sp_12)
+            setSeaLineColor(R.color.sgray)
+            setSeaLineStrokeWidth(R.dimen.dp_1)
+            setDividerInterval(10)
+            setDividerColor(R.color.sgray)
+            setDividerStrokeWidth(R.dimen.dp_1)
+            setActiveMode(DividerSeekBar.ACTIVE_MODE_MINIMUM)
+            setActivateTargetValue(0)
+
+            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    // 사용자가 시크바를 조작했을 때의 동작
+                    if (progress !in divisionDataList_responsibility) {
+                        // 허용된 값 외에 다른 값이 선택된 경우 특정 값으로 자동으로 이동
+                        val nearestValue = divisionDataList_responsibility.minByOrNull { Math.abs(it - progress) } ?: 0
+                        seekBar?.progress = nearestValue
+                    }
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                    // 사용자가 조작을 시작할 때의 동작
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                    // 사용자가 조작을 끝낼 때의 동작
+                }
+            })
         }
 
         //저장 누르는 버튼에 대한 처리
