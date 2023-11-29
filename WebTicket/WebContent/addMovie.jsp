@@ -110,26 +110,26 @@
 			<div class="form-group row">
 				<label class="col-sm-4"><fmt:message key="description" /></label>
 				<div class="col-sm-8">
-					<textarea name="description" cols="50" rows="4"
+					<textarea id="description" name="description" cols="50" rows="4"
 						class="form-control"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-4"><fmt:message key="supervisor"/></label>
 				<div class="col-sm-6">
-					<input type="text" name="supervisor" class="form-control">
+					<input type="text" id="supervisor" name="supervisor" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-4"><fmt:message key="manufacturer"/></label>
 				<div class="col-sm-6">
-					<input type="text" name="manufacturer" class="form-control">
+					<input type="text" id="manufacturer" name="manufacturer" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-4"><fmt:message key="genre" /></label>
 				<div class="col-sm-6">
-					<input type="text" name="genre" class="form-control" >
+					<input type="text" id="genre" name="genre" class="form-control" >
 				</div>
 			</div>
 			<div class="form-group row">
