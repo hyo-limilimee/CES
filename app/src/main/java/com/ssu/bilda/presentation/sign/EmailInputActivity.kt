@@ -3,6 +3,7 @@ package com.ssu.bilda.presentation.sign
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
@@ -69,10 +70,22 @@ class EmailInputActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        // 인증코드전송버튼 클릭
+        // 인증코드 전송버튼 클릭
         binding.btnSignupSendauth.setOnClickListener {
             val email = binding.etSignupEmail.text.toString()
             sendEmail(email)
+        }
+
+        // 학교메일열기 버튼클릭
+        binding.tvSignupOpenmail.setOnClickListener{
+            val url = "https://cloud.soongsil.ac.kr"
+
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+
+            // 웹 브라우저로 열기
+            startActivity(intent)
+
         }
 
         // "인증 확인" 버튼 클릭 시 이벤트 처리
