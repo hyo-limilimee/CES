@@ -3,7 +3,7 @@ package com.ssu.bilda.data.remote.request
 import com.google.gson.annotations.SerializedName
 import com.ssu.bilda.data.enums.Department
 
-class SignUpRequest (
+data class SignUpRequest(
     @SerializedName("email")
     val email: String,
     @SerializedName("password")
