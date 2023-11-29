@@ -14,11 +14,13 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.ssu.bilda.R
 import com.ssu.bilda.data.remote.RetrofitImpl
+import com.ssu.bilda.data.remote.request.VerifyAuthCodeRequest
 import com.ssu.bilda.data.remote.request.VerifyEmailRequest
 import com.ssu.bilda.data.remote.response.BaseResponse
 import com.ssu.bilda.data.service.EmailService
@@ -38,6 +40,9 @@ class EmailInputActivity : AppCompatActivity() {
 
     // 이메일 인증 여부를 나타내는 변수
     private var isEmailCertified = false
+
+    // 인증코드 재전송 횟수 카운트
+    private var resendEmailCount = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,14 +79,14 @@ class EmailInputActivity : AppCompatActivity() {
         binding.btnSignupCheckauth.setOnClickListener {
             val email = binding.etSignupEmail.text.toString()
             val authCode = binding.etSignupAuth.text.toString()
-//            certifyEmail(email, authCode)
+            certifyEmail(VerifyAuthCodeRequest(email = email, authCode = authCode))
         }
 
         // "인증코드 재전송" 버튼 클릭 시 이벤트 처리
         binding.tvSignupResend.setOnClickListener {
             countDownTimer?.cancel() // 타이머 취소
             val email = binding.etSignupEmail.text.toString()
-//            resendEmail(email)
+            resendEmail(email)
         }
 
         // 다음 버튼 클릭
@@ -111,10 +116,16 @@ class EmailInputActivity : AppCompatActivity() {
     }
 
 
-    // flag
-    // 0 : 인증코드 전송 관련
+    // flag관련
+    // 0 : 인증 코드 전송 관련
     // 1 : 인증 성공 여부
-    private fun showEmailDialog(text: String, flag: Int, isSuccess: Boolean) {
+    private fun showEmailDialog(
+        text: String,
+        subtext: String,
+        sendtime: String,
+        flag: Int,
+        isSuccess: Boolean
+    ) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_email, null)
 
         val builder = AlertDialog.Builder(this)
@@ -126,6 +137,11 @@ class EmailInputActivity : AppCompatActivity() {
 
         val titleDialog = dialogView.findViewById<TextView>(R.id.tv_signup_dialog_guide)
         titleDialog.text = text
+        val subDialog = dialogView.findViewById<TextView>(R.id.tv_signup_dialog_resend1)
+        subDialog.text = subtext
+        val sendTimeDialog = dialogView.findViewById<TextView>(R.id.tv_signup_dialog_resend2)
+        sendTimeDialog.text = sendtime
+
 
         val btnDialog = dialogView.findViewById<AppCompatButton>(R.id.btn_signup_dialog)
         btnDialog.setOnClickListener {
@@ -170,7 +186,8 @@ class EmailInputActivity : AppCompatActivity() {
 
     // 이메일 전송 API 호출
     private fun sendEmail(email: String) {
-        val verifyEmailRequest = VerifyEmailRequest(email)
+        val verifyEmailRequest = VerifyEmailRequest(email = email)
+        binding.btnSignupSendauth.isEnabled = false // 한 번 클릭 후 버튼 비활성화
         emailService.sendEmail(verifyEmailRequest).enqueue(object : Callback<BaseResponse<Void>> {
             override fun onResponse(
                 call: Call<BaseResponse<Void>>,
@@ -180,68 +197,119 @@ class EmailInputActivity : AppCompatActivity() {
                     val code = response.body()?.code
                     if (code == 200) {
                         // 성공한 경우
-                        Log.d("SendEmail", "이메일 전송 성공")
-                        showEmailDialog("인증코드 전송완료", 0, true)
+                        Log.d("SendEmail", "인증코드 발급 성공")
+                        showEmailDialog("인증코드 전송 완료.", "재전송 가능 횟수 : ", "2", 0, true)
                     } else {
                         // 실패한 경우
-                        Log.d("SendEmail", "이메일 전송 실패 / code = $code")
+                        Log.d("SendEmail", "인증코드 발급 실패")
+                        Toast.makeText(this@EmailInputActivity, "다시 시도해주세요", Toast.LENGTH_SHORT)
+                            .show()
+                        binding.btnSignupSendauth.isEnabled = true // 오류로 인한 실패 시 버튼 다시 활성화
                     }
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<Void>>, t: Throwable) {
                 // 네트워크 에러 처리
-                Log.d("SendEmailDebug", "네트워크 오류: ${t.message}")
+                Log.d("SendEmail", "네트워크 오류: " + t.message.toString())
+                Toast.makeText(this@EmailInputActivity, "네트워크 오류", Toast.LENGTH_SHORT).show()
+                binding.btnSignupSendauth.isEnabled = true // 오류로 인한 실패 시 버튼 다시 활성화
             }
         })
     }
 
-//    // 이메일 인증 API 호출
-//    private fun certifyEmail(email: String, code: String) {
-//        emailService.certifyEmail(email, code).enqueue(object : Callback<String> {
-//            override fun onResponse(call: Call<String>, response: Response<String>) {
-//                if (response.isSuccessful) {
-//                    // 인증 성공한 경우
-//                    Log.d("CertifyEmail", "이메일 인증 성공")
-//                    showEmailDialog("이메일 인증 성공", 1, true)
-//
-//                    // 이메일 인증이 완료되었으므로 버튼 활성화 및 상태 변경
-//                    isEmailCertified = true
-//                    binding.btnSignupEmailnext.isEnabled = true
-//                    countDownTimer?.cancel()
-//                } else {
-//                    // 인증 실패한 경우
-//                    Log.d("CertifyEmail", "이메일 인증 실패")
-//                    showEmailDialog("이메일 인증 실패", 1, false)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<String>, t: Throwable) {
-//                // 네트워크 에러 처리
-//                Log.d("SendEmail", "네트워크 오류: " + t.message.toString())
-//            }
-//        })
-//    }
+    // 이메일 인증 API 호출
+    private fun certifyEmail(verifyAuthCodeRequest: VerifyAuthCodeRequest) {
+        emailService.certifyEmail(verifyAuthCodeRequest)
+            .enqueue(object : Callback<BaseResponse<Void>> {
+                override fun onResponse(
+                    call: Call<BaseResponse<Void>>,
+                    response: Response<BaseResponse<Void>>
+                ) {
+                    if (response.isSuccessful) {
+                        val code = response.body()?.code
+                        if (code == 200) {
+                            // 인증 성공 처리
+                            Log.d("CertifyEmail", "이메일 인증 성공")
+                            showEmailDialog("이메일 인증 성공", " ", " ", 1, true)
+                            // 이메일 인증이 완료되었으므로 버튼 활성화 및 상태 변경
+                            isEmailCertified = true
+                            binding.btnSignupEmailnext.isEnabled = true
+                            countDownTimer?.cancel()
+                        } else {
+                            // 인증 실패 처리
+                            Log.d("CertifyEmail", "이메일 인증 실패")
+                            Toast.makeText(this@EmailInputActivity, "인증코드 확인 후 재입력 해주세요", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
 
-//    // 이메일 재전송 API 호출
-//    private fun resendEmail(email: String) {
-//        emailService.sendEmail(email).enqueue(object : Callback<String> {
-//            override fun onResponse(call: Call<String>, response: Response<String>) {
-//                if (response.isSuccessful) {
-//                        // 성공한 경우
-//                        Log.d("ResendEmailDebug", "이메일 재전송 성공")
-//                        showEmailDialog("인증코드 재전송 성공",0,true)
-//                    } else {
-//                        // 실패한 경우
-//                        Log.d("ResendEmailDebug", "이메일 재전송 실패")
-//                        showEmailDialog("이메일 재전송 실패",0,false)
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<String>, t: Throwable) {
-//                // 네트워크 에러 처리
-//                Log.d("ResendEmailDebug", "네트워크 오류: " + t.message.toString())
-//            }
-//        })
-//    }
+                override fun onFailure(call: Call<BaseResponse<Void>>, t: Throwable) {
+                    // 네트워크 에러 처리
+                    Log.d("CertifyEmail", "네트워크 오류: " + t.message.toString())
+                    Toast.makeText(this@EmailInputActivity, "네트워크 오류", Toast.LENGTH_SHORT).show()
+
+                }
+            })
+    }
+
+    // 인증코드 재전송 api 호출
+    private fun resendEmail(email: String) {
+        if (resendEmailCount >= -2) {
+            val verifyEmailRequest = VerifyEmailRequest(email = email)
+            if (resendEmailCount != -1) {
+                emailService.sendEmail(verifyEmailRequest)
+                    .enqueue(object : Callback<BaseResponse<Void>> {
+                        override fun onResponse(
+                            call: Call<BaseResponse<Void>>,
+                            response: Response<BaseResponse<Void>>
+                        ) {
+                            if (response.isSuccessful) {
+                                val code = response.body()?.code
+                                if (code == 200) {
+                                    // 성공한 경우
+                                    Log.d("reSendEmail", "인증코드 재전송 성공")
+                                    val sendTime = resendEmailCount.toString() // 남은 전송 횟수
+                                    if (resendEmailCount == 1) {
+                                        showEmailDialog(
+                                            "인증코드 재전송 완료",
+                                            "재전송 가능 횟수: ",
+                                            "$sendTime",
+                                            0,
+                                            true
+                                        )
+                                        resendEmailCount -= 1 // 재전송 횟수 감소
+                                    } else if (resendEmailCount == 0) {
+                                        showEmailDialog(
+                                            "인증코드 재전송 완료",
+                                            "재전송 가능 횟수: ",
+                                            "$sendTime",
+                                            0,
+                                            true
+                                        )
+                                        resendEmailCount -= 1 // 재전송 횟수 감소
+                                    } else {
+                                        // 실패한 경우
+                                        Log.d("reSendEmail", "인증코드 재전송 실패")
+                                        Toast.makeText(this@EmailInputActivity,"다시 시도해주세요", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<BaseResponse<Void>>, t: Throwable) {
+                            // 네트워크 에러 처리
+                            Log.d("reSendEmail", "네트워크 오류: " + t.message.toString())
+                            Toast.makeText(this@EmailInputActivity, "네트워크 오류", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    })
+            } else {
+                showEmailDialog("인증코드 전송 횟수 초과", "5분 후 다시 시도", "", 0, false)
+            }
+        }
+    }
 }
+
+
+
