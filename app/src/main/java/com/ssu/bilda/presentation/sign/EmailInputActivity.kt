@@ -104,7 +104,16 @@ class EmailInputActivity : AppCompatActivity() {
 
         // 다음 버튼 클릭
         binding.btnSignupEmailnext.setOnClickListener {
+            // 사용자가 입력한 이메일 값
+            val userEmail = binding.etSignupEmail.text.toString()
+
+            // 다음 액티비티로 전달할 Intent 생성
             val intent = Intent(this, PwInputActivity::class.java)
+
+            // 사용자 이메일 값을 다음 액티비티로 전달
+            intent.putExtra("user_email", userEmail) //보낸 값 getIntent().getStringExtra("user_email") 로 뽑아쓰기
+
+            // 액티비티 시작
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
