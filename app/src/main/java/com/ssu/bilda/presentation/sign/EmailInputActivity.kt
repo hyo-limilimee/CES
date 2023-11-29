@@ -78,7 +78,7 @@ class EmailInputActivity : AppCompatActivity() {
 
         // 학교메일열기 버튼클릭
         binding.tvSignupOpenmail.setOnClickListener{
-            val url = "https://cloud.soongsil.ac.kr"
+            val url = "https://gw.ssu.ac.kr/o365Userlogin.aspx"
 
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(url)
