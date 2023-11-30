@@ -57,9 +57,14 @@ class MyInfoInputActivity : AppCompatActivity() {
             val name = binding.etSignupName.text.toString()
             val studentId = binding.etSignupStudentid.text.toString()
             val nickname = binding.etSignupNickname.text.toString()
+            val major = binding.spinnerSignupMajor.selectedItem.toString() // 선택된 학과
 
             if (name.isNotEmpty() && studentId.isNotEmpty() && nickname.isNotEmpty()) {
-                showConfirmDialog()
+                // 이전 액티비티로부터 이메일,패스워드 값 받기
+                val userEmail = intent.getStringExtra("user_email")
+                val userPw = intent.getStringExtra("user_password")
+
+                showConfirmDialog(userEmail, userPw, name, studentId, nickname, major)
             } else {
                 Toast.makeText(this, "모든 정보를 입력해주세요", Toast.LENGTH_SHORT).show()
             }
@@ -67,7 +72,14 @@ class MyInfoInputActivity : AppCompatActivity() {
     }
 
     // 학번, 이름 확인 관련 다이얼로그
-    private fun showConfirmDialog() {
+    private fun showConfirmDialog(
+        userEmail: String?,
+        userPw: String?,
+        name: String,
+        studentId: String,
+        nickname: String,
+        major: String
+    ) {
         val alertDialog: AlertDialog = AlertDialog.Builder(this@MyInfoInputActivity)
             .setIcon(R.drawable.ic_notice)
             .setMessage("입력한 이름과 학번은 추후 수정이 불가합니다.\n 회원가입 완료로 넘어 가시겠어요?")
@@ -75,6 +87,12 @@ class MyInfoInputActivity : AppCompatActivity() {
                 dialog.dismiss()
                 // SignInActivity로 이동
                 val intent = Intent(this@MyInfoInputActivity, SignInActivity::class.java)
+                intent.putExtra("user_email", userEmail)
+                intent.putExtra("user_password", userPw)
+                intent.putExtra("user_name", name)
+                intent.putExtra("user_student_id", studentId)
+                intent.putExtra("user_nickname", nickname)
+                intent.putExtra("user_major", major)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
 
