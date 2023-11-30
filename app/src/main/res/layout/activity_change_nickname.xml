@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.mypage.ChangePasswordActivity">
+    tools:context=".presentation.mypage.ChangeNicknameActivity">
 
     <LinearLayout
         android:id="@+id/ll_ic_arrow_and_change_nickname"
@@ -112,7 +112,7 @@
             android:id="@+id/tv_nickname_change_completed_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="110dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop = "10dp"
             android:fontFamily="@font/suiteregular"
             android:text="변경 완료"
