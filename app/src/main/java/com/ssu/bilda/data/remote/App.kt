@@ -1,20 +1,25 @@
 package com.ssu.bilda.data.remote
 
 import android.app.Application
-import android.content.Context
 
 class App : Application() {
     companion object {
-        var appContext: Context? = null
-        lateinit var token_prefs: TokenSharedPreferences
-        lateinit var globalNickname: String
+        private lateinit var _tokenPrefs: TokenSharedPreferences
+
+        val token_prefs: TokenSharedPreferences
+            get() {
+                if (!::_tokenPrefs.isInitialized) {
+                    throw IllegalStateException("TokenPrefs should be initialized before using it")
+                }
+                return _tokenPrefs
+            }
     }
 
     override fun onCreate() {
         super.onCreate()
-        token_prefs = TokenSharedPreferences(applicationContext)
-        appContext = this
-
-        globalNickname = ""
+        _tokenPrefs = TokenSharedPreferences.getInstance(applicationContext)
     }
 }
+
+
+

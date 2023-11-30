@@ -25,6 +25,13 @@ class BnvActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bnv)
 
+        if (intent.hasExtra("loadFragment")) {
+            val fragmentToLoad = intent.getStringExtra("loadFragment")
+            if (fragmentToLoad == "home") {
+                replaceFragment(HomeFragment())
+            }
+        }
+
         bn.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.bnv_home -> replaceFragment(HomeFragment())

@@ -3,6 +3,7 @@ package com.ssu.bilda.presentation.sign
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
@@ -69,17 +70,29 @@ class EmailInputActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        // 인증코드전송버튼 클릭
+        // 인증코드 전송버튼 클릭
         binding.btnSignupSendauth.setOnClickListener {
             val email = binding.etSignupEmail.text.toString()
             sendEmail(email)
+        }
+
+        // 학교메일열기 버튼클릭
+        binding.tvSignupOpenmail.setOnClickListener{
+            val url = "https://gw.ssu.ac.kr/o365Userlogin.aspx"
+
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+
+            // 웹 브라우저로 열기
+            startActivity(intent)
+
         }
 
         // "인증 확인" 버튼 클릭 시 이벤트 처리
         binding.btnSignupCheckauth.setOnClickListener {
             val email = binding.etSignupEmail.text.toString()
             val authCode = binding.etSignupAuth.text.toString()
-            certifyEmail(VerifyAuthCodeRequest(email = email, authCode = authCode))
+            certifyEmail(email, authCode)
         }
 
         // "인증코드 재전송" 버튼 클릭 시 이벤트 처리
@@ -91,7 +104,16 @@ class EmailInputActivity : AppCompatActivity() {
 
         // 다음 버튼 클릭
         binding.btnSignupEmailnext.setOnClickListener {
+            // 사용자가 입력한 이메일 값
+            val userEmail = binding.etSignupEmail.text.toString()
+
+            // 다음 액티비티로 전달할 Intent 생성
             val intent = Intent(this, PwInputActivity::class.java)
+
+            // 사용자 이메일 값을 다음 액티비티로 전달
+            intent.putExtra("user_email", userEmail) //보낸 값 getIntent().getStringExtra("user_email") 로 뽑아쓰기
+
+            // 액티비티 시작
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
@@ -199,6 +221,7 @@ class EmailInputActivity : AppCompatActivity() {
                         // 성공한 경우
                         Log.d("SendEmail", "인증코드 발급 성공")
                         showEmailDialog("인증코드 전송 완료.", "재전송 가능 횟수 : ", "2", 0, true)
+                        binding.btnSignupCheckauth.isEnabled = true //인증코드 전송 1번 후 재전송 버튼 활성화
                     } else {
                         // 실패한 경우
                         Log.d("SendEmail", "인증코드 발급 실패")
@@ -219,9 +242,9 @@ class EmailInputActivity : AppCompatActivity() {
     }
 
     // 이메일 인증 API 호출
-    private fun certifyEmail(verifyAuthCodeRequest: VerifyAuthCodeRequest) {
-        emailService.certifyEmail(verifyAuthCodeRequest)
-            .enqueue(object : Callback<BaseResponse<Void>> {
+    private fun certifyEmail(email: String, authCode:String) {
+        val verifyAuthCodeRequest = VerifyAuthCodeRequest(email,authCode)
+        emailService.certifyEmail(verifyAuthCodeRequest).enqueue(object : Callback<BaseResponse<Void>> {
                 override fun onResponse(
                     call: Call<BaseResponse<Void>>,
                     response: Response<BaseResponse<Void>>

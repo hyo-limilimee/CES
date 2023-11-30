@@ -23,10 +23,17 @@ class PwInputActivity : AppCompatActivity() {
 
         // 입력한 비밀번호들 일치하는 경우에만 다음 버튼 활성화
         binding.btnSignupPwnext.isEnabled = false
-        
+
+        // 이전 액티비티로부터 이메일 값을 받기
+        val userEmail = intent.getStringExtra("user_email")
+
+        //비밀번호 -> 다음액티비티 전환 버튼 클릭
         binding.btnSignupPwnext.setOnClickListener {
             if (pw == rePw) {
+                // 다음 액티비티로 이메일과 비밀번호를 전달하기
                 val intent = Intent(this, MyInfoInputActivity::class.java)
+                intent.putExtra("user_email", userEmail) // 이메일 전달
+                intent.putExtra("user_password", pw)     // 비밀번호 전달
                 startActivity(intent)
             }
         }
