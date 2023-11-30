@@ -15,7 +15,5 @@ interface EmailService {
 
      // 이메일 인증
     @POST("/api/v1/email/verify/code")
-    fun certifyEmail(
-        @Body request: VerifyAuthCodeRequest
-    ): Call<BaseResponse<Void>>
+    fun certifyEmail(@Body request: VerifyAuthCodeRequest ): Call<BaseResponse<Void>>
 }
