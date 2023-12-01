@@ -10,7 +10,9 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.ssu.bilda.R
+import com.ssu.bilda.data.remote.App
 import com.ssu.bilda.data.remote.UserSharedPreferences
+import com.ssu.bilda.presentation.sign.SignInActivity
 
 class MyInfoFragment : Fragment() {
     override fun onCreateView(
@@ -40,6 +42,38 @@ class MyInfoFragment : Fragment() {
         // 사용자 이름이 있다면 TextView에 설정
         if (userName.isNotEmpty()) {
             tvUserName.text = userName
+        }
+
+        // 사용자 학번 불러오기
+        val tvUserSId: TextView = rootView.findViewById(R.id.tv_my_info_student_id_input)
+        val userSId = UserSharedPreferences.getUserStId(requireContext())
+
+        if (userName.isNotEmpty()) {
+            tvUserSId.text = userSId
+        }
+
+        // 사용자 닉네임 불러오기
+        val tvUserNickname: TextView = rootView.findViewById(R.id.tv_my_info_nick_name_input)
+        val userNickname = UserSharedPreferences.getUserNickname(requireContext())
+
+        if (userName.isNotEmpty()) {
+            tvUserNickname.text = userNickname
+        }
+
+        // 사용자 이메일 불러오기
+        val tvUserEmail: TextView = rootView.findViewById(R.id.tv_my_info_email_input)
+        val userEmail = UserSharedPreferences.getUserEmail(requireContext())
+        // 사용자 이메일이 있다면 TextView에 설정
+        if (userEmail.isNotEmpty()) {
+            tvUserEmail.text = userEmail
+        }
+
+        // 사용자 비밀번호 불러오기
+        val tvUserPw: TextView = rootView.findViewById(R.id.tv_my_info_pw_input)
+        val userPw = UserSharedPreferences.getUserPw(requireContext())
+
+        if (userPw.isNotEmpty()) {
+            tvUserPw.text = userPw
         }
 
         val logOutButton: FrameLayout = rootView.findViewById(R.id.fl_tv_log_out)
@@ -85,11 +119,11 @@ class MyInfoFragment : Fragment() {
         builder.setTitle("") // 대화 상자의 제목 설정
         builder.setMessage("정말 로그아웃 하시겠습니까?") // 메시지 설정
 
-        // 대화 상자에 버튼 추가
+
         builder.setPositiveButton("로그아웃") { dialog, which ->
-            // "저장" 버튼 클릭 처리 (저장 동작)
-            // 여기에 저장 로직을 추가할 수 있습니다.
-            dialog.dismiss() // 대화 상자 닫기
+            // "로그아웃" 버튼을 클릭했을 때 logout 메서드 호출
+            logout()
+            dialog.dismiss() // 다이얼로그 닫기
         }
 
         builder.setNegativeButton("취소") { dialog, which ->
@@ -100,6 +134,17 @@ class MyInfoFragment : Fragment() {
         // 대화 상자 생성 및 표시
         val dialog: AlertDialog = builder.create()
         dialog.show()
+    }
+
+    private fun logout() {
+        // 저장된 액세스 토큰과 리프래시 토큰을 지웁니다.
+        App.token_prefs.accessToken = null
+        App.token_prefs.refreshToken = null
+
+        // 여기에서 추가적인 로그아웃 작업을 수행합니다.
+
+        // 로그인 화면으로 리다이렉트
+        startActivity(Intent(context, SignInActivity::class.java))
     }
 
     private fun showWithdrawalDialog() {
