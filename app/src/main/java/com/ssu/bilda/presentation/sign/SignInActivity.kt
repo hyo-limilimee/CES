@@ -26,12 +26,23 @@ class SignInActivity : AppCompatActivity() {
 
     private var userEmail: String? = null
     private var userPw: String? = null
+    private var name: String = ""
+    private var nickname: String = ""
+    private var studentId: String = ""
+    private var department: Department = Department.COMPUTER
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val name = intent.getStringExtra("name") ?: ""
+        val studentId = intent.getStringExtra("student_id") ?: ""
+        val nickname = intent.getStringExtra("nickname") ?: ""
+        val departmentName = intent.getStringExtra("department") ?: ""
+
 
         // 회원가입 하러가기 버튼 클릭
         binding.tvSigninMove.setOnClickListener {
@@ -49,14 +60,6 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-
-    val name = intent.getStringExtra("name") ?: ""
-    val studentId = intent.getStringExtra("student_id") ?: ""
-    val nickname = intent.getStringExtra("nickname") ?: ""
-    val departmentName = intent.getStringExtra("department") ?: ""
-
-    // Department enum으로 변환
-    val department = Department.valueOf(departmentName)
 
     // 로그인 api 호출
     private fun signIn(userEmail: String, userPw: String) {
