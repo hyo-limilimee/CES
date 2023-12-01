@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.ssu.bilda.R
 import com.ssu.bilda.data.enums.Department
 import com.ssu.bilda.data.remote.RetrofitImpl
+import com.ssu.bilda.data.remote.UserSharedPreferences
 import com.ssu.bilda.data.remote.request.SignUpRequest
 import com.ssu.bilda.data.remote.response.BaseResponse
 import com.ssu.bilda.data.remote.response.SignUpResponse
@@ -127,6 +128,11 @@ class MyInfoInputActivity : AppCompatActivity() {
                     if (code == 200) {
                         // 인증 성공 처리
                         Log.d("SignUp", "회원가입 성공")
+                        //이름,닉네임,학번,학과
+                        UserSharedPreferences.setUserName(this@MyInfoInputActivity, name)
+                        UserSharedPreferences.setUserNickname(this@MyInfoInputActivity, nickname)
+                        UserSharedPreferences.setUserStId(this@MyInfoInputActivity, studentId)
+                        UserSharedPreferences.setUserDep(this@MyInfoInputActivity, department)
                         moveToSignInActivity()
                     } else {
                         Log.d("SignUp", "회원가입 실패")
