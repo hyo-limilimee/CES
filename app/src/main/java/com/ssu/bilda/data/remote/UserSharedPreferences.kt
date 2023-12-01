@@ -8,6 +8,7 @@ object UserSharedPreferences {
     const val USER_PW_TO_STAR = "USER_PW_TO_STAR"
     const val USER_NICKNAME = "USER_NICKNAME"
     const val USER_PLATFORM = "USER_PLATFORM"
+    const val USER_NAME = "USER_NAME"
 
     fun setUserEmail(context: Context, input: String) {
         val prefs: SharedPreferences =
@@ -53,6 +54,19 @@ object UserSharedPreferences {
         return prefs.getString(USER_NICKNAME, "").toString()
     }
 
+    fun setUserName(context: Context, input: String) {
+        val prefs: SharedPreferences =
+            context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = prefs.edit()
+        editor.putString(USER_NAME, input)
+        editor.apply()
+    }
+
+    fun getUserName(context: Context): String {
+        val prefs: SharedPreferences =
+            context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return prefs.getString(USER_NAME, "").toString()
+    }
 
     fun clearUser(context: Context) {
         val prefs: SharedPreferences =

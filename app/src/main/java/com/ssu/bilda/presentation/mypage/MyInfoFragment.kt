@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.ssu.bilda.R
+import com.ssu.bilda.data.remote.UserSharedPreferences
 
 class MyInfoFragment : Fragment() {
     override fun onCreateView(
@@ -18,6 +20,7 @@ class MyInfoFragment : Fragment() {
 
         val rootView = inflater.inflate(R.layout.fragment_my_info, container, false)
 
+        // 좌상단 뒤로가기 버튼 설정
         val rightArrowBtn: FrameLayout = rootView.findViewById(R.id.fl__my_info_black_left_arrow_btn)
 
         rightArrowBtn.setOnClickListener {
@@ -29,6 +32,14 @@ class MyInfoFragment : Fragment() {
 
             // 꼭 commit을 해줘야 바뀐다.
             transaction.commit()
+        }
+
+        // 사용자 이름 불러오기
+        val tvUserName: TextView = rootView.findViewById(R.id.tv_my_info_name_input)
+        val userName = UserSharedPreferences.getUserName(requireContext())
+        // 사용자 이름이 있다면 TextView에 설정
+        if (userName.isNotEmpty()) {
+            tvUserName.text = userName
         }
 
         val logOutButton: FrameLayout = rootView.findViewById(R.id.fl_tv_log_out)
@@ -58,6 +69,7 @@ class MyInfoFragment : Fragment() {
             val intent = Intent(activity, ChangeNicknameActivity::class.java)
             startActivity(intent)
         }
+
 
         return rootView
     }
