@@ -118,6 +118,14 @@ class MyInfoInputActivity : AppCompatActivity() {
         // 회원가입 요청 객체 생성
         val signUpRequest = SignUpRequest(userEmail, userPw, name, studentId, nickname, department)
 
+        //로그인으로 정보 넘기기
+        val intent = Intent(this, SignInActivity::class.java)
+        intent.putExtra("name", name)
+        intent.putExtra("student_id", studentId)
+        intent.putExtra("nickname", nickname)
+        intent.putExtra("department", department.name)
+        startActivity(intent)
+
         userService.signUp(signUpRequest).enqueue(object : Callback<BaseResponse<SignUpResponse>> {
             override fun onResponse(
                 call: Call<BaseResponse<SignUpResponse>>,
@@ -128,11 +136,6 @@ class MyInfoInputActivity : AppCompatActivity() {
                     if (code == 200) {
                         // 인증 성공 처리
                         Log.d("SignUp", "회원가입 성공")
-                        //이름,닉네임,학번,학과
-                        UserSharedPreferences.setUserName(this@MyInfoInputActivity, name)
-                        UserSharedPreferences.setUserNickname(this@MyInfoInputActivity, nickname)
-                        UserSharedPreferences.setUserStId(this@MyInfoInputActivity, studentId)
-                        UserSharedPreferences.setUserDep(this@MyInfoInputActivity, department)
                         moveToSignInActivity()
                     } else {
                         Log.d("SignUp", "회원가입 실패")
