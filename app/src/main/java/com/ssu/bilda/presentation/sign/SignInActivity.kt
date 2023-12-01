@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.ssu.bilda.data.enums.Department
 import com.ssu.bilda.data.remote.App
 import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.data.remote.UserSharedPreferences
@@ -48,6 +49,15 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
+
+    val name = intent.getStringExtra("name") ?: ""
+    val studentId = intent.getStringExtra("student_id") ?: ""
+    val nickname = intent.getStringExtra("nickname") ?: ""
+    val departmentName = intent.getStringExtra("department") ?: ""
+
+    // Department enum으로 변환
+    val department = Department.valueOf(departmentName)
+
     // 로그인 api 호출
     private fun signIn(userEmail: String, userPw: String) {
         val signInInfo = SignInRequest(userEmail, userPw) //로그인 시 필요한 정보
@@ -64,9 +74,13 @@ class SignInActivity : AppCompatActivity() {
                         // 인증 성공 처리
                         Log.d("SignIn", "로그인 성공")
 
-                        // 자동로그인
+                        // 유저 정보 SH 저장
                         UserSharedPreferences.setUserEmail(this@SignInActivity, userEmail)
                         UserSharedPreferences.setUserPw(this@SignInActivity, userPw)
+                        UserSharedPreferences.setUserName(this@SignInActivity, name)
+                        UserSharedPreferences.setUserNickname(this@SignInActivity, nickname)
+                        UserSharedPreferences.setUserStId(this@SignInActivity, studentId)
+                        UserSharedPreferences.setUserDep(this@SignInActivity, department)
 
                         // 토큰 저장
                         val accessToken = baseResponse.result?.accessToken
