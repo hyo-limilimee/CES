@@ -257,9 +257,11 @@
                     android:id="@+id/rv_selected_semester"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@id/fl_spinner_profile_received_evaluation"
-                    app:layout_constraintStart_toStartOf="@id/fl_spinner_profile_received_evaluation"
-                    app:layout_constraintTop_toBottomOf="@id/fl_spinner_profile_received_evaluation"></androidx.recyclerview.widget.RecyclerView>
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_rcv_evalution_subject"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_my_score"></androidx.recyclerview.widget.RecyclerView>
             </FrameLayout>
 
             <FrameLayout
@@ -291,9 +293,11 @@
                     android:id="@+id/rv_recieved_evaluation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@id/fl_spinner_profile_received_evaluation"
-                    app:layout_constraintStart_toStartOf="@id/fl_spinner_profile_received_evaluation"
-                    app:layout_constraintTop_toBottomOf="@id/fl_spinner_profile_received_evaluation"></androidx.recyclerview.widget.RecyclerView>
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_rcv_evalution_subject"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/parent"
+                    app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_select_semester"></androidx.recyclerview.widget.RecyclerView>
             </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
