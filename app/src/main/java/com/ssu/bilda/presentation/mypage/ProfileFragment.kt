@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.github.mikephil.charting.charts.RadarChart
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.data.RadarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.ssu.bilda.R
 import com.ssu.bilda.data.remote.RetrofitImpl
+import com.ssu.bilda.data.remote.UserSharedPreferences
 import com.ssu.bilda.data.service.MyPageService
 import kotlinx.coroutines.launch
 
@@ -31,6 +33,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
 
         // mp 차트
         radarChart = view.findViewById(R.id.mapsearchdetail_radar_chart)
@@ -52,20 +55,12 @@ class ProfileFragment : Fragment() {
                     // RadarChart에 점수를 채우기
                     val scores = myPageResponse?.scoreItems
                     if (scores != null && scores.size >= 5) {
-                        for ((index, score) in scores.withIndex()) {
-                            Log.d("마이페이지 정보", "evaluationItemName[$index]: ${score.evaluationItemName}")
-                            Log.d("마이페이지 정보", "averageScore[$index]: ${score.averageScore}")
-                            Log.d("마이페이지 정보", "highScoreCount[$index]: ${score.highScoreCount}")
-
-                            // 나머지 처리...
-                        }
-
                         val radarEntries = listOf(
-                            RadarEntry(scores[0].averageScore.toFloat()), // MAJOR
-                            RadarEntry(scores[1].averageScore.toFloat()), // PUNCTUALITY
-                            RadarEntry(scores[2].averageScore.toFloat()), // COMMUNICATION
-                            RadarEntry(scores[3].averageScore.toFloat()), // PROACTIVITY
-                            RadarEntry(scores[4].averageScore.toFloat())  // RESPONSIBILITY
+                            RadarEntry(scores[0].averageScore.toFloat()), // 전공 이해도
+                            RadarEntry(scores[1].averageScore.toFloat()), // 시간 준수
+                            RadarEntry(scores[2].averageScore.toFloat()), // 의사소통 능력
+                            RadarEntry(scores[3].averageScore.toFloat()), // 적극성
+                            RadarEntry(scores[4].averageScore.toFloat())  // 책임감
                         )
 
                         val radarDataSet = RadarDataSet(radarEntries, "나의 점수")
@@ -76,6 +71,15 @@ class ProfileFragment : Fragment() {
                         radarData.addDataSet(radarDataSet)
 
                         radarChart.data = radarData
+
+                        // Rematching 항목 찾기
+                        val rematchingScore = scores.find { it.evaluationItemName == "재매칭 희망도" }
+
+                        // Rematching 항목이 있으면 해당 값을 TextView에 설정
+                        if (rematchingScore != null) {
+                            val tvRematchingPercent: TextView = view.findViewById(R.id.tv_profile_rematch_percent_amount)
+                            tvRematchingPercent.text = rematchingScore.averageScore.toString()
+                        }
 
                         // API 요청이 성공했을 때 로그
                         Log.d("마이페이지 정보", "마이페이지 정보 받기 성공")
@@ -92,7 +96,6 @@ class ProfileFragment : Fragment() {
                 Log.e("마이페이지 정보", "마이페이지 정보 받기 중 오류 발생: ${e.message}", e)
             }
         }
-
         val radarDataSet = RadarDataSet(list, "나의 점수")
 
         radarDataSet.setColors(ContextCompat.getColor(requireContext(), R.color.sblue))
