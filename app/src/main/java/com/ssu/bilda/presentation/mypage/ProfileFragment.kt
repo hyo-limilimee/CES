@@ -10,12 +10,14 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.charts.RadarChart
 import com.github.mikephil.charting.data.RadarData
 import com.github.mikephil.charting.data.RadarDataSet
 import com.github.mikephil.charting.data.RadarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.ssu.bilda.R
+import com.ssu.bilda.data.common.ScoreItem
 import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.data.remote.UserSharedPreferences
 import com.ssu.bilda.data.service.MyPageService
@@ -28,6 +30,7 @@ class ProfileFragment : Fragment() {
     private val myPageService: MyPageService by lazy {
         RetrofitImpl.authenticatedRetrofit.create(MyPageService::class.java)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,7 +45,9 @@ class ProfileFragment : Fragment() {
 
         // 사용자 정보 설정
         val tvProfileName: TextView = view.findViewById(R.id.tv_profile_name)
-        tvProfileName.text = "${UserSharedPreferences.getUserStId(requireContext())} ${UserSharedPreferences.getUserName(requireContext())}"
+        tvProfileName.text = "${UserSharedPreferences.getUserStId(requireContext())} ${
+            UserSharedPreferences.getUserName(requireContext())
+        }"
 
         // mp 차트
         radarChart = view.findViewById(R.id.mapsearchdetail_radar_chart)
@@ -73,7 +78,12 @@ class ProfileFragment : Fragment() {
                         )
 
                         val radarDataSet = RadarDataSet(radarEntries, "나의 점수")
-                        radarDataSet.setColors(ContextCompat.getColor(requireContext(), R.color.sblue))
+                        radarDataSet.setColors(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.sblue
+                            )
+                        )
                         radarDataSet.lineWidth = 2f
 
                         val radarData = RadarData()
@@ -86,9 +96,24 @@ class ProfileFragment : Fragment() {
 
                         // Rematching 항목이 있으면 해당 값을 TextView에 설정
                         if (rematchingScore != null) {
-                            val tvRematchingPercent: TextView = view.findViewById(R.id.tv_profile_rematch_percent_amount)
+                            val tvRematchingPercent: TextView =
+                                view.findViewById(R.id.tv_profile_rematch_percent_amount)
                             tvRematchingPercent.text = rematchingScore.averageScore.toString()
                         }
+
+                        // 리사이클러뷰에 표시할 데이터
+                        val receivedEvaluationList = myPageResponse?.scoreItems ?: emptyList()
+
+                        // 리사이클러뷰 어댑터 생성
+                        val adapter = ReceivedEvaluationAdapter(receivedEvaluationList)
+
+                        // 리사이클러뷰 참조
+                        val recyclerView: RecyclerView =
+                            view.findViewById(R.id.rv_recieved_evaluation)
+
+                        // 리사이클러뷰에 어댑터 설정
+                        recyclerView.adapter = adapter
+
 
                         // API 요청이 성공했을 때 로그
                         Log.d("마이페이지 정보", "마이페이지 정보 받기 성공")
@@ -105,6 +130,8 @@ class ProfileFragment : Fragment() {
                 Log.e("마이페이지 정보", "마이페이지 정보 받기 중 오류 발생: ${e.message}", e)
             }
         }
+
+
         val radarDataSet = RadarDataSet(list, "나의 점수")
 
         radarDataSet.setColors(ContextCompat.getColor(requireContext(), R.color.sblue))
@@ -155,10 +182,47 @@ class ProfileFragment : Fragment() {
 
         return view
     }
+
     private fun replaceFragment(fragment: Fragment) {
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fl_content, fragment)
             .commit()
     }
 
+    // 받은 평가 리싸이클러뷰
+    class ReceivedEvaluationAdapter(private val dataList: List<ScoreItem>) :
+        RecyclerView.Adapter<ReceivedEvaluationAdapter.ViewHolder>() {
+
+        class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val tvCommentNum: TextView = itemView.findViewById(R.id.tv_profile_evaluation_comment_num)
+            val tvSubject: TextView = itemView.findViewById(R.id.tv_profile_evaluation_subject)
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_rcv_profile_recieved_evaluation, parent, false)
+            return ViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            val item = dataList[position]
+
+            // highScoreCount 값을 TextView에 설정
+            holder.tvCommentNum.text = item.highScoreCount.toString()
+
+            // EvaluatedItemName을 TextView에 설정
+            holder.tvSubject.text = item.evaluationItemName
+
+            // 다른 필요한 데이터도 설정 가능
+
+            // 예시: 리사이클러뷰의 각 항목을 클릭할 때의 동작 등
+            holder.itemView.setOnClickListener {
+                // 클릭한 항목에 대한 동작 처리
+            }
+        }
+
+        override fun getItemCount(): Int {
+            return dataList.size
+        }
+    }
 }
