@@ -50,14 +50,14 @@ class MyInfoFragment : Fragment() {
             tvUserName.text = userName
         }
 
-//        // 사용자 학번 불러오기
-//        val tvUserSId: TextView = rootView.findViewById(R.id.tv_my_info_student_id_input)
-//        val userSId = UserSharedPreferences.getUserStId(requireContext())
-//
-//        if (userName.isNotEmpty()) {
-//            tvUserSId.text = userSId
-//        }
-//
+        // 사용자 학번 불러오기
+        val tvUserSId: TextView = rootView.findViewById(R.id.tv_my_info_student_id_input)
+        val userSId = UserSharedPreferences.getUserStId(requireContext())
+
+        if (userName.isNotEmpty()) {
+            tvUserSId.text = userSId
+        }
+
 //        // 사용자 닉네임 불러오기
 //        val tvUserNickname: TextView = rootView.findViewById(R.id.tv_my_info_nick_name_input)
 //        val userNickname = UserSharedPreferences.getUserNickname(requireContext())
