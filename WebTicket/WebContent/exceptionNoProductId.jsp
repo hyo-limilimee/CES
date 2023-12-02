@@ -13,7 +13,7 @@
 	</div>
 	<div class="container">
 		<p><%=request.getRequestURL()%>?<%=request.getQueryString()%>
-		<p><a href="products.jsp" class="btn btn-secondary"> 상품 목록 &raquo;</a>			
+		<p><a href="movies.jsp" class="btn btn-secondary"> 상품 목록 &raquo;</a>			
 	</div>
 </body>
 </html>
