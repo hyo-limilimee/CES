@@ -338,7 +338,7 @@
         app:layout_constraintTop_toBottomOf="@id/ll_tv_my_info_pw">
 
         <TextView
-            android:id="@+id/tv_my_info_major"
+            android:id="@+id/tv_my_info_department"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/suiteregular"
@@ -346,11 +346,16 @@
             android:textColor="@color/sgray"
             android:textSize="16dp" />
 
-        <Spinner
-            android:id="@+id/spinner_my_info_major"
+
+        <TextView
+            android:id="@+id/tv_my_info_department_input"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="7dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/suiteregular"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            tools:text="컴퓨터학부" />
 
     </LinearLayout>
 

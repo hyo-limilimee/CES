@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.ssu.bilda.R
+import com.ssu.bilda.data.enums.Department
 import com.ssu.bilda.data.remote.App
 import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.data.remote.UserSharedPreferences
@@ -64,6 +65,15 @@ class MyInfoFragment : Fragment() {
 
         if (userName.isNotEmpty()) {
             tvUserNickname.text = userNickname
+        }
+
+        // 사용자 학과 불러오기
+        val tvUserDep: TextView = rootView.findViewById(R.id.tv_my_info_department_input)
+        val userDep = UserSharedPreferences.getUserDep(requireContext())
+
+        // 사용자 학과가 있다면 TextView에 설정
+        if (userDep != null && userDep != Department.EXTRA) {
+            tvUserDep.text = userDep.displayName
         }
 
         // 사용자 이메일 불러오기
