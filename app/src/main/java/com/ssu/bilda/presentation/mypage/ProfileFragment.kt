@@ -211,16 +211,16 @@ class ProfileFragment : Fragment() {
             holder.tvCommentNum.text = item.highScoreCount.toString()
 
             // EvaluatedItemName을 TextView에 설정
-            holder.tvSubject.text = item.evaluationItemName
-
-            // 다른 필요한 데이터도 설정 가능
-
-            // 예시: 리사이클러뷰의 각 항목을 클릭할 때의 동작 등
-            holder.itemView.setOnClickListener {
-                // 클릭한 항목에 대한 동작 처리
+            holder.tvSubject.text = when (item.evaluationItemName) {
+                "전공 이해도" -> "전공 이해도가 높아요"
+                "시간 준수" -> "약속을 잘 지켜요"
+                "의사소통 능력" -> "의사소통을 능력이 뛰어나요"
+                "적극성" -> "적극적으로 참여해요"
+                "책임감" -> "책임감이 뛰어나요"
+                "재매칭 희망도" -> "또 함께하고 싶어요"
+                else -> item.evaluationItemName
             }
         }
-
         override fun getItemCount(): Int {
             return dataList.size
         }
