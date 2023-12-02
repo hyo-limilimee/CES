@@ -258,7 +258,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_rcv_evalution_subject"
+                    tools:listitem="@layout/item_rcv_profile_semester_subject"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_my_score"></androidx.recyclerview.widget.RecyclerView>
@@ -294,7 +294,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_rcv_evalution_subject"
+                    tools:listitem="@layout/item_rcv_profile_recieved_evaluation"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/parent"
                     app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_select_semester"></androidx.recyclerview.widget.RecyclerView>
