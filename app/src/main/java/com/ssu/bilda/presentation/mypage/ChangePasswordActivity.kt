@@ -67,7 +67,7 @@ class ChangePasswordActivity : AppCompatActivity() {
                         showToast("비밀번호가 성공적으로 변경되었습니다.")
 
                         // SharedPreferences에 변경된 비밀번호 저장
-                        UserSharedPreferences.setUserNickname(
+                        UserSharedPreferences.setUserPw(
                             this@ChangePasswordActivity,
                             newPassword
                         )
