@@ -1,10 +1,10 @@
 package com.ssu.bilda.data.service
 
-import com.ssu.bilda.data.remote.response.BaseResponse
+import retrofit2.Call
 import com.ssu.bilda.data.remote.response.MyPageResponse
 import retrofit2.http.GET
 
 interface MyPageService {
     @GET("/api/v1/page")
-    suspend fun getMyPage(): BaseResponse<MyPageResponse>
+    fun getMyPage(): Call<MyPageResponse>
 }
