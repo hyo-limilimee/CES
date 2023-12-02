@@ -80,10 +80,6 @@ class SignInActivity : AppCompatActivity() {
                         // 유저 정보 SH 저장
                         UserSharedPreferences.setUserEmail(this@SignInActivity, userEmail)
                         UserSharedPreferences.setUserPw(this@SignInActivity, userPw)
-                        UserSharedPreferences.setUserName(this@SignInActivity, name)
-                        UserSharedPreferences.setUserNickname(this@SignInActivity, nickname)
-                        UserSharedPreferences.setUserStId(this@SignInActivity, studentId)
-                        UserSharedPreferences.setUserDep(this@SignInActivity, department)
 
                         // 토큰 저장
                         val accessToken = baseResponse.result?.accessToken
