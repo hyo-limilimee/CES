@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.ssu.bilda.R
 import com.ssu.bilda.data.remote.RetrofitImpl
+import com.ssu.bilda.data.remote.UserSharedPreferences
 import com.ssu.bilda.data.remote.request.ChangePasswordRequest
 import com.ssu.bilda.data.remote.response.BaseResponse
 import com.ssu.bilda.data.remote.response.ChangePasswordResponse
@@ -46,35 +48,64 @@ class ChangePasswordActivity : AppCompatActivity() {
     }
 
     private fun changePassword(newPassword: String, confirmPassword: String) {
-        // TODO: 서버와의 통신을 통한 비밀번호 변경 로직
-        // RetrofitImpl.authenticatedRetrofit을 사용하여 API 호출
-        val userService = RetrofitImpl.authenticatedRetrofit.create(UserService::class.java)
-        val changePasswordRequest = ChangePasswordRequest(newPassword)
+        if (newPassword == confirmPassword) {
+            val retrofit = RetrofitImpl.authenticatedRetrofit
+            val userService = retrofit.create(UserService::class.java)
 
-        userService.changePassword(changePasswordRequest).enqueue(object : Callback<BaseResponse<ChangePasswordResponse>> {
-            override fun onResponse(
-                call: Call<BaseResponse<ChangePasswordResponse>>,
-                response: Response<BaseResponse<ChangePasswordResponse>>
-            ) {
-                if (response.isSuccessful) {
-                    // 비밀번호 변경 성공
-                    Log.d("비밀번호 변경 성공", "서버 응답: ${response.body()?.message}")
-                    // TODO: 성공에 대한 UI 처리 또는 화면 전환 등 추가 로직 수행
-                } else {
-                    // 비밀번호 변경 실패
-                    Log.d("비밀번호 변경 실패", "서버 응답: ${response.errorBody()?.string()}")
-                    // TODO: 실패에 대한 UI 처리 또는 사용자에게 알림 등 추가 로직 수행
+            val changePasswordRequest = ChangePasswordRequest(newPassword)
+
+            userService.changePassword(changePasswordRequest).enqueue(object : Callback<BaseResponse<ChangePasswordResponse>> {
+                override fun onResponse(
+                    call: Call<BaseResponse<ChangePasswordResponse>>,
+                    response: Response<BaseResponse<ChangePasswordResponse>>
+                ) {
+                    if (response.isSuccessful) {
+                        // 비밀번호 변경 성공
+                        Log.d("비밀번호 변경 성공", "서버 응답: ${response.body()?.message}")
+
+                        // 토스트 메시지로 성공 알림 표시
+                        showToast("비밀번호가 성공적으로 변경되었습니다.")
+
+                        // SharedPreferences에 변경된 비밀번호 저장
+                        UserSharedPreferences.setUserPw(
+                            this@ChangePasswordActivity,
+                            newPassword
+                        )
+                    } else {
+                        // 비밀번호 변경 실패
+                        Log.d("비밀번호 변경 실패", "서버 응답: ${response.errorBody()?.string()}")
+
+                        // 토스트 메시지로 실패 알림 표시
+                        showToast("비밀번호 변경에 실패했습니다. 다시 시도해주세요.")
+
+                        // TODO: 실패에 대한 추가적인 UI 처리 또는 사용자에게 알림 등을 수행할 수 있습니다.
+                    }
                 }
-            }
 
-            override fun onFailure(
-                call: Call<BaseResponse<ChangePasswordResponse>>,
-                t: Throwable
-            ) {
-                // 네트워크 또는 기타 오류 처리
-                Log.e("비밀번호 변경 실패", "네트워크 에러 또는 기타 오류: ${t.message}")
-                // TODO: 오류에 대한 UI 처리 또는 사용자에게 알림 등 추가 로직 수행
-            }
-        })
+                override fun onFailure(
+                    call: Call<BaseResponse<ChangePasswordResponse>>,
+                    t: Throwable
+                ) {
+                    // 네트워크 또는 기타 오류 처리
+                    Log.e("비밀번호 변경 실패", "네트워크 에러 또는 기타 오류: ${t.message}")
+
+                    // 토스트 메시지로 오류 알림 표시
+                    showToast("네트워크 오류 또는 기타 오류로 인해 비밀번호 변경에 실패했습니다.")
+
+                    // TODO: 오류에 대한 추가적인 UI 처리 또는 사용자에게 알림 등을 수행할 수 있습니다.
+                }
+            })
+        } else {
+            // 새 비밀번호와 확인용 비밀번호가 일치하지 않는 경우
+            // 토스트 메시지로 사용자에게 알림 표시
+            showToast("새 비밀번호와 확인용 비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
+
+            // TODO: 사용자에게 일치하지 않음을 알리는 추가적인 UI 처리 등을 수행할 수 있습니다.
+        }
     }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this@ChangePasswordActivity, message, Toast.LENGTH_SHORT).show()
+    }
+
 }

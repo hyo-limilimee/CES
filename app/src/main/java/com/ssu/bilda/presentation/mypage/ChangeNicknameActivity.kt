@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.ssu.bilda.R
 import com.ssu.bilda.data.remote.RetrofitImpl
+import com.ssu.bilda.data.remote.UserSharedPreferences
 import com.ssu.bilda.data.remote.request.ChangeNicknameRequest
 import com.ssu.bilda.data.remote.response.BaseResponse
 import com.ssu.bilda.data.remote.response.ChangeNicknameResponse
@@ -25,7 +26,8 @@ class ChangeNicknameActivity : AppCompatActivity() {
 
         val llArrowAndChangeNickname: View = findViewById(R.id.ll_ic_arrow_and_change_nickname)
         val etNickname: TextInputEditText = findViewById(R.id.et_reset_nickname)
-        val changeCompletedBtn: FrameLayout = findViewById(R.id.fl_blue_nickname_change_completed_btn)
+        val changeCompletedBtn: FrameLayout =
+            findViewById(R.id.fl_blue_nickname_change_completed_btn)
 
         llArrowAndChangeNickname.setOnClickListener {
             // MyInfoFragment로 돌아가기
@@ -62,6 +64,7 @@ class ChangeNicknameActivity : AppCompatActivity() {
                         // 성공적으로 서버 응답을 받았을 때의 처리
                         val changeNicknameResponse = response.body()?.result
                         Log.d("닉네임 변경 성공", "서버 응답: $changeNicknameResponse")
+
                         // 성공 처리 로직 추가
                         // 예: 닉네임 변경 완료 메시지 표시
                         Toast.makeText(
@@ -69,9 +72,16 @@ class ChangeNicknameActivity : AppCompatActivity() {
                             "닉네임이 성공적으로 변경되었습니다.",
                             Toast.LENGTH_SHORT
                         ).show()
+
+                        // SharedPreferences에 변경된 닉네임 저장
+                        UserSharedPreferences.setUserNickname(
+                            this@ChangeNicknameActivity,
+                            newNickname
+                        )
                     } else {
                         // 서버 응답이 실패인 경우의 처리
                         Log.d("닉네임 변경 실패", "서버 응답 코드: ${response.code()}")
+
                         // 실패 처리 로직 추가
                         // 예: 닉네임 변경 실패 메시지 표시
                         Toast.makeText(
@@ -82,9 +92,13 @@ class ChangeNicknameActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<BaseResponse<ChangeNicknameResponse>>, t: Throwable) {
+                override fun onFailure(
+                    call: Call<BaseResponse<ChangeNicknameResponse>>,
+                    t: Throwable
+                ) {
                     // 네트워크 오류 또는 예외 처리
                     Log.e("닉네임 변경 오류", "에러 메시지: ${t.message}")
+
                     // 예외 처리 로직 추가
                     // 예: 닉네임 변경 실패 메시지 표시
                     Toast.makeText(
@@ -95,5 +109,4 @@ class ChangeNicknameActivity : AppCompatActivity() {
                 }
             })
     }
-
 }
