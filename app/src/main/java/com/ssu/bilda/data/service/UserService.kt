@@ -8,9 +8,11 @@ import com.ssu.bilda.data.remote.response.AuthorizedResponse
 import com.ssu.bilda.data.remote.response.BaseResponse
 import com.ssu.bilda.data.remote.response.ChangeNicknameResponse
 import com.ssu.bilda.data.remote.response.ChangePasswordResponse
+import com.ssu.bilda.data.remote.response.SignInResponse
 import com.ssu.bilda.data.remote.response.SignUpResponse
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 
@@ -31,5 +33,9 @@ interface UserService {
     //닉네임 변경 요청
     @PUT("/api/v1/users/nickname")
     fun changeNickname(@Body request: ChangeNicknameRequest): Call<BaseResponse<ChangeNicknameResponse>>
+
+    //홈화면호출
+    @GET("/api/v1/users/home")
+    fun getUserHome(): Call<BaseResponse<SignInResponse>>
 
 }
