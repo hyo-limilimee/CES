@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.ssu.bilda.R
 import com.ssu.bilda.data.remote.response.BaseResponse
@@ -13,21 +13,42 @@ import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.data.remote.UserSharedPreferences
 import com.ssu.bilda.data.remote.response.SignInResponse
 import com.ssu.bilda.data.service.UserService
+import com.ssu.bilda.databinding.FragmentHomeBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class HomeFragment : Fragment() {
 
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val btnSubject: Button = binding.btnSubject
+
+
+        btnSubject.setOnClickListener {
+
+            val addSubjectFragment = AddSubjectFragment()
+
+
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.home, addSubjectFragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
         // API 호출
         val userService = RetrofitImpl.authenticatedRetrofit.create(UserService::class.java)
         val call = userService.getUserHome()
@@ -47,6 +68,8 @@ class HomeFragment : Fragment() {
                             val nickname = signIn.nickname
                             val studentId = signIn.studentId
                             val department = signIn.department
+
+                            binding.tvHomeName.text = name
 
                             // SharedPreferences에 유저 정보 저장
                             UserSharedPreferences.setUserName(requireContext(), name)
@@ -69,5 +92,8 @@ class HomeFragment : Fragment() {
             }
         })
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
-
