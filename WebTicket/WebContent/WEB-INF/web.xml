@@ -9,7 +9,7 @@
 		<web-resource-collection>
 			<web-resource-name>WebTicket</web-resource-name>
 			<description></description>
-			<url-pattern>/addProduct.jsp</url-pattern>
+			<url-pattern>/addMovie.jsp</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<description>권한 관리자명</description>
@@ -19,8 +19,8 @@
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<form-login-config>
-			<form-login-page>/login.jsp</form-login-page>
-			<form-error-page>/login_failed.jsp</form-error-page>
+			<form-login-page>/admin_login.jsp</form-login-page>
+			<form-error-page>/admin_login_failed.jsp</form-error-page>
 		</form-login-config>
 	</login-config>
 	

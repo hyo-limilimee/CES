@@ -1,45 +1,63 @@
-﻿<%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="java.util.Date"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<title>Welcome</title>
+    <meta charset="UTF-8">
+    <title>00시네마 홈페이지</title>
+    <style>
+        body {
+            background-color: lightgray;
+        }
+        h1 {
+            text-align: center;
+            font-size: calc(1em - 3pt);
+        }
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: orange;
+            color: white;
+        }
+        .center {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 50vh;
+        }
+        .movie {
+            margin: 0 40px;
+        }
+        img {
+            width: 200%;
+        }
+    </style>
 </head>
 <body>
-	<%@ include file="menu.jsp"%>
-	<%!String greeting = "웹 쇼핑몰에 오신 것을 환영합니다";
-	String tagline = "Welcome to Web Market!";%>
-	<div class="jumbotron">
-		<div class="container">
-			<h1 class="display-3">
-				<%=greeting%>
-			</h1>
-		</div>
-	</div>	
-	<div class="container">
-		<div class="text-center">
-			<h3>
-				<%=tagline%>
-			</h3>
-			<%
-				response.setIntHeader("Refresh", 5);
-				Date day = new java.util.Date();
-				String am_pm;
-				int hour = day.getHours();
-				int minute = day.getMinutes();
-				int second = day.getSeconds();
-				if (hour / 12 == 0) {
-					am_pm = "AM";
-				} else {
-					am_pm = "PM";
-					hour = hour - 12;
-				}
-				String CT = hour + ":" + minute + ":" + second + " " + am_pm;
-				out.println("현재 접속  시각: " + CT + "\n");
-			%>
-		</div>
-		<hr>
-	</div>	
-	<%@ include file="footer.jsp"%>
+    <h1><%= "00시네마에 오신 것을 환영합니다." %></h1>
+    <ul class="menu">
+        <li><a href="movies_URL" style="color: white;"><%= "영화" %></a></li>
+        <li><a href="register.jsp" style="color: white;"><%= "예매" %></a></li>
+        <li><a href="login.jsp" style="color: white;"><%= "로그인" %></a></li>
+        <li><a href="register.jsp" style="color: white;"><%= "회원가입" %></a></li>
+    </ul>
+    <div class="center">
+    	 <h3><%= "예매율 순위" %></h3>
+    	
+        <div class="movie">
+            <h2><%= "1" %></h2>
+            <img src="<%= "product.jsp" %>" alt="영화1">
+        </div>
+        <div class="movie">
+            <h2><%= "2" %></h2>
+            <img src="<%= "product.jsp" %>" alt="영화2">
+        </div>
+        <div class="movie">
+            <h2><%= "3" %></h2>
+            <img src="<%= "product.jsp" %>" alt="영화3">
+        </div>
+    </div>
 </body>
 </html>

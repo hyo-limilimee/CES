@@ -2,5 +2,5 @@
 
 <%
 	session.invalidate();
-	response.sendRedirect("addProduct.jsp");
+	response.sendRedirect("addMovie.jsp");
 %>

@@ -31,7 +31,7 @@
 	<div class="container">
 		<div class="row">
 			<div class ="col-md-5">
-				<img src="c:/upload/<%=movie.getFilename()%>" style="width: 100%" />
+				<img src="resources/images/<%=movie.getFilename()%>" style="width: 100%" />
 			</div>
 			<div class="col-md-6">
 				<h3><%=movie.getTitle()%></h3>
@@ -52,7 +52,7 @@
 		<h3>영화 소개</h3>
 		<br>
 		<p><%=movie.getDescription()%>
-		<p><a href="./products.jsp" class="btn btn-secondary"> 다른 티켓 보러가기 &raquo;</a>
+		<p><a href="./movies.jsp" class="btn btn-secondary"> 다른 티켓 보러가기 &raquo;</a>
 		<hr>
 	</div>
 	<jsp:include page="footer.jsp" />
