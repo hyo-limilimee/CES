@@ -1,27 +1,19 @@
 package com.ssu.bilda.presentation.evaluate
 
 import android.os.Bundle
-import com.ssu.bilda.data.service.SubjectService
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
+import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
-import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.presentation.adapter.SubjectAdapter
-import kotlinx.coroutines.launch
+import com.ssu.bilda.presentation.mypage.MyInfoFragment
+import com.ssu.bilda.presentation.teambuild.TeamBuildWritingFragment
 
 class ProjectStatusFragment : Fragment() {
-
-    private val subjectService: SubjectService by lazy {
-        RetrofitImpl.authenticatedRetrofit.create(SubjectService::class.java)
-    }
-
-    // RecyclerView 어댑터
-    private lateinit var adapter: SubjectAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,10 +22,13 @@ class ProjectStatusFragment : Fragment() {
         // fragment layout inflate
         val view = inflater.inflate(R.layout.fragment_project_status, container, false)
 
-        // recyclerview 어댑터 초기화
-        adapter = SubjectAdapter(emptyList())
+        // recyclerview 더미 데이터
+        val subjectList = listOf("과목 1", "과목 2", "과목 3")
 
-        // RecyclerView 초기화 및 어댑터 설정
+        // adapter 생성, 설정
+        val adapter = SubjectAdapter(requireContext(), subjectList)
+
+        // RecyclerView를 초기화, adapter 설정
         val rvSubjectList: RecyclerView = view.findViewById(R.id.rv_subject_list)
         rvSubjectList.layoutManager = LinearLayoutManager(requireContext())
         rvSubjectList.adapter = adapter
@@ -44,23 +39,11 @@ class ProjectStatusFragment : Fragment() {
             replaceFragment(SubjectStatusFragment())
         }
 
-        // API 호출 및 RecyclerView 갱신
-        lifecycleScope.launch {
-            try {
-                val response = subjectService.getUserSubjects()
+        // 임시 버튼 클릭 리스너 설정
+        val settingButton: FrameLayout = view.findViewById(R.id.fl_ic_setting_btn)
 
-                if (response.isSuccessful) {
-                    // API 응답 성공 시 RecyclerView 어댑터 갱신
-                    val subjectList = response.body()?.result ?: emptyList()
-                    adapter.updateData(subjectList)
-                } else {
-                    // API 응답 실패 시 처리
-                    // 예: 사용자에게 메시지 표시 등
-                }
-            } catch (e: Exception) {
-                // Handle network or other exceptions
-                e.printStackTrace()
-            }
+        settingButton.setOnClickListener { view ->
+            replaceFragment(TeamBuildWritingFragment())
         }
 
         return view
