@@ -246,48 +246,12 @@
 
 
             <FrameLayout
-                android:id="@+id/fl_rv_selected_semester"
+                android:id="@+id/fl_rv_received_evaluation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 app:layout_constraintStart_toStartOf="@id/fl_ic_gray_line_under_my_score"
                 app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_my_score">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_selected_semester"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_rcv_profile_semester_subject"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_my_score"></androidx.recyclerview.widget.RecyclerView>
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/fl_ic_gray_line_under_select_semester"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toEndOf="@id/fl_ic_gray_line_under_profile_info"
-                app:layout_constraintStart_toStartOf="@id/fl_ic_gray_line_under_profile_info"
-                app:layout_constraintTop_toBottomOf="@id/fl_rv_selected_semester">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ic_gray_line_under_select_semester"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_gray_line" />
-            </FrameLayout>
-
-
-            <FrameLayout
-                android:id="@+id/fl_rv_received_evaluation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                app:layout_constraintStart_toStartOf="@id/fl_ic_gray_line_under_select_semester"
-                app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_select_semester">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_recieved_evaluation"
@@ -297,7 +261,7 @@
                     tools:listitem="@layout/item_rcv_profile_recieved_evaluation"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/parent"
-                    app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_select_semester"></androidx.recyclerview.widget.RecyclerView>
+                    app:layout_constraintTop_toBottomOf="@id/fl_ic_gray_line_under_my_score"></androidx.recyclerview.widget.RecyclerView>
             </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
