@@ -2,6 +2,7 @@ package com.ssu.bilda.presentation.evaluate
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,13 @@ import com.ssu.bilda.presentation.mypage.ProfileFragment
 import github.hongbeomi.dividerseekbar.DividerSeekBar
 
 class TeammateEvalutionFragment : Fragment() {
+
+    // SeekBar 값 저장을 위한 변수 선언
+    private var majorUnderstandingValue: Int = 0
+    private var timeAdherenceValue: Int = 0
+    private var communicationValue: Int = 0
+    private var positivenessValue: Int = 0
+    private var responsibilityValue: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,10 +84,17 @@ class TeammateEvalutionFragment : Fragment() {
                 }
 
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                    // 사용자가 조작을 끝낼 때의 동작
+                    // SeekBar의 ID에 따라 해당하는 변수를 업데이트합니다.
+                    when (seekBar?.id) {
+                        R.id.dividerSeekBar_major -> {
+                            majorUnderstandingValue = seekBar.progress
+                            Log.d("SeekBarValues", "Major Understanding: $majorUnderstandingValue")
+                        }
+                    }
                 }
             })
         }
+
 
         // 시간 준수 시크바
         val dividerSeekBar_time: DividerSeekBar = rootView.findViewById(R.id.dividerSeekBar_time)
@@ -121,7 +136,13 @@ class TeammateEvalutionFragment : Fragment() {
                 }
 
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                    // 사용자가 조작을 끝낼 때의 동작
+                    // SeekBar의 ID에 따라 해당하는 변수를 업데이트합니다.
+                    when (seekBar?.id) {
+                        R.id.dividerSeekBar_time -> {
+                            timeAdherenceValue = seekBar.progress
+                            Log.d("SeekBarValues", "Time Adherence: $timeAdherenceValue")
+                        }
+                    }
                 }
             })
         }
@@ -165,7 +186,13 @@ class TeammateEvalutionFragment : Fragment() {
                 }
 
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                    // 사용자가 조작을 끝낼 때의 동작
+                    // SeekBar의 ID에 따라 해당하는 변수를 업데이트합니다.
+                    when (seekBar?.id) {
+                        R.id.dividerSeekBar_time -> {
+                            timeAdherenceValue = seekBar.progress
+                            Log.d("SeekBarValues", "Time Adherence: $timeAdherenceValue")
+                        }
+                    }
                 }
             })
         }
@@ -209,8 +236,15 @@ class TeammateEvalutionFragment : Fragment() {
                 }
 
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                    // 사용자가 조작을 끝낼 때의 동작
+                    // SeekBar의 ID에 따라 해당하는 변수를 업데이트합니다.
+                    when (seekBar?.id) {
+                        R.id.dividerSeekBar_positiveness -> {
+                            positivenessValue = seekBar.progress
+                            Log.d("SeekBarValues", "Positiveness: $positivenessValue")
+                        }
+                    }
                 }
+
             })
         }
 
@@ -253,8 +287,15 @@ class TeammateEvalutionFragment : Fragment() {
                 }
 
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                    // 사용자가 조작을 끝낼 때의 동작
+                    // SeekBar의 ID에 따라 해당하는 변수를 업데이트합니다.
+                    when (seekBar?.id) {
+                        R.id.dividerSeekBar_responsibility -> {
+                            responsibilityValue = seekBar.progress
+                            Log.d("SeekBarValues", "Responsibility: $responsibilityValue")
+                        }
+                    }
                 }
+
             })
         }
 
