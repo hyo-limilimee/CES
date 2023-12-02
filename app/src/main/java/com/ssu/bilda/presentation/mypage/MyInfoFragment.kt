@@ -41,15 +41,15 @@ class MyInfoFragment : Fragment() {
             // 꼭 commit을 해줘야 바뀐다.
             transaction.commit()
         }
-//
-//        // 사용자 이름 불러오기
-//        val tvUserName: TextView = rootView.findViewById(R.id.tv_my_info_name_input)
-//        val userName = UserSharedPreferences.getUserName(requireContext())
-//        // 사용자 이름이 있다면 TextView에 설정
-//        if (userName.isNotEmpty()) {
-//            tvUserName.text = userName
-//        }
-//
+
+        // 사용자 이름 불러오기
+        val tvUserName: TextView = rootView.findViewById(R.id.tv_my_info_name_input)
+        val userName = UserSharedPreferences.getUserName(requireContext())
+        // 사용자 이름이 있다면 TextView에 설정
+        if (userName.isNotEmpty()) {
+            tvUserName.text = userName
+        }
+
 //        // 사용자 학번 불러오기
 //        val tvUserSId: TextView = rootView.findViewById(R.id.tv_my_info_student_id_input)
 //        val userSId = UserSharedPreferences.getUserStId(requireContext())
