@@ -84,7 +84,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/suiteregular"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     tools:text="컴퓨터학부" />
 
             </FrameLayout>

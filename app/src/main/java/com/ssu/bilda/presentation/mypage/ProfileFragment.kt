@@ -34,6 +34,12 @@ class ProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
+        // 전공 정보 설정
+        val tvMajorName: TextView = view.findViewById(R.id.tv_major_name)
+        val userDep = UserSharedPreferences.getUserDep(requireContext())
+        tvMajorName.text = userDep?.displayName ?: "" // null 체크 후 값 설정
+
+
         // 사용자 정보 설정
         val tvProfileName: TextView = view.findViewById(R.id.tv_profile_name)
         tvProfileName.text = "${UserSharedPreferences.getUserStId(requireContext())} ${UserSharedPreferences.getUserName(requireContext())}"
