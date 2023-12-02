@@ -204,8 +204,11 @@ class ProfileFragment : Fragment() {
             return ViewHolder(view)
         }
 
+        // Filter the items before setting the adapter's data
+        private val filteredDataList: List<ScoreItem> = dataList.filter { it.highScoreCount >= 1 }
+
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            val item = dataList[position]
+            val item = filteredDataList[position]
 
             // highScoreCount 값을 TextView에 설정
             holder.tvCommentNum.text = item.highScoreCount.toString()
@@ -221,8 +224,8 @@ class ProfileFragment : Fragment() {
                 else -> item.evaluationItemName
             }
         }
-        override fun getItemCount(): Int {
-            return dataList.size
-        }
+
+        // getItemCount, getItemId, and other methods remain the same
+        override fun getItemCount(): Int = filteredDataList.size
     }
 }
