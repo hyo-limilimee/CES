@@ -39,7 +39,7 @@ class TeammateNameAdapter(private val context: Context, private var teammateName
     inner class TeammateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textView: TextView = itemView.findViewById(R.id.tv_teammate_name)
         private val teammateLayout: FrameLayout =
-            itemView.findViewById(R.id.fl_teammate_name_btn)
+            itemView.findViewById(R.id.fl_teammate_evaluation_btn)
 
         fun bind(teammateName: String) {
             textView.text = teammateName
