@@ -10,6 +10,7 @@
 </head>
 <body>
 	<%
+	
 		String shipping_cartId = "";
 		String shipping_name = "";
 		String shipping_shippingDate = "";
@@ -29,7 +30,7 @@
 					shipping_shippingDate = URLDecoder.decode((thisCookie.getValue()), "utf-8");
 			}
 		}
-	
+		
         ArrayList<Movie> cartList = (ArrayList<Movie>) session.getAttribute("cartlist");
         if (cartList == null)
             cartList = new ArrayList<Movie>();
@@ -37,12 +38,13 @@
         for (int i = 0; i < cartList.size(); i++) {
             Movie movie = cartList.get(i);
             movie.setRemainingSeats(movie.getRemainingSeats() - 1);
+            
     
 	%>
 	<jsp:include page="menu.jsp" />
-	<div class="jumbotron">
+	<div class="jumbotron" style="background-color: #B22222">
 		<div class="container">
-			<h1 class="display-3">티켓 구매 완료</h1>
+			<h1 class="display-3" style="color: white">티켓 구매 완료</h1>
 		</div>
 	</div>
 	<div class="container">
@@ -56,6 +58,7 @@
 </body>
 </html>
 <%
+
 	session.invalidate();
 
 	for (int i = 0; i < cookies.length; i++) {
@@ -76,4 +79,5 @@
 		
 		response.addCookie(thisCookie);
 	}
+
 %>
