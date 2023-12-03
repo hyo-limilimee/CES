@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
 import com.ssu.bilda.data.remote.RetrofitImpl
+import com.ssu.bilda.data.remote.UserSharedPreferences
 import com.ssu.bilda.data.service.EvaluationService
 import com.ssu.bilda.presentation.adapter.SubjectAdapter
 import kotlinx.coroutines.launch
@@ -41,10 +43,15 @@ class ProjectStatusFragment : Fragment() {
         fetchSubjects()
 
         // SubjectAdapter의 클릭 리스너 설정
-        adapter.setOnItemClickListener { view ->
+        adapter.setOnItemClickListener { selectedSubject ->
             // 아이템이 클릭되었을 때 수행할 동작 구현
-            replaceFragment(SubjectStatusFragment())
+            replaceFragment(SubjectStatusFragment.newInstance(selectedSubject.title))
         }
+
+        // Set userName to the TextView
+        val tvEvaluationName: TextView = view.findViewById(R.id.tv_evaluation_name)
+        val userName = UserSharedPreferences.getUserName(requireContext())
+        tvEvaluationName.text = userName
 
         return view
     }
