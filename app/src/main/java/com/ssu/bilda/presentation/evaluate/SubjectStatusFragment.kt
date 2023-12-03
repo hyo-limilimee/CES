@@ -54,14 +54,16 @@ class SubjectStatusFragment : Fragment() {
 
         fetchTeammateNames(title)
 
+
         teammateNameAdapter.setOnItemClickListener { selectedMember ->
             val bundle = Bundle()
-            bundle.putString("selectedMemberName", selectedMember)
+            bundle.putInt("selectedMemberId", selectedMember.userId)
+            bundle.putString("selectedMemberName", selectedMember.name)
 
             val teammateEvaluationFragment = TeammateEvalutionFragment()
+            teammateEvaluationFragment.arguments = bundle  // 번들을 프래그먼트에 추가
             replaceFragment(teammateEvaluationFragment, bundle)
         }
-
         return view
     }
 
@@ -88,7 +90,7 @@ class SubjectStatusFragment : Fragment() {
 
                             // 선택된 팀의 멤버들을 리사이클러뷰에 추가
                             val teamMembers = selectedTeam.members
-                            teammateNameAdapter.updateData(teamMembers.map { member -> member.name })
+                            teammateNameAdapter.updateData(teamMembers)
 
                             val responseBody = response.body()?.toString()
                             Log.d("SubjectStatusFragment", "Response Body: $responseBody")

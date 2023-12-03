@@ -23,7 +23,7 @@ interface EvaluationService {
     @GET("/api/v1/teams/user")
     suspend fun getUserTeams(): Response<EvaluationTeamResponse>
     // 평가 요청 보내기
-    @POST("/api/v1/evaluation") // replace with your actual endpoint path
+    @POST("/api/v1/evaluation/create") // replace with your actual endpoint path
     fun sendEvaluationRequest(@Body request: EvaluationRequest): Call<BaseResponse<User>>
 
     @GET("/api/v1/teams/user")

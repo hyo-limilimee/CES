@@ -44,6 +44,9 @@ class TeammateEvalutionFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_teammate_evalution, container, false)
         val selectedMemberName = arguments?.getString("selectedMemberName", "")
 
+        val selectedMemberId = arguments?.getInt("selectedMemberId", 0) ?: 0
+        Log.d("TeammateEvalutionFragment", "받은 userId: $selectedMemberId")
+
         // Find the TextView
         val tvTeammateEvaluationName: TextView = rootView.findViewById(R.id.tv_teammate_evaluation_name)
 
@@ -355,13 +358,13 @@ class TeammateEvalutionFragment : Fragment() {
         // "저장" 버튼에 클릭 리스너 설정
         saveButton.setOnClickListener {
             // "저장" 버튼을 클릭했을 때 대화 상자 표시
-            showSaveDialog()
+            showSaveDialog(selectedMemberId)
         }
 
         return rootView
     }
 
-    private fun showSaveDialog() {
+    private fun showSaveDialog(selectedMemberId: Int) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("") // 대화 상자의 제목 설정
         builder.setMessage("이 팀원과 다시 한 번 팀플 하시겠습니까?") // 메시지 설정
@@ -372,7 +375,7 @@ class TeammateEvalutionFragment : Fragment() {
             // 여기에 저장 로직을 추가할 수 있습니다.
             handleReMatchingValue(100)
 
-            submitEvaluation()
+            submitEvaluation(selectedMemberId)
 
             dialog.dismiss() // 대화 상자 닫기
 
@@ -381,7 +384,7 @@ class TeammateEvalutionFragment : Fragment() {
             // "취소" 버튼 클릭 처리 (취소 동작)
             handleReMatchingValue(0)
 
-            submitEvaluation()
+            submitEvaluation(selectedMemberId)
 
             dialog.dismiss() // 대화 상자 닫기
         }
@@ -412,7 +415,7 @@ class TeammateEvalutionFragment : Fragment() {
         }
     }
 
-    private fun submitEvaluation() {
+    private fun submitEvaluation(selectedMemberId: Int) {
         // 수집한 데이터로 Scores 객체를 만듭니다.
         val evaluationResult = Scores(
             majorUnderstandingValue,
@@ -425,7 +428,7 @@ class TeammateEvalutionFragment : Fragment() {
 
         // EvaluationRequest 객체를 만듭니다.
         val evaluationRequest = EvaluationRequest(
-            evaluatedUserId = 6,  // 평가 받는 사용자의 ID
+            evaluatedUserId = selectedMemberId,  // 받은 userId 사용
             teamId = 1,
             scores = evaluationResult
         )
