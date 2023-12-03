@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
 import com.ssu.bilda.data.common.SubjectWithTeamStatus
 
-class SubjectAdapter(private val subjects: List<SubjectWithTeamStatus>) :
+class SubjectAdapter(private var subjects: List<SubjectWithTeamStatus>) :
     RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubjectViewHolder {
@@ -21,6 +21,11 @@ class SubjectAdapter(private val subjects: List<SubjectWithTeamStatus>) :
     }
 
     override fun getItemCount(): Int = subjects.size
+
+    fun updateData(newSubjects: List<SubjectWithTeamStatus>) {
+        subjects = newSubjects
+        notifyDataSetChanged()
+    }
 
     inner class SubjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val subjectTextView: TextView = itemView.findViewById(R.id.tv_evaluation_subject)
