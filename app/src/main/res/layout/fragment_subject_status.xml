@@ -65,10 +65,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|end"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/suiteregular"
             android:textColor="@color/black"
-            android:textSize="16dp"
+            android:textSize="20dp"
             android:textStyle="bold"
             tools:text="송예린" />
     </FrameLayout>

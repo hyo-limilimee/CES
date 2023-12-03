@@ -43,9 +43,9 @@ class ProjectStatusFragment : Fragment() {
         fetchSubjects()
 
         // SubjectAdapter의 클릭 리스너 설정
-        adapter.setOnItemClickListener { view ->
+        adapter.setOnItemClickListener { selectedSubject ->
             // 아이템이 클릭되었을 때 수행할 동작 구현
-            replaceFragment(SubjectStatusFragment())
+            replaceFragment(SubjectStatusFragment.newInstance(selectedSubject.title))
         }
 
         // Set userName to the TextView

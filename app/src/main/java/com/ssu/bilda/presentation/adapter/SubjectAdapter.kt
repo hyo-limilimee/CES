@@ -12,9 +12,9 @@ import com.ssu.bilda.data.common.SubjectWithTeamStatus
 class SubjectAdapter(private var subjects: List<SubjectWithTeamStatus>) :
     RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder>() {
 
-    private var onItemClick: ((View) -> Unit)? = null
+    private var onItemClick: ((SubjectWithTeamStatus) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (View) -> Unit) {
+    fun setOnItemClickListener(listener: (SubjectWithTeamStatus) -> Unit) {
         onItemClick = listener
     }
 
@@ -45,7 +45,7 @@ class SubjectAdapter(private var subjects: List<SubjectWithTeamStatus>) :
             textView.text = subject.title
 
             rightArrowLayout.setOnClickListener {
-                onItemClick?.invoke(rightArrowLayout)
+                onItemClick?.invoke(subject)
             }
         }
     }
