@@ -1,7 +1,5 @@
 package com.ssu.bilda.data.common
 
-import com.ssu.bilda.data.enums.Department
-
 data class SubjectWithTeamStatus(
     val title: String,
     val departments: List<String>,
