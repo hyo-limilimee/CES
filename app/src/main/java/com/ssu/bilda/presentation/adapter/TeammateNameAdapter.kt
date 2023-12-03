@@ -23,7 +23,7 @@ class TeammateNameAdapter(private val context: Context, private val teammateName
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeammateNameViewHolder {
         val view =
             LayoutInflater.from(context)
-                .inflate(R.layout.item_rcv_evalution_teammate_name, parent, false)
+                .inflate(R.layout.item_rcv_evaluation_teammate_name, parent, false)
 
         return TeammateNameViewHolder(view)
     }
