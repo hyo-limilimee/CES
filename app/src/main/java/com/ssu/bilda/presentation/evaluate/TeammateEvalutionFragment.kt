@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.SeekBar
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.ssu.bilda.BuildConfig.BASE_URL
 import com.ssu.bilda.R
@@ -41,6 +42,14 @@ class TeammateEvalutionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_teammate_evalution, container, false)
+        val selectedMemberName = arguments?.getString("selectedMemberName", "")
+
+        // Find the TextView
+        val tvTeammateEvaluationName: TextView = rootView.findViewById(R.id.tv_teammate_evaluation_name)
+
+        // Set the selected teammate's name to the TextView
+        tvTeammateEvaluationName.text = selectedMemberName
+
 
         val rightArrowBtn: FrameLayout =
             rootView.findViewById(R.id.fl_evaluation_black_left_arrow_btn)

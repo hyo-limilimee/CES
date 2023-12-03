@@ -54,9 +54,12 @@ class SubjectStatusFragment : Fragment() {
 
         fetchTeammateNames()
 
-        teammateNameAdapter.setOnItemClickListener { view ->
-            // 아이템이 클릭되었을 때 수행할 동작 구현
-            replaceFragment(TeammateEvalutionFragment())
+        teammateNameAdapter.setOnItemClickListener { selectedMember ->
+            val bundle = Bundle()
+            bundle.putString("selectedMemberName", selectedMember)
+
+            val teammateEvaluationFragment = TeammateEvalutionFragment()
+            replaceFragment(teammateEvaluationFragment, bundle)
         }
 
         return view
@@ -89,9 +92,11 @@ class SubjectStatusFragment : Fragment() {
             }
         }
     }
-    private fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment, bundle: Bundle?) {
+        fragment.arguments = bundle
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fl_content, fragment)
             .commit()
     }
+
 }
