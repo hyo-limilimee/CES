@@ -32,6 +32,10 @@ class AddSubjectAdapter(private var subjects: List<Subject>) :
 
     override fun getItemCount(): Int = subjects.size
 
+    fun getItem(position: Int): Subject {
+        return subjects[position]
+    }
+
     fun updateData(newSubjects: List<Subject>) {
         subjects = newSubjects
         notifyDataSetChanged()
@@ -41,12 +45,13 @@ class AddSubjectAdapter(private var subjects: List<Subject>) :
         private val title: TextView = itemView.findViewById(R.id.tv_home_add_subject)
         private val professor: TextView = itemView.findViewById(R.id.tv_home_add_professor)
 
+
         init {
+            // Click listener for the item view
             itemView.setOnClickListener {
-                onItemClick?.invoke(subjects[adapterPosition]) // 클릭된 아이템을 전달
+                onItemClick?.invoke(it) // Invoke the listener when an item is clicked
             }
         }
-
 
         fun bind(subject: Subject) {
             title.text = subject.title

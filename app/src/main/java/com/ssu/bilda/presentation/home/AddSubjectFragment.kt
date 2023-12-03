@@ -61,7 +61,6 @@ class AddSubjectFragment : Fragment() {
 
         // SubjectAdapter의 클릭 리스너 설정
         adapter.setOnItemClickListener { view ->
-            // 아이템이 클릭되었을 때 수행할 동작 구현
             replaceFragment(HomeFragment())
         }
 

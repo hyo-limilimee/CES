@@ -26,8 +26,7 @@ interface SubjectService {
     // 유저가 듣고 있는 과목 추가하기
     @POST("/api/v1/subject/add/{subjectCode}")
     fun addUserSubject(
-        @Path("subjectCode") subjectCode: Long,
-        @Body userSubject: UserSubject
-    ):Response<UserSubject>
+        @Path("subjectCode") subjectCode: Long
+    ):UserSubject
 
 }
