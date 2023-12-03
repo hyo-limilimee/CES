@@ -2,15 +2,55 @@ package com.ssu.bilda.presentation.sign
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.ssu.bilda.databinding.ActivityTermsOfPrivacyBinding
+import android.util.Log
+import com.ssu.bilda.data.remote.RetrofitImpl
+import com.ssu.bilda.data.remote.response.BaseResponse
+import com.ssu.bilda.data.remote.response.Hresponse
+import com.ssu.bilda.data.service.UserService
 import com.ssu.bilda.databinding.ActivityTermsOfUseBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class TermsOfUseActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityTermsOfUseBinding
+    private val userService: UserService = RetrofitImpl.nonRetrofit.create(UserService::class.java)
+    val call = userService.getServicePolicy()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTermsOfUseBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 서비스 정책 API 호출
+        userService.getServicePolicy().enqueue(object : Callback<BaseResponse<String>> {
+            override fun onResponse(
+                call: Call<BaseResponse<String>>,
+                response: Response<BaseResponse<String>>
+            ) {
+                if (response.isSuccessful) {
+                    val baseResponse: BaseResponse<String>? = response.body()
+                    if (baseResponse != null) {
+                        val content: String? = baseResponse.result
+                        if (content != null) {
+                            binding.tvUseTermsContent.text = content
+                        } else {
+                            Log.e("Policy", "응답 content가 null입니다.")
+                        }
+                    } else {
+                        Log.e("Policy", "응답이 null입니다.")
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("Policy", "응답 실패")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<String>>, t: Throwable) {
+                Log.e("Policy", "API호출 실패")
+            }
+        })
 
         // 버튼 클릭으로 되돌아가기
         binding.btnUseTermsBack.setOnClickListener {
