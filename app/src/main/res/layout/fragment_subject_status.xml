@@ -80,7 +80,7 @@
         android:layout_marginEnd="44dp"
         android:layout_marginTop="183dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_rcv_evalution_teammate_name"
+        tools:listitem="@layout/item_rcv_evaluation_teammate_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

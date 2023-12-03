@@ -27,20 +27,6 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    //임시 버튼
-    <FrameLayout
-        android:id="@+id/fl_ic_setting_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:clickable="true">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_setting_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_setting_btn" />
-    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/fl_ss_sunglasses"
@@ -113,7 +99,7 @@
         android:layout_marginEnd="44dp"
         android:layout_marginTop="183dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_rcv_evalution_subject"
+        tools:listitem="@layout/item_rcv_evaluation_subject"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
