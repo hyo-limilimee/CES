@@ -8,6 +8,7 @@ import com.ssu.bilda.data.remote.response.AuthorizedResponse
 import com.ssu.bilda.data.remote.response.BaseResponse
 import com.ssu.bilda.data.remote.response.ChangeNicknameResponse
 import com.ssu.bilda.data.remote.response.ChangePasswordResponse
+import com.ssu.bilda.data.remote.response.Hresponse
 import com.ssu.bilda.data.remote.response.SignInResponse
 import com.ssu.bilda.data.remote.response.SignUpResponse
 import retrofit2.Call
@@ -37,5 +38,15 @@ interface UserService {
     //홈화면호출
     @GET("/api/v1/users/home")
     fun getUserHome(): Call<BaseResponse<SignInResponse>>
+
+    //서비스 이용약관
+    @GET("/api/v1/users/servicePolicy")
+    fun getServicePolicy(): Call<BaseResponse<String>>
+
+    //개인정보처리방침 약관
+    @GET("/api/v1/users/privacyPolicy")
+    fun getPrivacyPolicy(): Call<BaseResponse<String>>
+
+
 
 }

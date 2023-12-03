@@ -1,48 +1,62 @@
 package com.ssu.bilda.presentation.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
-import com.ssu.bilda.data.entity.ItemSubject
-import com.ssu.bilda.databinding.ItemRcvHomeAddSubjectBinding
+import com.ssu.bilda.data.common.Subject
+import com.ssu.bilda.data.common.SubjectWithTeamStatus
 
-class AddSubjectAdapter(
-    private val dataList: List<ItemSubject>,
-    private val subjectTitle: List<String>,
-    private val professor: List<String>
-) : RecyclerView.Adapter<AddSubjectAdapter.SubjectViewHolder>() {
+class AddSubjectAdapter(private var subjects: List<Subject>) :
+    RecyclerView.Adapter<AddSubjectAdapter.SubjectViewHolder>() {
+
+    private var onItemClick: ((View) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (View) -> Unit) {
+        onItemClick = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubjectViewHolder {
-        val binding = ItemRcvHomeAddSubjectBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return SubjectViewHolder(binding)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_rcv_home_add_subject, parent, false)
+        return SubjectViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: SubjectViewHolder, position: Int) {
-        val currentItem = dataList[position]
-
-        holder.bind(currentItem) // 수정된 부분: bind 함수로 currentItem을 전달
+        val subject = subjects[position]
+        holder.bind(subject)
     }
 
-    override fun getItemCount(): Int {
-        return dataList.size
+    override fun getItemCount(): Int = subjects.size
+
+    fun getItem(position: Int): Subject {
+        return subjects[position]
     }
 
-    inner class SubjectViewHolder(val binding: ItemRcvHomeAddSubjectBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    fun updateData(newSubjects: List<Subject>) {
+        subjects = newSubjects
+        notifyDataSetChanged()
+    }
 
-        fun bind(item: ItemSubject) {
-            binding.tvHomeAddSubject.text = item.subjectName
-            binding.tvHomeAddProfessor.text = item.professorName
+    inner class SubjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val title: TextView = itemView.findViewById(R.id.tv_home_add_subject)
+        private val professor: TextView = itemView.findViewById(R.id.tv_home_add_professor)
+
+
+        init {
+            // Click listener for the item view
+            itemView.setOnClickListener {
+                onItemClick?.invoke(it) // Invoke the listener when an item is clicked
+            }
+        }
+
+        fun bind(subject: Subject) {
+            title.text = subject.title
+            professor.text = subject.professor
+
         }
     }
 }
-
-
