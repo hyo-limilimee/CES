@@ -416,7 +416,7 @@ class TeammateEvalutionFragment : Fragment() {
 
         // EvaluationRequest 객체를 만듭니다.
         val evaluationRequest = EvaluationRequest(
-            evaluatedUserId = 8,  // 평가 받는 사용자의 ID
+            evaluatedUserId = 6,  // 평가 받는 사용자의 ID
             teamId = 1,
             scores = evaluationResult
         )
