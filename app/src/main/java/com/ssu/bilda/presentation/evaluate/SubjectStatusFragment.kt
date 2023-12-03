@@ -52,7 +52,7 @@ class SubjectStatusFragment : Fragment() {
         teammateNameAdapter = TeammateNameAdapter(requireContext(), emptyList())
         recyclerView.adapter = teammateNameAdapter
 
-        fetchTeammateNames()
+        fetchTeammateNames(title)
 
         teammateNameAdapter.setOnItemClickListener { selectedMember ->
             val bundle = Bundle()
@@ -65,7 +65,7 @@ class SubjectStatusFragment : Fragment() {
         return view
     }
 
-    private fun fetchTeammateNames() {
+    private fun fetchTeammateNames(title: String) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val response = RetrofitImpl.authenticatedRetrofit
@@ -76,12 +76,25 @@ class SubjectStatusFragment : Fragment() {
 
                 if (response.isSuccessful) {
                     val teamsWithMembers = response.body()?.result
-                    teamsWithMembers?.let {
-                        val teamMembers = it.flatMap(EvaluationTeam::members)
-                        teammateNameAdapter.updateData(teamMembers.map { member -> member.name })
+                    teamsWithMembers?.let { teams ->
+                        // 일치하는 팀 찾기
+                        val selectedTeams = teams.filter { team ->
+                            team.subjectTitle == title
+                        }
 
-                        val responseBody = response.body()?.toString()
-                        Log.d("SubjectStatusFragment", "Response Body: $responseBody")
+                        if (selectedTeams.isNotEmpty()) {
+                            // 여러 팀이 일치할 수 있으므로 첫 번째 팀을 선택
+                            val selectedTeam = selectedTeams.first()
+
+                            // 선택된 팀의 멤버들을 리사이클러뷰에 추가
+                            val teamMembers = selectedTeam.members
+                            teammateNameAdapter.updateData(teamMembers.map { member -> member.name })
+
+                            val responseBody = response.body()?.toString()
+                            Log.d("SubjectStatusFragment", "Response Body: $responseBody")
+                        } else {
+                            Log.d("SubjectStatusFragment", "No teams found for subject: $title")
+                        }
                     }
                 } else {
                     Log.e("SubjectStatusFragment", "Error: ${response.code()}")
@@ -92,6 +105,7 @@ class SubjectStatusFragment : Fragment() {
             }
         }
     }
+
     private fun replaceFragment(fragment: Fragment, bundle: Bundle?) {
         fragment.arguments = bundle
         requireActivity().supportFragmentManager.beginTransaction()
