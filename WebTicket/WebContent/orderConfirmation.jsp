@@ -44,15 +44,15 @@
 </head>
 <body>
 	<jsp:include page="menu.jsp" />
-	<div class="jumbotron">
+	<div class="jumbotron" style="background-color: #B22222">
 		<div class="container">
-			<h1 class="display-3">구매 티켓 정보</h1>
+			<h1 class="display-3" style="color: white">구매 티켓 정보</h1>
 		</div>
 	</div>
 
-	<div class="container col-8 alert alert-info">
+	<div class="container col-8 alert alert-info" style="background-color: rgba(178, 34, 34, 0.7); border:4px solid #B22222">
 		<div class="text-center ">
-			<h1>Ticket</h1>
+			<h1 style="color: white">Ticket</h1>
 		</div>
 		<div class="row justify-content-between">
 			<div class="col-4" align="left">
