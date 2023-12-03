@@ -1,0 +1,51 @@
+@charset "EUC-KR";
+ 
+.jumbotron {
+	 background: linear-gradient(45deg, #0f0c29, rgb(43, 64, 100), #24243e); /* 그라데이션 색상 */
+     color: white; /* 텍스트 색상 */
+     text-align: center; /* 텍스트 정렬 */
+	 position: relative; /* 배경 이미지 오버레이를 위한 위치 지정 */
+     overflow: hidden; /* 컨텐츠가 박스 바깥으로 나가지 않도록 함 */
+	 padding: 10px;
+}
+
+.jumbotron h1 {
+    font-family: 'Arial', sans-serif; /* 제목 폰트 */
+    font-size: 3em; /* 제목 크기 */
+    font-weight: bold; /* 글자 두께 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트 그림자 */
+}
+
+.jumbotron p {
+    font-family: 'Arial', sans-serif; /* 본문 폰트 */
+    font-size: 1.4em; /* 본문 크기 */
+    margin-top: 20px; /* 본문 상단 여백 */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* 텍스트 그림자 */
+}
+
+.jumbotron .overlay {
+    position: absolute; /* 오버레이 위치 */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3); /* 오버레이 색상 */
+    z-index: 1; /* z-index를 통해 배경 이미지 위에 오버레이가 오도록 설정 */
+}
+
+.card-container {
+	background-color:  rgb(41, 78, 101);
+	background-color: rgba(43, 78, 100, 0.5); 
+	border: 3px solid rgb(43, 64, 100);
+	border-radius: 10px; 	
+	color: white;
+	box-shadow: 5px 5px 10px rgba(43, 64, 100, 0.9); /* 오른쪽과 아래쪽에 그림자 추가 */
+	
+	font-weight: 300px;
+}
+.btn-red {
+    background-color: #B22222; 
+    color: white; 
+    border: none; 
+    
+  }  
