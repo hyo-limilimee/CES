@@ -12,9 +12,9 @@
 </head>
 <body>
     <jsp:include page="menu.jsp" />
-    <div class="jumbotron">
+    <div class="jumbotron" style="background-color: #B22222;">
         <div class="container">
-            <h1 class="display-3">장바구니</h1>
+             <h1 class="display-3 text-white">장바구니</h1>
         </div>
     </div>
     <div class="container">
@@ -40,7 +40,7 @@
                         sum = sum + total;
                 %>
                 <div class="col-md-4 mb-4">
-                    <div class="card">
+                    <div class="card border">
                         <img src="c:/upload/<%=movie.getFilename()%>" style="width: 100%" />
                         <div class="card-body">
                             <h5 class="card-title"><%=movie.getTitle()%></h5>
