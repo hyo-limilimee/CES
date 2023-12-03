@@ -41,6 +41,13 @@ class AddSubjectAdapter(private var subjects: List<Subject>) :
         private val title: TextView = itemView.findViewById(R.id.tv_home_add_subject)
         private val professor: TextView = itemView.findViewById(R.id.tv_home_add_professor)
 
+        init {
+            itemView.setOnClickListener {
+                onItemClick?.invoke(subjects[adapterPosition]) // 클릭된 아이템을 전달
+            }
+        }
+
+
         fun bind(subject: Subject) {
             title.text = subject.title
             professor.text = subject.professor
