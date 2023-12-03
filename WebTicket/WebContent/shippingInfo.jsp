@@ -7,12 +7,12 @@
 </head>
 <body>
 	<jsp:include page="menu.jsp" />
-	<div class="jumbotron">
+	<div class="jumbotron" style="background-color: #B22222;">
 		<div class="container">
-			<h1 class="display-3">배송 정보</h1>
+			<h1 class="display-3" style="color:white">배송 정보</h1>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container" style="background-color: rgba(178, 34, 34, 0.7); border:4px solid #B22222">
 		<form action="./processShippingInfo.jsp" class="form-horizontal" method="post">
 			<input type="hidden" name="cartId" value="<%=request.getParameter("cartId")%>" />
 			<div class="form-group row">
