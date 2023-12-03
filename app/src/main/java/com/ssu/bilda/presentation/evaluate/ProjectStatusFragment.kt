@@ -40,6 +40,12 @@ class ProjectStatusFragment : Fragment() {
         // Fetch subjects using Retrofit
         fetchSubjects()
 
+        // SubjectAdapter의 클릭 리스너 설정
+        adapter.setOnItemClickListener { view ->
+            // 아이템이 클릭되었을 때 수행할 동작 구현
+            replaceFragment(SubjectStatusFragment())
+        }
+
         return view
     }
 
@@ -68,5 +74,10 @@ class ProjectStatusFragment : Fragment() {
                 Log.e("ProjectStatusFragment", "과목 불러오기 실패 - 네트워크 오류: ${e.message}")
             }
         }
+    }
+    private fun replaceFragment(fragment: Fragment) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fl_content, fragment)
+            .commit()
     }
 }
