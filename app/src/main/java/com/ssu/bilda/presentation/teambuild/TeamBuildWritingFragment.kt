@@ -70,13 +70,16 @@ class TeamBuildWritingFragment : Fragment() {
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDay ->
 
-                val selectedDate = "$selectedYear.${selectedMonth + 1}.$selectedDay"
+                val selectedDate = "$selectedYear-${selectedMonth + 1}-$selectedDay"
                 tvSelectedDate.text = selectedDate
+
             },
             year, month, day
         )
 
-        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+        val calendarMax = Calendar.getInstance()
+        calendarMax.add(Calendar.DAY_OF_MONTH, 90)
+        datePickerDialog.datePicker.maxDate = calendarMax.timeInMillis
 
         datePickerDialog.show()
     }
@@ -110,7 +113,7 @@ class TeamBuildWritingFragment : Fragment() {
         val recruitmentEndDate = view?.findViewById<TextView>(R.id.tv_selected_date)?.text.toString()
 
         // 실제로는 subjectId 값을 어떻게 가져올지에 대한 로직을 여기에 추가하세요.
-        val subjectId = 1 // 예시로 1로 설정해 두었습니다. 실제로 사용하는 값으로 교체하세요.
+        val subjectId = 3 // 예시로 1로 설정해 두었습니다. 실제로 사용하는 값으로 교체하세요.
 
         // TeamCreateRequest 객체 생성
         val teamCreateRequest = TeamCreateRequest(
