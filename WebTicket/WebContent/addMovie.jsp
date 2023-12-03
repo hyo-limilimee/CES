@@ -3,6 +3,8 @@
 <html>
 <head>
 <link rel ="stylesheet" href ="./resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href = "./resources/css/movieStyle.css" />
+
 <script type ="text/javascript" src ="./resources/js/validation.js"></script>
 <title>영화 등록</title>
 <style>
@@ -26,26 +28,18 @@
     border: none; 
     
   }  
-   .jumbotron
-	{
-		background-color: #B22222;
-		color:white;	
-		text-align: center;
-	}
 	
 	.form-border {
-	background-color:  #B22222;
-	background-color: rgba(178, 34, 34, 0.7); 
+	font-size: 20px;
+	font-weight: 300px;
+	background-color:  rgb(41, 78, 101);
+	background-color: rgba(43, 78, 100, 0.5); 
 	color: white;
-    border: 4px solid  #B22222; 
+    border: 4px solid rgb(43, 64, 100); 
     border-radius: 10px; 
     padding: 25px; 
+    box-shadow: 5px 5px 10px rgba(43, 64, 100, 0.9); /* 오른쪽과 아래쪽에 그림자 추가 */
 }
-	.image-border {
-	padding: 2px;
-	border: 4px solid #B22222;
-	 border-radius: 10px; 	
-	}
 
 	.white-border {
 		border: 2px solid white; 
@@ -73,7 +67,7 @@
 				<br>
 				<br>
 				<label><fmt:message key="movieImage"/></label>
-				<div id="imagePreview" class="image-border">
+				<div id="imagePreview" class="card-container">
 					<input type="file" id="imageInput" name="movieImage" class="form-control">
 					<div id="selectedImage"></div> 
 				</div>
@@ -142,7 +136,7 @@
 			<div class="form-group row">
 				<div class="col-sm-8"></div>
 				<div class="col-sm-4">
-					<input type ="button" class="btn btn-danger white-border" value="<fmt:message key="button" />" onclick ="CheckAddMovie()">
+					<input type ="button" class="btn btn-red white-border" value="<fmt:message key="button" />" onclick ="CheckAddMovie()">
 				</div>
 			</div>
 		</div>
