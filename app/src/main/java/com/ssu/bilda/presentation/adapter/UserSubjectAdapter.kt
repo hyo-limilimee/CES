@@ -27,6 +27,9 @@ class UserSubjectAdapter(private var userSubjects: List<SubjectWithTeamStatus>) 
     override fun onBindViewHolder(holder: userSubjectViewHolder, position: Int) {
         val subject = userSubjects[position]
         holder.bind(subject)
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(subject)
+        }
     }
 
     override fun getItemCount(): Int = userSubjects.size

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,8 +22,8 @@ import com.ssu.bilda.data.remote.response.UserSubjectResponse
 import com.ssu.bilda.data.service.SubjectService
 import com.ssu.bilda.data.service.UserService
 import com.ssu.bilda.databinding.FragmentHomeBinding
-import com.ssu.bilda.presentation.adapter.AddSubjectAdapter
 import com.ssu.bilda.presentation.adapter.UserSubjectAdapter
+import com.ssu.bilda.presentation.teambuild.TeamBuildOverviewFragment
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,25 +45,40 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-
-        // Initialize RecyclerView
         recyclerView = binding.root.findViewById(R.id.rcv_home_subject)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = UserSubjectAdapter(emptyList()) // Initialize with an empty list
+        adapter = UserSubjectAdapter(emptyList())
         recyclerView.adapter = adapter
 
         lifecycleScope.launch {
             fetchHomeUserSubjects()
         }
 
-        // SubjectAdapter의 클릭 리스너 설정
-        adapter.setOnItemClickListener { view ->
+        adapter.setOnItemClickListener { selectedSubject ->
+            val hasTeam = selectedSubject.hasTeam
+
+            val fragment = if (hasTeam) {
+                TeamBuildOverviewFragment()
+            } else {
+                TeamDetailsBySubjectFragment()
+            }
+
+//            val bundle = Bundle()
+//            bundle.putString("subjectId", selectedSubject.subjectId)
+//            fragment.arguments = bundle
+
+            // 백 스택에서 모든 기존 프래그먼트를 제거하고 새로운 프래그먼트를 새로운 스택에 추가
+            parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.home, fragment) // 기존 홈 프래그먼트를 새로운 프래그먼트로 대체
+                .addToBackStack(null)
+                .commit()
 
         }
 
         return binding.root
-
     }
+
 
     private fun fetchHomeUserSubjects() {
         val subjectService = RetrofitImpl.authenticatedRetrofit.create(SubjectService::class.java)
