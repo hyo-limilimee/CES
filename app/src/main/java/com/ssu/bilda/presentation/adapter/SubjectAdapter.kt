@@ -1,3 +1,5 @@
+package com.ssu.bilda.presentation.adapter
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,8 +33,9 @@ class SubjectAdapter(private var subjects: List<SubjectWithTeamStatus>) :
         private val subjectTextView: TextView = itemView.findViewById(R.id.tv_evaluation_subject)
 
         fun bind(subject: SubjectWithTeamStatus) {
+            // title 필드만 사용하여 TextView에 표시
             subjectTextView.text = subject.title
-            // Add any other bindings you need for other views in your item layout
+
         }
     }
 }

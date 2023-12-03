@@ -1,6 +1,5 @@
 package com.ssu.bilda.presentation.evaluate
 
-import SubjectAdapter
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,14 +9,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.ssu.bilda.BuildConfig.BASE_URL
 import com.ssu.bilda.R
 import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.data.service.EvaluationService
-import com.ssu.bilda.data.service.MyPageService
+import com.ssu.bilda.presentation.adapter.SubjectAdapter
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class ProjectStatusFragment : Fragment() {
 

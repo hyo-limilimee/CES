@@ -8,3 +8,4 @@ data class SubjectResponse(
     val message: String,
     val result: List<SubjectWithTeamStatus>
 )
+
