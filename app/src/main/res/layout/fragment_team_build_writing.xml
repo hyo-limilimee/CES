@@ -63,7 +63,7 @@
                     android:textColor="@color/sgray"
                     android:textSize="25dp"
                     android:textStyle="bold"
-                    tools:text="제목을 입력하세요" />
+                    android:hint = "제목을 입력하세요" />
             </LinearLayout>
 
             <FrameLayout
@@ -109,7 +109,7 @@
                     android:textColor="@color/sgray"
                     android:textSize="16dp"
                     android:textStyle="bold"
-                    tools:text="내용을 입력하세요" />
+                    android:hint="내용을 입력하세요" />
             </FrameLayout>
 
             <LinearLayout

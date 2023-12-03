@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.data.remote.UserSharedPreferences
 import com.ssu.bilda.data.service.EvaluationService
 import com.ssu.bilda.presentation.adapter.SubjectAdapter
+import com.ssu.bilda.presentation.teambuild.TeamBuildWritingFragment
 import kotlinx.coroutines.launch
 
 class ProjectStatusFragment : Fragment() {
@@ -52,6 +54,14 @@ class ProjectStatusFragment : Fragment() {
         val tvEvaluationName: TextView = view.findViewById(R.id.tv_evaluation_name)
         val userName = UserSharedPreferences.getUserName(requireContext())
         tvEvaluationName.text = userName
+
+        // 임시 버튼
+        // Add a temporary button to navigate to TeamBuildWritingFragment
+        val btnNavigateToTeamBuild: Button = view.findViewById(R.id.btn_temp)
+        btnNavigateToTeamBuild.setOnClickListener {
+            replaceFragment(TeamBuildWritingFragment())
+        }
+
 
         return view
     }

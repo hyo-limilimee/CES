@@ -2,10 +2,13 @@ package com.ssu.bilda.data.service
 
 import com.ssu.bilda.data.common.PendingUser
 import com.ssu.bilda.data.remote.request.CreateTeamRequest
+import com.ssu.bilda.data.remote.request.TeamCreateRequest
 import com.ssu.bilda.data.remote.request.VerifyEmailRequest
 import com.ssu.bilda.data.remote.response.BaseResponse
+import com.ssu.bilda.data.remote.response.TeamCreateResponse
 import com.ssu.bilda.data.remote.response.TeamResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -61,11 +64,9 @@ interface TeamService {
 
 
     //   팀 생성하기
-    @POST("/api/v1/teams/create/{leaderId}")
-    fun createTeam(
-        @Path("leaderId") leaderId: Long,
-        @Body request: CreateTeamRequest
-    ): Call<BaseResponse<Void>>
+    @POST("/api/v1/teams/create")
+    suspend fun createTeam(@Body request: TeamCreateRequest): Response<TeamCreateResponse>
+
 
     //  팀플 종료하기
     @POST("/api/v1/teams/complete/{teamId}")
