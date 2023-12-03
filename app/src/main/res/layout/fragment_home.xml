@@ -169,7 +169,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_home_ing"
         app:layout_constraintTop_toBottomOf="@+id/iv_home_end" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/btn_subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -182,7 +182,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bnv_main"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/btn_chatbot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
