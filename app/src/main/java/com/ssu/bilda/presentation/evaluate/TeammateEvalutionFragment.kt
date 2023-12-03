@@ -189,8 +189,8 @@ class TeammateEvalutionFragment : Fragment() {
                     // SeekBar의 ID에 따라 해당하는 변수를 업데이트합니다.
                     when (seekBar?.id) {
                         R.id.dividerSeekBar_time -> {
-                            timeAdherenceValue = seekBar.progress
-                            Log.d("SeekBarValues", "Time Adherence: $timeAdherenceValue")
+                            communicationValue = seekBar.progress
+                            Log.d("SeekBarValues", "Communication: $communicationValue")
                         }
                     }
                 }
