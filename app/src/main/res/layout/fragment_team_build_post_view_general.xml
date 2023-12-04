@@ -36,7 +36,7 @@
         app:layout_constraintStart_toStartOf="@id/ll_tv_subject_name"
         app:layout_constraintTop_toBottomOf="@id/ll_tv_subject_name">
 
-        <EditText
+        <TextView
             android:id="@+id/et_teambuild_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_teambuild_writing_bg_box" />
 
-        <EditText
+        <TextView
             android:id="@+id/tv_teambuild_writing_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
