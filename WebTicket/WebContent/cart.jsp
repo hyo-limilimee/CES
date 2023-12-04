@@ -10,6 +10,7 @@
 %>
 <title>장바구니</title>
 </head>
+<link rel = "stylesheet" href = "./resources/css/movieStyle.css"/>
 <body>
     <jsp:include page="menu.jsp" />
     <div class="jumbotron" style="background-color: #B22222;">
@@ -65,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <a href="./products.jsp" class="btn btn-secondary mt-3"> &laquo; 쇼핑 계속하기</a>
+            <a href="./movies.jsp" class="btn btn-secondary mt-3"> &laquo; 쇼핑 계속하기</a>
         </div>
         <hr>
     </div>
