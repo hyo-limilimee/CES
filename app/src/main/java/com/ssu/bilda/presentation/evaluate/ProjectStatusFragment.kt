@@ -62,7 +62,6 @@ class ProjectStatusFragment : Fragment() {
             replaceFragment(TeamBuildWritingFragment())
         }
 
-
         return view
     }
 

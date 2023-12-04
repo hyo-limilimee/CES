@@ -14,5 +14,5 @@ data class EvaluationTeamResponse(
     val message: String,
 
     @SerializedName("result")
-    val teams: List<EvaluationTeam>
+    val result: List<EvaluationTeam>
 )

@@ -8,13 +8,14 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
+import com.ssu.bilda.data.common.EvaluationTeamMember
 
-class TeammateNameAdapter(private val context: Context, private var teammateNames: List<String>) :
+class TeammateNameAdapter(private val context: Context, private var teammates: List<EvaluationTeamMember>) :
     RecyclerView.Adapter<TeammateNameAdapter.TeammateViewHolder>() {
 
-    private var onItemClick: ((String) -> Unit)? = null
+    private var onItemClick: ((EvaluationTeamMember) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (String) -> Unit) {
+    fun setOnItemClickListener(listener: (EvaluationTeamMember) -> Unit) {
         onItemClick = listener
     }
 
@@ -25,27 +26,27 @@ class TeammateNameAdapter(private val context: Context, private var teammateName
     }
 
     override fun onBindViewHolder(holder: TeammateViewHolder, position: Int) {
-        val teammateName = teammateNames[position]
-        holder.bind(teammateName)
+        val teammate = teammates[position]
+        holder.bind(teammate)
     }
 
-    override fun getItemCount(): Int = teammateNames.size
+    override fun getItemCount(): Int = teammates.size
 
-    fun updateData(newTeammateNames: List<String>) {
-        teammateNames = newTeammateNames
+    fun updateData(newTeammates: List<EvaluationTeamMember>) {
+        teammates = newTeammates
         notifyDataSetChanged()
     }
 
     inner class TeammateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textView: TextView = itemView.findViewById(R.id.tv_teammate_name)
         private val teammateLayout: FrameLayout =
-            itemView.findViewById(R.id.fl_teammate_name_btn)
+            itemView.findViewById(R.id.fl_teammate_evaluation_btn)
 
-        fun bind(teammateName: String) {
-            textView.text = teammateName
+        fun bind(teammate: EvaluationTeamMember) {
+            textView.text = teammate.name
 
             teammateLayout.setOnClickListener {
-                onItemClick?.invoke(teammateName)
+                onItemClick?.invoke(teammate)
             }
         }
     }
