@@ -5,13 +5,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
 import com.ssu.bilda.data.common.TeamDetail
 import com.ssu.bilda.data.remote.RetrofitImpl
+import com.ssu.bilda.data.remote.response.BaseResponse
 import com.ssu.bilda.data.remote.response.TeamInfoResponse
+import com.ssu.bilda.data.service.TeamJoinRequestService
 import com.ssu.bilda.data.service.TeamService
 import com.ssu.bilda.presentation.adapter.TeammateProfileAdapter
 import retrofit2.Call
@@ -19,6 +24,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class TeamBuildPostViewGeneral : Fragment() {
+
+
+    private lateinit var teamService: TeamService
+    private var currentTeamId: Long = 0 // 팀 ID를 저장하는 변수
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,14 +40,22 @@ class TeamBuildPostViewGeneral : Fragment() {
         // Make API call when the fragment is created
         getTeamInfo(view)
 
+        val joinButton: Button = view.findViewById(R.id.tv_teambuild_require_btn)
+
+        joinButton.setOnClickListener {
+            sendTeamJoinRequest()
+        }
+
         return view
     }
 
     private fun getTeamInfo(view: View) {
         val retrofit = RetrofitImpl.authenticatedRetrofit
-        val teamService = retrofit.create(TeamService::class.java)
+        teamService = retrofit.create(TeamService::class.java)
 
         val teamId = 1L // Replace with the desired teamId
+        currentTeamId = teamId // 팀 ID를 저장
+
         val call = teamService.getTeamInfo(teamId)
         call.enqueue(object : Callback<TeamInfoResponse> {
             override fun onResponse(
@@ -96,5 +113,42 @@ class TeamBuildPostViewGeneral : Fragment() {
                 Log.e("API Error", "Failed to make API call: ${t.message}")
             }
         })
+    }
+
+    private fun sendTeamJoinRequest() {
+        val retrofit = RetrofitImpl.authenticatedRetrofit
+        val teamJoinRequestService = retrofit.create(TeamJoinRequestService::class.java)
+
+        val call = teamJoinRequestService.joinTeam(currentTeamId)
+
+        call.enqueue(object : Callback<BaseResponse<Any>> {
+            override fun onResponse(
+                call: Call<BaseResponse<Any>>,
+                response: Response<BaseResponse<Any>>
+            ) {
+                if (response.isSuccessful) {
+                    // Team join request successful
+                    Log.d("TeamJoinRequest", "팀 가입 요청 성공")
+                    showToast("팀 가입 요청이 완료되었습니다.")
+                    // TODO: Handle the success case, e.g., show a message to the user
+                } else {
+                    // Team join request failed
+                    Log.e("TeamJoinRequest", "오류: ${response.code()}, ${response.message()}")
+                    showToast("팀 가입 요청에 실패했습니다.")
+                    // TODO: Handle the error case, e.g., show an error message to the user
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<Any>>, t: Throwable) {
+                // Handle failure
+                Log.e("TeamJoinRequest", "실패: ${t.message}")
+                showToast("팀 가입 요청에 실패했습니다.")
+                // TODO: Handle the failure case, e.g., show an error message to the user
+            }
+        })
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }

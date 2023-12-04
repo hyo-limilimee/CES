@@ -46,14 +46,6 @@ interface TeamService {
     ): Call<BaseResponse<Void>>
 
 
-    // 팀에 조인 요청하기
-    @POST("/api/v1/teams/{teamId}/join/{userId}")
-    fun requestToJoinTeam(
-        @Path("teamId") teamId: Long,
-        @Path("userId") userId: Long
-    ): Call<BaseResponse<Void>>
-
-
     //  팀 조인 요청 수락하기
     @POST("/api/v1/teams/{teamId}/approve/{pendingUserId}")
     fun approveJoinRequest(
