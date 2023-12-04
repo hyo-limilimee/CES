@@ -99,7 +99,7 @@ class AddSubjectFragment : Fragment() {
                 if (response.isSuccessful && response.body() != null && response.body()?.data != null) {
                     // 성공적으로 요청이 처리된 경우
                     Log.d("AddSubject", "과목 추가 성공")
-                    replaceNewHomeFragment()
+                    replaceNewHomeFragment(subjectCode)
                 } else {
                     // 서버 응답이 null이거나 요청이 실패한 경우
                     val errorMessage = response.message() ?: "Unknown error"
@@ -115,8 +115,11 @@ class AddSubjectFragment : Fragment() {
             }
         })
     }
-    private fun replaceNewHomeFragment() {
+    private fun replaceNewHomeFragment(subjectCode: Long) {
         val homeFragment = HomeFragment()
+        val bundle = Bundle()
+        bundle.putLong("subjectCode", subjectCode)
+        homeFragment.arguments = bundle
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fl_content, homeFragment)
             .commit()

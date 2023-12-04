@@ -1,10 +1,12 @@
 package com.ssu.bilda.data.service
 
 import com.ssu.bilda.data.common.PendingUser
+import com.ssu.bilda.data.common.TeamsOfSubject
 import com.ssu.bilda.data.remote.request.CreateTeamRequest
 import com.ssu.bilda.data.remote.request.TeamCreateRequest
 import com.ssu.bilda.data.remote.request.VerifyEmailRequest
 import com.ssu.bilda.data.remote.response.BaseResponse
+import com.ssu.bilda.data.remote.response.ResponseDtoListTeamsOfSubjectDTO
 import com.ssu.bilda.data.remote.response.TeamCreateResponse
 import com.ssu.bilda.data.remote.response.TeamResponse
 import retrofit2.Call
@@ -15,11 +17,6 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface TeamService {
-
-    @GET("/api/v1/email/verify")
-    fun sendEmail(
-        @Body request: VerifyEmailRequest
-    ): Call<BaseResponse<Void>>
 
 
     // 팀의 정보 가져오기
@@ -35,8 +32,8 @@ interface TeamService {
     fun getUserTeams(@Path("userId") userId: Long): Call<BaseResponse<List<TeamResponse>>>
 
     //  과목에 해당하는 팀들의 정보 가져오기
-    @GET(" /api/v1/teams/subject/{subjectId}")
-    fun getTeamsBySubject(@Path("subjectId") subjectId: Long): Call<BaseResponse<List<TeamResponse>>>
+    @GET("/api/v1/teams/subject/{subjectId}")
+    fun getTeamsBySubject(@Path("subjectId") subjectId: Long): Call<ResponseDtoListTeamsOfSubjectDTO>
 
 
     // 팀 조인 요청 거절하기
