@@ -27,6 +27,7 @@ import kotlinx.coroutines.launch
 class ProfileReferFragment : Fragment() {
 
     private lateinit var radarChart: RadarChart
+    private var userId: Long = 0L
 
     private val myPageService: MyPageService by lazy {
         RetrofitImpl.authenticatedRetrofit.create(MyPageService::class.java)
@@ -44,7 +45,7 @@ class ProfileReferFragment : Fragment() {
         tvMajorName.text = userDep?.displayName ?: "" // null 체크 후 값 설정
 
         // 사용자의 ID를 동적으로 지정
-        val userId: Long = 4
+        userId = arguments?.getString("userId")?.toLongOrNull() ?: 0L
 
         // mp 차트
         radarChart = view.findViewById(R.id.mapsearchdetail_radar_chart)
