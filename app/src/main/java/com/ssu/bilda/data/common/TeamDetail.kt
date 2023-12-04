@@ -9,5 +9,5 @@ data class TeamDetail(
     val recruitmentStatus: String,
     val completeStatus: String,
     val buildStartDate: String?, // You might want to change the type based on your actual data
-    val members: List<TeamMember>
+    val members: List<TeamMemberWithNickName>
 )
