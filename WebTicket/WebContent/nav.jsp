@@ -22,6 +22,7 @@
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
+    
       <li class="nav-item">
         <a class="nav-link" href="/">예매하기</a>
        </li>
