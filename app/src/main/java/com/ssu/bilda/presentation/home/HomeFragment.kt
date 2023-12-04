@@ -62,11 +62,11 @@ class HomeFragment : Fragment() {
             val hasTeam = selectedSubject.hasTeam
 
             val fragment = if (hasTeam) {
+                TeamDetailsBySubjectFragment()
+            } else {
                 val subjectCode = selectedSubject.subjectCode // 과목 코드 가져오기
                 replaceTeamBuildOverviewFragment(subjectCode)
                 TeamBuildOverviewFragment() // 또는 해당 Fragment의 인스턴스 생성
-            } else {
-                TeamDetailsBySubjectFragment()
             }
 
             // 백 스택에서 모든 기존 프래그먼트를 제거하고 새로운 프래그먼트를 새로운 스택에 추가
@@ -188,7 +188,7 @@ class HomeFragment : Fragment() {
         bundle.putLong("subjectCode", subjectCode)
         teamBuildOverviewFragment.arguments = bundle
         requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fl_content, teamBuildOverviewFragment)
+            .replace(R.id.home, teamBuildOverviewFragment)
             .commit()
     }
 
