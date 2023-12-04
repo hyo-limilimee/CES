@@ -7,7 +7,6 @@
     android:background="@color/bg_popup"
     tools:context=".presentation.teambuild.AcceptJoinRequestFragment">
 
-
     <FrameLayout
         android:id="@+id/fl_leader_check_request_bg"
         android:layout_width="wrap_content"
@@ -43,7 +42,7 @@
             android:textColor="@color/black"
             android:textSize="16dp"
             android:textStyle="bold"
-            tools:text="받은 요청 목록" />
+            android:text="받은 요청 목록" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -55,7 +54,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="@id/fl_leader_check_request_bg"
         app:layout_constraintEnd_toEndOf="@id/fl_leader_check_request_bg"
-        app:layout_constraintTop_toBottomOf="tv_request"
+        app:layout_constraintTop_toBottomOf="@id/ll_tv_request_name_profile"
         tools:listitem="@layout/item_rcv_request">
 
     </androidx.recyclerview.widget.RecyclerView>

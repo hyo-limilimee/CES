@@ -29,15 +29,14 @@ class TeamBuildPostViewLeader : Fragment() {
 
         getTeamInfo(view)
 
-
         val finishButton = view.findViewById<Button>(R.id.tv_teambuild_check_request_btn)
 
         // 버튼에 OnClickListener 설정
         finishButton.setOnClickListener {
-            // 전환할 새로운 Fragment의 인스턴스를 생성
-            val acceptJoinRequestFragment = AcceptJoinRequestFragment()
+            val teamId = 1L // 여기에 실제 팀 아이디를 설정
 
-            // Fragment 전환 수행
+            val acceptJoinRequestFragment = AcceptJoinRequestFragment.newInstance(teamId)
+
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fl_content, acceptJoinRequestFragment)
                 .addToBackStack(null)

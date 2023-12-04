@@ -24,13 +24,13 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_gray_teammate_name_btn"
+                android:id="@+id/ic_gray_request_name_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/item_request_gray_box" />
 
             <TextView
-                android:id="@+id/tv_teammate_name"
+                android:id="@+id/tv_request_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
