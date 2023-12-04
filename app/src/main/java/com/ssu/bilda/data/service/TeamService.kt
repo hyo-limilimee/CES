@@ -16,11 +16,6 @@ import retrofit2.http.Path
 
 interface TeamService {
 
-    @GET("/api/v1/email/verify")
-    fun sendEmail(
-        @Body request: VerifyEmailRequest
-    ): Call<BaseResponse<Void>>
-
 
     // 팀의 정보 가져오기
     @GET("/api/v1/teams/{teamId}")

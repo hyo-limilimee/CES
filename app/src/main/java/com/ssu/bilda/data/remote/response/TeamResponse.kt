@@ -10,8 +10,8 @@ data class TeamResponse(
     val teamTitle: String,
     val subjectTitle: String,
     val leaderName: String,
-    val recruitmentStatus: RecruitmentStatus,
-    val completeStatus: CompleteStatus,
+    val recruitmentStatus: List<String>,
+    val completeStatus: List<String>,
     val buildStartDate: Date,
     val members: List<UserResponse>
 )
