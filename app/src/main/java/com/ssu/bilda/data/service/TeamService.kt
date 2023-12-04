@@ -6,6 +6,7 @@ import com.ssu.bilda.data.remote.request.TeamCreateRequest
 import com.ssu.bilda.data.remote.request.VerifyEmailRequest
 import com.ssu.bilda.data.remote.response.BaseResponse
 import com.ssu.bilda.data.remote.response.TeamCreateResponse
+import com.ssu.bilda.data.remote.response.TeamInfoResponse
 import com.ssu.bilda.data.remote.response.TeamResponse
 import retrofit2.Call
 import retrofit2.Response
@@ -21,10 +22,8 @@ interface TeamService {
         @Body request: VerifyEmailRequest
     ): Call<BaseResponse<Void>>
 
-
-    // 팀의 정보 가져오기
     @GET("/api/v1/teams/{teamId}")
-    fun getTeamInfo(@Path("teamId") teamId: Long): Call<BaseResponse<TeamResponse>>
+    fun getTeamInfo(@Path("teamId") teamId: Long): Call<TeamInfoResponse>
 
     // 팀 조인 요청 확인하기
     @GET("/api/v1/teams/{teamId}/recruit")

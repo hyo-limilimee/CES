@@ -1,55 +1,67 @@
 package com.ssu.bilda.presentation.teambuild
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ssu.bilda.R
+import com.ssu.bilda.data.common.TeamDetail
+import com.ssu.bilda.data.remote.RetrofitImpl
+import com.ssu.bilda.data.remote.response.TeamInfoResponse
+import com.ssu.bilda.data.service.TeamService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TeamBuildPostViewGeneral.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TeamBuildPostViewGeneral : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(param1)
-            param2 = it.getString(param2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_team_build_post_view_general, container, false)
+        val view = inflater.inflate(R.layout.fragment_team_build_post_view_general, container, false)
+
+        // Make API call when the fragment is created
+        getTeamInfo()
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TeamBuildRequestJoinFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TeamBuildPostViewGeneral().apply {
-                arguments = Bundle().apply {
-                    putString(param1, param1)
-                    putString(param2, param2)
+    private fun getTeamInfo() {
+        val retrofit = RetrofitImpl.authenticatedRetrofit
+        val teamService = retrofit.create(TeamService::class.java)
+
+        val teamId = 1L // Replace with the desired teamId
+        val call = teamService.getTeamInfo(teamId)
+
+        call.enqueue(object : Callback<TeamInfoResponse> {
+            override fun onResponse(
+                call: Call<TeamInfoResponse>,
+                response: Response<TeamInfoResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val teamInfoResponse = response.body()
+                    if (teamInfoResponse != null) {
+                        val teamDetail: TeamDetail = teamInfoResponse.result
+                        // Handle the team detail data as needed
+                        Log.d("TeamDetail", teamDetail.toString())
+                    }
+                } else {
+                    // Handle unsuccessful response
+                    Log.e(
+                        "API Error",
+                        "Code: ${response.code()}, Message: ${response.message()}"
+                    )
                 }
             }
+
+            override fun onFailure(call: Call<TeamInfoResponse>, t: Throwable) {
+                // Handle failure
+                Log.e("API Error", "Failed to make API call: ${t.message}")
+            }
+        })
     }
 }
