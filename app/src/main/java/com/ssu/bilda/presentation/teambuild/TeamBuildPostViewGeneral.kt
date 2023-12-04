@@ -25,7 +25,8 @@ class TeamBuildPostViewGeneral : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_team_build_post_view_general, container, false)
+        val view =
+            inflater.inflate(R.layout.fragment_team_build_post_view_general, container, false)
 
         // Make API call when the fragment is created
         getTeamInfo(view)
@@ -51,15 +52,33 @@ class TeamBuildPostViewGeneral : Fragment() {
 
                         // 텍스트 뷰 세팅
                         val subjectNameTextView: TextView? = view.findViewById(R.id.tv_subject_name)
-                        val teamBuildTitleTextView: TextView? = view.findViewById(R.id.et_teambuild_title)
+                        val teamBuildTitleTextView: TextView? =
+                            view.findViewById(R.id.et_teambuild_title)
+                        val teamBuildMessageTextView: TextView? =
+                            view.findViewById(R.id.tv_teambuild_writing_content)
 
                         subjectNameTextView?.text = teamDetail.subjectTitle
                         teamBuildTitleTextView?.text = teamDetail.teamTitle
+                        teamBuildMessageTextView?.text = teamDetail.teamInfoMessage
 
                         // RecyclerView 초기화 및 어댑터 설정
-                        val teammateRecyclerView: RecyclerView = view.findViewById(R.id.rv_teammate_profile_list)
+                        val teammateRecyclerView: RecyclerView =
+                            view.findViewById(R.id.rv_teammate_profile_list)
                         val teammateAdapter = TeammateProfileAdapter(teamDetail.members)
                         teammateRecyclerView.adapter = teammateAdapter
+
+                        // 리싸이클러뷰 아이템 수 가져오기
+                        val recyclerViewItemCount = teammateAdapter.itemCount
+
+                        // 리스폰스에서 받은 maxCount 값
+                        val maxCount = teamDetail.maxNumber // 이 부분은 실제 데이터에 따라서 변경되어야 합니다.
+
+                        // 텍스트뷰에 설정할 문자열 생성
+                        val displayText = "$recyclerViewItemCount/$maxCount"
+
+                        // 텍스트뷰에 문자열 설정
+                        val teammateNumTextView: TextView = view.findViewById(R.id.tv_teammate_num)
+                        teammateNumTextView.text = displayText
 
                         Log.d("TeamDetail", teamDetail.toString())
                     }

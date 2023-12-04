@@ -8,6 +8,8 @@ data class TeamDetail(
     val leaderName: String,
     val recruitmentStatus: String,
     val completeStatus: String,
-    val buildStartDate: String?, // You might want to change the type based on your actual data
+    val buildStartDate: String?,
+    val teamInfoMessage : String?,
+    val maxNumber : Int,
     val members: List<TeamMemberWithNickName>
 )
