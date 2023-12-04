@@ -11,7 +11,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<%
+	HttpSession session2 = request.getSession();
+	String username = (String)session2.getAttribute("username");
+%>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
   <a class="navbar-brand" href="index.jsp">00시네마</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -20,17 +23,25 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/login.jsp">로그인</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/register.jsp">회원가입</a>
-      </li>  
-      <li class="nav-item">
         <a class="nav-link" href="/">예매하기</a>
        </li>
        <li class="nav-item">
         <a class="nav-link" href="/cart.jsp">장바구니</a>
        </li>
+		<%
+			if (username != null) {
+				out.print("<a class=\"navbar-brand\" href=\"./welcome.jsp\">" + username + "</a>");
+			} else {
+		%>
+      <li class="nav-item">
+        <a class="nav-link" href="/login.jsp">로그인</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/register.jsp">회원가입</a>
+      </li>
+      	<%
+      	}
+		%>
     </ul>
   </div>  
 </nav>
