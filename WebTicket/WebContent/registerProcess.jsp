@@ -36,6 +36,7 @@
         }
     } catch (Exception e) {
         e.printStackTrace();
+        response.sendRedirect("register.jsp?error=1");
     } finally {
         try {
             if (pstmt != null) pstmt.close();

@@ -6,7 +6,7 @@
 <%
 	String id = request.getParameter("id");
 	if (id == null || id.trim().equals("")) {
-		response.sendRedirect("products.jsp");
+		response.sendRedirect("movies.jsp");
 		return;
 	}
 
