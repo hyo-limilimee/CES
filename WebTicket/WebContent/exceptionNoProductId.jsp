@@ -4,8 +4,8 @@
     <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
     <title>Product ID Error</title>
 </head>
-<body>
-    <jsp:include page="menu.jsp" />    
+<body>  
+<%@ include file="/nav.jsp" %>
     <div class="jumbotron" style="background-color: #B22222;">
         <div class="container">
             <h2 class="alert alert-danger">Error: 해당 상품이 존재하지 않습니다.</h2>

@@ -2,7 +2,6 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dto.Movie"%>
 <%@ page import="dao.MovieRepository"%>
-<%@ include file="/nav.jsp" %>
 
 <html>
 <head>
@@ -13,28 +12,99 @@
     <link rel="stylesheet" href="./resources/css/MovieList.css" />
     
 </head>
-<body>
+<!-- 예매율 순위를 가로로 표시하는 Flexbox 스타일 -->
+<style>
+    .movie-rankings {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; /* 아이템들 간의 간격을 동일하게 설정 */
+        align-items: center; /* 아이템들을 세로 중앙 정렬 */
+        margin-bottom: 20px; /* 원하는 여백 설정 */
+    }
+	.title{
+	    	font-weight:300px;
+	    	text-align: center;
+	}
 
-<div class="center">
-    <h3><%= "예매율 순위" %></h3>
+    .center{
+    	width:600px;
+    	margin:auto;
+    	font-size: 30px;
+    	text-align: center;
+    }
     
+
+    .movie-rank {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .movie-rank span {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    .movie-poster img {
+        width: 150px; /* 원하는 이미지 폭 설정 */
+        height: auto;
+    }
+</style>
+<body>	
+<%
+	HttpSession session2 = request.getSession();
+	String username = (String)session2.getAttribute("username");
+%>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <a class="navbar-brand" href="movies.jsp">Web시네마</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+    
+       <li class="nav-item">
+        <a class="nav-link" href="./cart.jsp">장바구니</a>
+       </li>
+		<%
+			if (username != null) {
+				out.print("<a class=\"navbar-brand\" href=\"./welcome.jsp\">" + username + "</a>");
+			} else {
+		%>
+      <li class="nav-item">
+        <a class="nav-link" href="./login.jsp">로그인</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./register.jsp">회원가입</a>
+      </li>
+      	<%
+      	}
+		%>
+    </ul>
+  </div>  
+</nav>
+<div class="jumbotron">
+    <h3 class="title"><%= "예매율 순위" %></h3>
+    </div>
+<div class="center">
+	
     <div class="movie-rankings">
-        <div class="movie-rank">
+        <div class="movie-rank card-container">
             <span>1</span>
             <div class="movie-poster">
-                <img src="avatar.jpg" alt="아바타 ">
+                <img src="resources/images/avatar.jpg" alt="아바타 ">
             </div>
         </div>
-        <div class="movie-rank">
+        <div class="movie-rank card-container">
             <span>2</span>
             <div class="movie-poster">
-                <img src="P1235.png" alt="영화2 ">
+                <img src="resources/images/titanic.jpg" alt="타이타닉">
             </div>
         </div>
-        <div class="movie-rank">
+        <div class="movie-rank card-container">
             <span>3</span>
             <div class="movie-poster">
-                <img src="P1236.png" alt="영화3 ">
+                <img src="resources/images/ironman.jpg" alt="아이언맨">
             </div>
         </div>
     </div>
@@ -63,7 +133,18 @@
                     <img src="resources/images/<%= movie.getFilename() %>" style="width: 100%">
                 </div>
                 <h3><%= movie.getTitle() %></h3>
-                <p><%= movie.getDescription() %></p>
+							<%
+								int subLen = 20;
+								String desc = movie.getDescription();
+								
+								if (desc.length() > subLen) {
+									desc = desc.substring(0, subLen);
+									desc += "...";
+								}
+								
+							%>
+                <p style="white-space: no-wrap; overflow: hidden; text-overflow: ellipsis;"><%= desc %></p>
+                <p><a href="./movie.jsp?id=<%=movie.getMovieId()%>" class="btn btn-secondary btn-red" role="button"> 상세 정보 &raquo;</a>
             </div>
         </div>
         <%

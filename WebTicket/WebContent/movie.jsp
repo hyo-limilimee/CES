@@ -69,7 +69,7 @@
 </script>
 </head>
 <body>
-	<jsp:include page="menu.jsp" />
+<%@ include file="/nav.jsp" %>
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">상영 정보</h1>

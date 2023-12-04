@@ -34,7 +34,7 @@
             // 로그인 성공 시 세션 생성
             HttpSession session2 = request.getSession();
             session2.setAttribute("username", username);
-            response.sendRedirect("./welcome.jsp");
+            response.sendRedirect("./movies.jsp");
         } else {
         	response.sendRedirect("login.jsp?error=1");
         }

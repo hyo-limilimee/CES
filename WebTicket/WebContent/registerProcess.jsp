@@ -30,7 +30,7 @@
         if (rowsInserted > 0) {
             out.println("<h2>회원가입 성공</h2>");
             // 회원가입 후 다른 페이지로 이동하거나 메시지를 출력할 수 있습니다.
-            response.sendRedirect("welcome.jsp");
+            response.sendRedirect("login.jsp");
         } else {
             out.println("<h2>회원가입 실패</h2>");
         }

@@ -49,9 +49,9 @@
 </style>
 </head>
 <body>
+<%@ include file="/nav.jsp" %>
 	<fmt:setLocale value='<%= request.getParameter("language") %>'/>
 	<fmt:bundle basename="bundle.message" > 
-	<jsp:include page="menu.jsp" />	
 	<div class="jumbotron" >
 		<div class="container">
 			<h1 class="display-3"><fmt:message key="title" /></h1>

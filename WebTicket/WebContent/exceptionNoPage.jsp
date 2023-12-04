@@ -5,7 +5,7 @@
     <title>페이지 오류</title>
 </head>
 <body>
-    <jsp:include page="menu.jsp" />
+<%@ include file="/nav.jsp" %>
     <div class="jumbotron" style="background-color: #B22222;">
         <div class="container">
             <h2 class="alert alert-danger">Error: 요청하신 페이지를 찾을 수 없습니다.</h2>

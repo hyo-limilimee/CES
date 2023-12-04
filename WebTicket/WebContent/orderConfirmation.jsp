@@ -44,7 +44,7 @@
 <title>구매 티켓 정보</title>
 </head>
 <body>
-	<jsp:include page="menu.jsp" />
+<%@ include file="/nav.jsp" %>
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3" style="color: white">구매 티켓 정보</h1>
@@ -55,16 +55,7 @@
 		<div class="text-center ">
 			<h1 style="color: white">Ticket</h1>
 		</div>
-		<div class="row justify-content-between">
-			<div class="col-4" align="left">
-				<strong>배송 주소</strong> <br> 성명 : <% out.println(shipping_name); %>	<br> 
-				우편번호 : <% 	out.println(shipping_zipCode);%><br> 
-				주소 : <%	out.println(shipping_addressName);%>(<%	out.println(shipping_country);%>) <br>
-			</div>
-			<div class="col-4" align="right">
-				<p>	<em>배송일: <% out.println(shipping_shippingDate);%></em>
-			</div>
-		</div>
+		
 		<div>
 			<table class="table table-hover">			
 			<tr>

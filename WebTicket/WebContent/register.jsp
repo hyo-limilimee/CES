@@ -5,6 +5,7 @@
 <title>회원가입</title>
 </head>
 <body>
+<%@ include file="/nav.jsp" %>
 	<jsp:include page="menu.jsp" />
 	<div class="jumbotron">
 		<div class="container">

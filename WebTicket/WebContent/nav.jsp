@@ -1,7 +1,4 @@
-
-<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html; charset=utf-8"%>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,29 +13,27 @@
 	String username = (String)session2.getAttribute("username");
 %>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-  <a class="navbar-brand" href="index.jsp">00시네마</a>
+  <a class="navbar-brand" href="movies.jsp">Web시네마</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
     
-      <li class="nav-item">
-        <a class="nav-link" href="/">예매하기</a>
-       </li>
+
        <li class="nav-item">
-        <a class="nav-link" href="/cart.jsp">장바구니</a>
+        <a class="nav-link" href="./cart.jsp">장바구니</a>
        </li>
 		<%
 			if (username != null) {
-				out.print("<a class=\"navbar-brand\" href=\"./welcome.jsp\">" + username + "</a>");
+				out.print("<a class=\"navbar-brand\" href=\"./orderConfirmation.jsp\">" + username + "</a>");
 			} else {
 		%>
       <li class="nav-item">
-        <a class="nav-link" href="/login.jsp">로그인</a>
+        <a class="nav-link" href="./login.jsp">로그인</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/register.jsp">회원가입</a>
+        <a class="nav-link" href="./register.jsp">회원가입</a>
       </li>
       	<%
       	}

@@ -25,7 +25,7 @@
 </style>
 
 <body>
-    <jsp:include page="menu.jsp" />
+<%@ include file="/nav.jsp" %>
     <div class="jumbotron" style="background-color: #B22222;">
         <div class="container">
              <h1 class="display-3 text-white">장바구니</h1>
@@ -36,7 +36,7 @@
             <table width="100%">
                 <tr>
                     <td align="left"><a href="./deleteCart.jsp?cartId=<%=cartId%>" class="btn btn-danger">삭제하기</a></td>
-                    <td align="right"><a href="./shippingInfo.jsp?cartId=<%= cartId %>" class="btn btn-success">주문하기</a></td>
+                    <td align="right"><a href="./orderConfirmation.jsp" class="btn btn-success">주문하기</a></td>
                 </tr>
             </table>
         </div>
@@ -71,7 +71,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <div class="card card-container">
+                    <div class="card card-container font-black">
                         <div class="card-body">
                             <h5 class="card-title">총액</h5>
                             <p class="card-text"><%=sum%>원</p>
