@@ -65,6 +65,10 @@ class ProfileReferFragment : Fragment() {
                     Log.d("마이페이지 정보", "userId: ${myPageReferResponse?.userId}")
                     Log.d("마이페이지 정보", "userName: ${myPageReferResponse?.userName}")
 
+                    // Nickname 설정
+                    val tvProfileName: TextView = view.findViewById(R.id.tv_profile_name)
+                    tvProfileName.text = myPageReferResponse?.nickName ?: ""
+
                     // RadarChart에 점수를 채우기
                     val scores = myPageReferResponse?.scoreItems
                     if (scores != null && scores.size >= 5) {
