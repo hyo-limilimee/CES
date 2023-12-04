@@ -1,5 +1,7 @@
 package com.ssu.bilda.presentation.home
 
+
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -50,6 +52,8 @@ class HomeFragment : Fragment() {
         adapter = UserSubjectAdapter(emptyList())
         recyclerView.adapter = adapter
 
+        val subjectCode = arguments?.getLong("subjectCode", 0) ?: 0 //홈에서 받아온 과목코드
+
         lifecycleScope.launch {
             fetchHomeUserSubjects()
         }
@@ -58,14 +62,12 @@ class HomeFragment : Fragment() {
             val hasTeam = selectedSubject.hasTeam
 
             val fragment = if (hasTeam) {
-                TeamBuildOverviewFragment()
-            } else {
                 TeamDetailsBySubjectFragment()
+            } else {
+                val subjectCode = selectedSubject.subjectCode // 과목 코드 가져오기
+                replaceTeamBuildOverviewFragment(subjectCode)
+                TeamBuildOverviewFragment() // 또는 해당 Fragment의 인스턴스 생성
             }
-
-//            val bundle = Bundle()
-//            bundle.putString("subjectId", selectedSubject.subjectId)
-//            fragment.arguments = bundle
 
             // 백 스택에서 모든 기존 프래그먼트를 제거하고 새로운 프래그먼트를 새로운 스택에 추가
             parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
@@ -117,6 +119,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val btnSubject: Button = binding.btnSubject
+        val btnChatBot: Button = binding.btnChatbot // 버튼을 가져옵니다.
+
+        btnChatBot.setOnClickListener {
+            val intent = Intent(requireContext(), ChatBotActivity::class.java)
+            startActivity(intent) // ChatBotActivity로 이동합니다.
+        }
 
 
         btnSubject.setOnClickListener {
@@ -173,6 +181,17 @@ class HomeFragment : Fragment() {
             }
         })
     }
+
+    private fun replaceTeamBuildOverviewFragment(subjectCode: Long) {
+        val teamBuildOverviewFragment = TeamBuildOverviewFragment()
+        val bundle = Bundle()
+        bundle.putLong("subjectCode", subjectCode)
+        teamBuildOverviewFragment.arguments = bundle
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.home, teamBuildOverviewFragment)
+            .commit()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
