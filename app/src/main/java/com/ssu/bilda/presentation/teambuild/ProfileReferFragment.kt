@@ -1,4 +1,4 @@
-package com.ssu.bilda.presentation.evaluate
+package com.ssu.bilda.presentation.teambuild
 
 import android.os.Bundle
 import android.view.LayoutInflater
