@@ -17,6 +17,7 @@ import com.ssu.bilda.data.remote.UserSharedPreferences
 import com.ssu.bilda.data.service.EvaluationService
 import com.ssu.bilda.presentation.adapter.SubjectAdapter
 import com.ssu.bilda.presentation.teambuild.ProfileReferFragment
+import com.ssu.bilda.presentation.teambuild.TeamBuildOverviewFragment
 import com.ssu.bilda.presentation.teambuild.TeamBuildPostViewGeneral
 import com.ssu.bilda.presentation.teambuild.TeamBuildPostViewLeader
 import com.ssu.bilda.presentation.teambuild.TeamBuildWritingFragment
@@ -58,12 +59,6 @@ class ProjectStatusFragment : Fragment() {
         val userName = UserSharedPreferences.getUserName(requireContext())
         tvEvaluationName.text = userName
 
-        // 임시 버튼
-        // Add a temporary button to navigate to TeamBuildWritingFragment
-        val btnNavigateToTeamBuild: Button = view.findViewById(R.id.btn_temp)
-        btnNavigateToTeamBuild.setOnClickListener {
-            replaceFragment(TeamBuildPostViewLeader())
-        }
 
         return view
     }

@@ -5,7 +5,9 @@ import com.ssu.bilda.data.remote.request.CreateTeamRequest
 import com.ssu.bilda.data.remote.request.TeamCreateRequest
 import com.ssu.bilda.data.remote.request.VerifyEmailRequest
 import com.ssu.bilda.data.remote.response.BaseResponse
+import com.ssu.bilda.data.remote.response.ResponseDtoListTeamsOfSubjectDTO
 import com.ssu.bilda.data.remote.response.TeamCreateResponse
+import com.ssu.bilda.data.remote.response.TeamInfoResponse
 import com.ssu.bilda.data.remote.response.TeamResponse
 import retrofit2.Call
 import retrofit2.Response
