@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +28,22 @@ class TeamBuildPostViewLeader : Fragment() {
         val view = inflater.inflate(R.layout.fragment_team_build_post_view_leader, container, false)
 
         getTeamInfo(view)
-        // Inflate the layout for this fragment
+
+
+        val finishButton = view.findViewById<Button>(R.id.tv_teambuild_check_request_btn)
+
+        // 버튼에 OnClickListener 설정
+        finishButton.setOnClickListener {
+            // 전환할 새로운 Fragment의 인스턴스를 생성
+            val acceptJoinRequestFragment = AcceptJoinRequestFragment()
+
+            // Fragment 전환 수행
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, acceptJoinRequestFragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
         return view
     }
     private fun getTeamInfo(view: View) {

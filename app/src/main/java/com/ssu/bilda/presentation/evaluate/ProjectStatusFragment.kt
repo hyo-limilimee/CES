@@ -62,7 +62,7 @@ class ProjectStatusFragment : Fragment() {
         // Add a temporary button to navigate to TeamBuildWritingFragment
         val btnNavigateToTeamBuild: Button = view.findViewById(R.id.btn_temp)
         btnNavigateToTeamBuild.setOnClickListener {
-            replaceFragment(TeamBuildPostViewGeneral())
+            replaceFragment(TeamBuildPostViewLeader())
         }
 
         return view
