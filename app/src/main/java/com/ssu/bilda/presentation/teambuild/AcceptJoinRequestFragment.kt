@@ -10,8 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
 import com.ssu.bilda.data.remote.RetrofitImpl
+import com.ssu.bilda.data.remote.response.BaseResponse
 import com.ssu.bilda.data.remote.response.JoinRequestResponse
+import com.ssu.bilda.data.service.TeamAcceptRequestService
 import com.ssu.bilda.data.service.TeamJoinRequestService
+import com.ssu.bilda.data.service.TeamRejectRequestService
 import com.ssu.bilda.presentation.adapter.RequestAdapter
 import retrofit2.Call
 import retrofit2.Callback
@@ -69,9 +72,7 @@ class AcceptJoinRequestFragment : Fragment() {
 
                         // 리사이클러뷰 어댑터를 생성하고 데이터를 설정합니다.
                         val recyclerView: RecyclerView? = view?.findViewById(R.id.rv_teammate_profile_list)
-                        val adapter = RequestAdapter()
-
-                        // 서버에서 받아온 데이터를 어댑터에 설정합니다.
+                        val adapter = RequestAdapter(teamId, requireContext())
                         adapter.setRequestList(joinRequestResponse.data)
 
                         // 리사이클러뷰에 어댑터를 설정합니다.
