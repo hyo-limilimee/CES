@@ -3,11 +3,12 @@
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href = "./resources/css/movieStyle.css" />
 <title>배송 정보</title>
 </head>
 <body>
 	<jsp:include page="menu.jsp" />
-	<div class="jumbotron" style="background-color: #B22222;">
+	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3" style="color:white">배송 정보</h1>
 		</div>

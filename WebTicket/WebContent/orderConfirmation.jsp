@@ -40,17 +40,18 @@
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href = "./resources/css/movieStyle.css" />
 <title>구매 티켓 정보</title>
 </head>
 <body>
 	<jsp:include page="menu.jsp" />
-	<div class="jumbotron" style="background-color: #B22222">
+	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3" style="color: white">구매 티켓 정보</h1>
 		</div>
 	</div>
 
-	<div class="container col-8 alert alert-info" style="background-color: rgba(178, 34, 34, 0.7); border:4px solid #B22222">
+	<div class="card-container">
 		<div class="text-center ">
 			<h1 style="color: white">Ticket</h1>
 		</div>
