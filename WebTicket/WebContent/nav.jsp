@@ -24,6 +24,9 @@
        <li class="nav-item">
         <a class="nav-link" href="./cart.jsp">장바구니</a>
        </li>
+       <li class="nav-item">
+        <a class="nav-link" href="./addMovie.jsp">영화 등록</a>
+       </li>
 		<%
 			if (username != null) {
 				out.print("<a class=\"navbar-brand\" href=\"./orderConfirmation.jsp\">" + username + "</a>");
