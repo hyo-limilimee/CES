@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.home.ChatBotActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.mypage.ChangeNicknameActivity"
             android:exported="false" />
         <activity

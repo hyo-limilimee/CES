@@ -1,5 +1,7 @@
 package com.ssu.bilda.presentation.home
 
+
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -117,6 +119,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val btnSubject: Button = binding.btnSubject
+        val btnChatBot: Button = binding.btnChatbot // 버튼을 가져옵니다.
+
+        btnChatBot.setOnClickListener {
+            val intent = Intent(requireContext(), ChatBotActivity::class.java)
+            startActivity(intent) // ChatBotActivity로 이동합니다.
+        }
 
 
         btnSubject.setOnClickListener {
