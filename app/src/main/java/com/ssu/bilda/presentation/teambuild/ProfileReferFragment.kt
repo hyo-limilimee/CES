@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -20,6 +21,7 @@ import com.ssu.bilda.data.common.ScoreItem
 import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.data.remote.UserSharedPreferences
 import com.ssu.bilda.data.service.MyPageService
+import com.ssu.bilda.presentation.mypage.ProfileFragment
 import kotlinx.coroutines.launch
 
 class ProfileReferFragment : Fragment() {
@@ -42,7 +44,7 @@ class ProfileReferFragment : Fragment() {
         tvMajorName.text = userDep?.displayName ?: "" // null 체크 후 값 설정
 
         // 사용자의 ID를 동적으로 지정
-        val userId: Long = 1
+        val userId: Long = 4
 
         // mp 차트
         radarChart = view.findViewById(R.id.mapsearchdetail_radar_chart)
@@ -169,6 +171,18 @@ class ProfileReferFragment : Fragment() {
         yAxis.axisMinimum = 0f
         yAxis.axisMaximum = 100f
 
+
+        // 좌상단 뒤로가기 버튼 설정
+        val rightArrowBtn: FrameLayout = view.findViewById(R.id.fl_black_left_arrow_btn)
+
+        rightArrowBtn.setOnClickListener {
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+//            val profileFragment = ProfileFragment()
+//            transaction.replace(R.id.fl_content, profileFragment)
+
+            // 꼭 commit을 해줘야 바뀐다.
+            transaction.commit()
+        }
 
         return view
     }
