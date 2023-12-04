@@ -58,7 +58,6 @@
 </body>
 </html>
 <%
-
 	session.invalidate();
 
 	for (int i = 0; i < cookies.length; i++) {
