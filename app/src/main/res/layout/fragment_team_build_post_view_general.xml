@@ -173,7 +173,7 @@
             android:textColor="@color/black"
             android:textSize="16dp"
             android:textStyle="bold"
-            tools:text="참가 요청하기" />
+            android:text="참가 요청하기" />
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

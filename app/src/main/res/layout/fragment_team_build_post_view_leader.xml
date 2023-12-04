@@ -176,7 +176,7 @@
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                tools:text="요청 확인" />
+                android:text="요청 확인" />
         </FrameLayout>
 
         <FrameLayout
@@ -196,7 +196,7 @@
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                tools:text="모집 종료" />
+                android:text="모집 종료" />
         </FrameLayout>
     </LinearLayout>
 
