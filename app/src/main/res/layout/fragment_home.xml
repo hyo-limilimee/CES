@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/suitebold"
             android:textColor="@color/white"
-            tools:text="10" />
+            android:text="2" />
     </FrameLayout>
 
     <ImageView
@@ -132,7 +132,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/suitebold"
             android:textColor="@color/white"
-            tools:text="10" />
+            android:text="0" />
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
