@@ -5,51 +5,73 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.ssu.bilda.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ssu.bilda.data.remote.RetrofitImpl
+import com.ssu.bilda.data.remote.response.TeamResponseDTO
+import com.ssu.bilda.data.service.TeamService
+import com.ssu.bilda.databinding.FragmentTeamDetailsBySubjectBinding // 뷰 바인딩을 가져옵니다.
+import com.ssu.bilda.presentation.adapter.TeamMembersAdapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TeamDetailsBySubjectFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TeamDetailsBySubjectFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(param1)
-            param2 = it.getString(param2)
-        }
-    }
+    private val retrofit = RetrofitImpl.authenticatedRetrofit // 토큰이 필요한 Retrofit 객체
+    private var _binding: FragmentTeamDetailsBySubjectBinding? = null
+    private val binding get() = _binding!! // 뷰 바인딩 인스턴스를 가져옵니다.
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_team_details_by_subject, container, false)
+        _binding = FragmentTeamDetailsBySubjectBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TeamDetailsBySubjectFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TeamDetailsBySubjectFragment().apply {
-                arguments = Bundle().apply {
-                    putString(param1, param1)
-                    putString(param2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val teamId = "YOUR_TEAM_ID_HERE" // 팀 ID 가져오기
+        fetchTeamInfo(teamId.toLong())
+    }
+
+    private fun fetchTeamInfo(teamId: Long) {
+        val apiService = retrofit.create(TeamService::class.java)
+        apiService.getTeamInfo(teamId).enqueue(object : Callback<TeamResponseDTO> {
+            override fun onResponse(call: Call<TeamResponseDTO>, response: Response<TeamResponseDTO>) {
+                if (response.isSuccessful) {
+                    val teamResponse = response.body()
+                    teamResponse?.let {
+                        updateRecyclerView(it)
+                    }
+                } else {
+                    // Handle error cases
                 }
             }
+
+            override fun onFailure(call: Call<TeamResponseDTO>, t: Throwable) {
+                // Handle failure cases
+            }
+        })
+    }
+
+    private fun updateRecyclerView(teamResponse: TeamResponseDTO) {
+        val members = mutableListOf(teamResponse.leaderName to "Leader") // 리더 추가
+
+        teamResponse.members.forEach {
+            members.add(it.name to "Member")
+        }
+
+        val adapter = TeamMembersAdapter(members)
+        binding.rcvHomeTeamMembers.layoutManager = LinearLayoutManager(requireContext())
+        binding.rcvHomeTeamMembers.adapter = adapter
+
+        binding.tvHomeSubject.text = teamResponse.subjectTitle // subjectTitle 반영
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null // 뷰 바인딩 인스턴스를 정리합니다.
     }
 }

@@ -1,5 +1,6 @@
 package com.ssu.bilda.data.remote.response
 
+//과목별팀
 data class ResponseDtoListTeamsOfSubjectDTO(
     val success: Boolean,
     val code: Int,
