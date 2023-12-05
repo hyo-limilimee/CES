@@ -105,14 +105,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" ></androidx.recyclerview.widget.RecyclerView>
     <!-- Your temporary button for navigating to TeamBuildWritingFragment -->
-    <Button
-        android:id="@+id/btn_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="임시 버튼"
-        android:layout_below="@id/tv_evaluation_name"
-        android:layout_marginTop="16dp"
-        />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_main"
         android:layout_width="match_parent"

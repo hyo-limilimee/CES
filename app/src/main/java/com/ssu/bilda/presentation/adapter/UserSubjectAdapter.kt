@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
 import com.ssu.bilda.data.common.SubjectWithTeamStatus
 
-class UserSubjectAdapter(private var userSubjects: List<SubjectWithTeamStatus>) :
-    RecyclerView.Adapter<UserSubjectAdapter.userSubjectViewHolder>() {
+class UserSubjectAdapter(private var subjects: List<SubjectWithTeamStatus>) :
+    RecyclerView.Adapter<UserSubjectAdapter.SubjectViewHolder>() {
 
     private var onItemClick: ((SubjectWithTeamStatus) -> Unit)? = null
 
@@ -18,33 +18,30 @@ class UserSubjectAdapter(private var userSubjects: List<SubjectWithTeamStatus>) 
         onItemClick = listener
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): userSubjectViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubjectViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_rcv_home, parent, false)
-        return userSubjectViewHolder(view)
+            .inflate(R.layout.item_rcv_home ,parent, false)
+        return SubjectViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: userSubjectViewHolder, position: Int) {
-        val subject = userSubjects[position]
+    override fun onBindViewHolder(holder: SubjectViewHolder, position: Int) {
+        val subject = subjects[position]
         holder.bind(subject)
-        holder.itemView.setOnClickListener {
-            onItemClick?.invoke(subject)
-        }
     }
 
-    override fun getItemCount(): Int = userSubjects.size
+    override fun getItemCount(): Int = subjects.size
 
     fun updateData(newSubjects: List<SubjectWithTeamStatus>) {
-        userSubjects = newSubjects
+        subjects = newSubjects
         notifyDataSetChanged()
     }
 
-    inner class userSubjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class SubjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textView: TextView = itemView.findViewById(R.id.tv_item_home_subject)
 
         fun bind(subject: SubjectWithTeamStatus) {
             textView.text = subject.title
 
-             }
+        }
     }
 }
