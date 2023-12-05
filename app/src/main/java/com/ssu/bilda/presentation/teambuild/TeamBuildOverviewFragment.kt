@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,10 +35,9 @@ class TeamBuildOverviewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTeamBuildOverviewBinding.inflate(inflater, container, false)
-        val view = binding.root
+        val view = inflater.inflate(R.layout.fragment_team_build_overview, container, false)
 
-        recyclerView = binding.rcvTeambuildName
+        recyclerView = view.findViewById(R.id.rcv_teambuild_name)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         teamsAdapter = TeamsAdapter(emptyList())
         recyclerView.adapter = teamsAdapter
@@ -48,7 +48,8 @@ class TeamBuildOverviewFragment : Fragment() {
         }
 
         // btn_teambuild_write 클릭 이벤트 처리
-        binding.btnTeambuildWrite.setOnClickListener {
+        val btnTeambuildWrite = view.findViewById<Button>(R.id.btn_teambuild_write)
+        btnTeambuildWrite.setOnClickListener {
             val subjectCode = arguments?.getLong("subjectCode", 0L) ?: 0L
             navigateToTeambuildWritingFragment(subjectCode)
         }
@@ -122,10 +123,5 @@ class TeamBuildOverviewFragment : Fragment() {
             setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             commit()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
