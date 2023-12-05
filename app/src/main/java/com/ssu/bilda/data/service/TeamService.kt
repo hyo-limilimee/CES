@@ -3,12 +3,12 @@ package com.ssu.bilda.data.service
 import com.ssu.bilda.data.common.PendingUser
 import com.ssu.bilda.data.remote.request.CreateTeamRequest
 import com.ssu.bilda.data.remote.request.TeamCreateRequest
-import com.ssu.bilda.data.remote.request.VerifyEmailRequest
 import com.ssu.bilda.data.remote.response.BaseResponse
 import com.ssu.bilda.data.remote.response.ResponseDtoListTeamsOfSubjectDTO
 import com.ssu.bilda.data.remote.response.TeamCreateResponse
 import com.ssu.bilda.data.remote.response.TeamInfoResponse
 import com.ssu.bilda.data.remote.response.TeamResponse
+import com.ssu.bilda.data.remote.response.TeamResponseDTO
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -17,11 +17,6 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface TeamService {
-
-    @GET("/api/v1/email/verify")
-    fun sendEmail(
-        @Body request: VerifyEmailRequest
-    ): Call<BaseResponse<Void>>
 
 
     // 팀의 정보 가져오기
