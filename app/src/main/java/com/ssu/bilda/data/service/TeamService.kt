@@ -1,14 +1,12 @@
 package com.ssu.bilda.data.service
 
 import com.ssu.bilda.data.common.PendingUser
-import com.ssu.bilda.data.common.TeamsOfSubject
-import com.ssu.bilda.data.remote.request.CreateTeamRequest
 import com.ssu.bilda.data.remote.request.TeamCreateRequest
-import com.ssu.bilda.data.remote.request.VerifyEmailRequest
 import com.ssu.bilda.data.remote.response.BaseResponse
 import com.ssu.bilda.data.remote.response.ResponseDtoListTeamsOfSubjectDTO
 import com.ssu.bilda.data.remote.response.TeamCreateResponse
 import com.ssu.bilda.data.remote.response.TeamResponse
+import com.ssu.bilda.data.remote.response.TeamResponseDTO
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -21,7 +19,7 @@ interface TeamService {
 
     // 팀의 정보 가져오기
     @GET("/api/v1/teams/{teamId}")
-    fun getTeamInfo(@Path("teamId") teamId: Long): Call<BaseResponse<TeamResponse>>
+    fun getTeamInfo(@Path("teamId") teamId: Long): Call<TeamResponseDTO>
 
     // 팀 조인 요청 확인하기
     @GET("/api/v1/teams/{teamId}/recruit")
