@@ -51,7 +51,7 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="16dp"
-                tools:text="프로필 열람" />
+                android:text="프로필 열람" />
         </FrameLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.teambuild.AcceptJoinRequestFragment"
-    android:background="@color/bg_popup">
-
+    android:background="@color/bg_popup"
+    tools:context=".presentation.teambuild.AcceptJoinRequestFragment">
 
     <FrameLayout
         android:id="@+id/fl_leader_check_request_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/ic_leader_check_request_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/ic_leader_check_request_bg">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ic_teambuild_writing_done_btn"
@@ -30,75 +29,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="50dp"
-        app:layout_constraintTop_toTopOf="@id/fl_leader_check_request_bg"
-        app:layout_constraintEnd_toEndOf="@id/fl_leader_check_request_bg">
+        app:layout_constraintEnd_toEndOf="@id/fl_leader_check_request_bg"
+        app:layout_constraintStart_toStartOf="@id/fl_leader_check_request_bg"
+        app:layout_constraintTop_toTopOf="@id/fl_leader_check_request_bg">
 
         <TextView
-            android:id="@+id/tv_request_name"
+            android:id="@+id/tv_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="3dp"
             android:fontFamily="@font/suiteregular"
             android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="16dp"
             android:textStyle="bold"
-            tools:text="짱구" />
-
-        <FrameLayout
-            android:id="@+id/fl_ic_request_profile_show_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_request_profile_show_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_leader_profile_show_btn" />
-
-            <TextView
-                android:id="@+id/tv_show_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="3dp"
-                android:fontFamily="@font/suiteregular"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                tools:text="프로필 열람" />
-        </FrameLayout>
+            android:text="받은 요청 목록" />
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/fl_ic_blue_accept_request_btn"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_teammate_profile_list"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toBottomOf="@id/fl_leader_check_request_bg"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="37dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="@id/fl_leader_check_request_bg"
-        app:layout_constraintEnd_toEndOf="@id/fl_leader_check_request_bg">
+        app:layout_constraintEnd_toEndOf="@id/fl_leader_check_request_bg"
+        app:layout_constraintTop_toBottomOf="@id/ll_tv_request_name_profile"
+        tools:listitem="@layout/item_rcv_request">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_blue_accept_request_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_blue_accept_request_btn" />
-
-        <TextView
-            android:id="@+id/tv_accept_request_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/suiteregular"
-            android:textColor="@color/white"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            tools:text="수락하기" />
-    </FrameLayout>
-
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

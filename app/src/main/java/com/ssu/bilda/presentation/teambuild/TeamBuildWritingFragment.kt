@@ -31,6 +31,10 @@ class TeamBuildWritingFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_team_build_writing, container, false)
 
+        // Retrieve subjectCode from arguments and rename it to subjectId
+        val subjectId = arguments?.getLong("subjectCode") ?: 0L
+        Log.d("TeamBuildWriting", "Received subjectId: $subjectId") // Log the received subjectId
+
         val flIcSelectTerm: FrameLayout = view.findViewById(R.id.fl_ic_select_term)
         val tvSelectedDate: TextView = view.findViewById(R.id.tv_selected_date)
 
@@ -106,14 +110,15 @@ class TeamBuildWritingFragment : Fragment() {
     }
 
     private fun sendTeamCreateRequest() {
+        // Retrieve subjectId from arguments
+        val subjectId = arguments?.getInt("subjectCode") ?: 0
+        Log.d("TeamBuildWriting", "Received subjectId: $subjectId") // Log the received subjectId
+
         // UI 요소에서 값을 가져오기
         val teamTitle = view?.findViewById<EditText>(R.id.tv_teambuild_writing_title)?.text.toString()
         val teamInfoMessage = view?.findViewById<EditText>(R.id.tv_teambuild_writing_content)?.text.toString()
         val maxMember = view?.findViewById<Spinner>(R.id.spinner_profile_select_member_num)?.selectedItem.toString().toInt()
         val recruitmentEndDate = view?.findViewById<TextView>(R.id.tv_selected_date)?.text.toString()
-
-        // 실제로는 subjectId 값을 어떻게 가져올지에 대한 로직을 여기에 추가하세요.
-        val subjectId = 3 // 예시로 1로 설정해 두었습니다. 실제로 사용하는 값으로 교체하세요.
 
         // TeamCreateRequest 객체 생성
         val teamCreateRequest = TeamCreateRequest(

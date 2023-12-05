@@ -1,10 +1,12 @@
 package com.ssu.bilda.data.service
 
 import com.ssu.bilda.data.common.PendingUser
+import com.ssu.bilda.data.remote.request.CreateTeamRequest
 import com.ssu.bilda.data.remote.request.TeamCreateRequest
 import com.ssu.bilda.data.remote.response.BaseResponse
 import com.ssu.bilda.data.remote.response.ResponseDtoListTeamsOfSubjectDTO
 import com.ssu.bilda.data.remote.response.TeamCreateResponse
+import com.ssu.bilda.data.remote.response.TeamInfoResponse
 import com.ssu.bilda.data.remote.response.TeamResponse
 import com.ssu.bilda.data.remote.response.TeamResponseDTO
 import retrofit2.Call
@@ -19,7 +21,7 @@ interface TeamService {
 
     // 팀의 정보 가져오기
     @GET("/api/v1/teams/{teamId}")
-    fun getTeamInfo(@Path("teamId") teamId: Long): Call<TeamResponseDTO>
+    fun getTeamInfo(@Path("teamId") teamId: Long): Call<TeamInfoResponse>
 
     // 팀 조인 요청 확인하기
     @GET("/api/v1/teams/{teamId}/recruit")
@@ -39,14 +41,6 @@ interface TeamService {
     fun rejectJoinRequest(
         @Path("teamId") teamId: Long,
         @Path("pendingUserId") pendingUserId: Long
-    ): Call<BaseResponse<Void>>
-
-
-    // 팀에 조인 요청하기
-    @POST("/api/v1/teams/{teamId}/join/{userId}")
-    fun requestToJoinTeam(
-        @Path("teamId") teamId: Long,
-        @Path("userId") userId: Long
     ): Call<BaseResponse<Void>>
 
 
