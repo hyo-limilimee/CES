@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".presentation.home.TeamDetailsBySubjectFragment">
 
@@ -11,14 +11,14 @@
         android:id="@+id/tv_home_subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
         android:layout_marginStart="21dp"
+        android:layout_marginTop="64dp"
         android:fontFamily="@font/suitebold"
-        tools:text="오픈 소스 기반 기초 설계"
         android:textColor="@color/black"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="오픈 소스 기반 기초 설계" />
 
     <TextView
         android:id="@+id/tv_home_subject_guide1"
@@ -35,92 +35,90 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_home_team_members"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="21dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="200dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_rcv_home_team_members"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_home_subject_guide1" />
+        app:layout_constraintTop_toBottomOf="@id/tv_home_subject_guide1"
+        tools:listitem="@layout/item_rcv_home_team_members" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_home_subject_guide2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="21dp"-->
-<!--        android:layout_marginTop="29dp"-->
-<!--        android:fontFamily="@font/suiteregular"-->
-<!--        android:text="함께한 기간"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="20dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/rcv_home_team_members" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_home_team_start_date"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="21dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:fontFamily="@font/suitebold"-->
-<!--        android:text="23.09-"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="20dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tv_home_subject_guide2" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_home_subject_guide2"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="21dp"-->
+    <!--        android:layout_marginTop="29dp"-->
+    <!--        android:fontFamily="@font/suiteregular"-->
+    <!--        android:text="함께한 기간"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="20dp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/rcv_home_team_members" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_home_team_end_date"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:fontFamily="@font/suitebold"-->
-<!--        android:text="23.12"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="20dp"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/tv_home_team_start_date"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tv_home_subject_guide2" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_home_team_start_date"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="21dp"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:fontFamily="@font/suitebold"-->
+    <!--        android:text="23.09-"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="20dp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_home_subject_guide2" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_home_team_period"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginStart="33dp"-->
-<!--        android:fontFamily="@font/suitebold"-->
-<!--        android:text="90"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="20dp"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/tv_home_team_end_date"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tv_home_subject_guide2" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_home_team_end_date"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:fontFamily="@font/suitebold"-->
+    <!--        android:text="23.12"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="20dp"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/tv_home_team_start_date"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_home_subject_guide2" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_home_team_period_unit"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:fontFamily="@font/suitebold"-->
-<!--        android:text="일"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="20dp"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/tv_home_team_period"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tv_home_subject_guide2" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_home_team_period"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:layout_marginStart="33dp"-->
+    <!--        android:fontFamily="@font/suitebold"-->
+    <!--        android:text="90"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="20dp"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/tv_home_team_end_date"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_home_subject_guide2" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_home_team_period_unit"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:fontFamily="@font/suitebold"-->
+    <!--        android:text="일"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="20dp"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/tv_home_team_period"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_home_subject_guide2" />-->
 
     <TextView
         android:id="@+id/tv_home_team_finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:layout_marginEnd="19dp"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        android:focusable="true"
         android:fontFamily="@font/suiteregular"
         android:text="팀플 종료하기"
         android:textColor="@color/black"
         android:textSize="20dp"
-        android:clickable="true"
-        android:focusable="true"
         app:layout_constraintBottom_toTopOf="@+id/bnv_main"
         app:layout_constraintEnd_toEndOf="parent" />
 
