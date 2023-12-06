@@ -1,5 +1,6 @@
 package com.ssu.bilda.presentation.home
 
+import TeamDetailsBySubjectFragment
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -57,25 +58,25 @@ class HomeFragment : Fragment() {
             replaceFragment(SubjectStatusFragment.newInstance(selectedSubject.title))
         }
 
-//         adapter.setOnItemClickListener { selectedSubject ->
-//            val hasTeam = selectedSubject.hasTeam
-//
-//            val fragment = if (hasTeam) {
-//                TeamDetailsBySubjectFragment()
-//            } else {
-//                val subjectCode = selectedSubject.subjectCode // 과목 코드 가져오기
-//                replaceTeamBuildOverviewFragment(subjectCode)
-//                TeamBuildOverviewFragment() // 또는 해당 Fragment의 인스턴스 생성
-//            }
-//
-//            // 백 스택에서 모든 기존 프래그먼트를 제거하고 새로운 프래그먼트를 새로운 스택에 추가
-//            parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-//            parentFragmentManager.beginTransaction()
-//                .replace(R.id.home, fragment) // 기존 홈 프래그먼트를 새로운 프래그먼트로 대체
-//                .addToBackStack(null)
-//                .commit()
-//
-//        }
+         adapter.setOnItemClickListener { Subject ->
+            val hasTeam = Subject.hasTeam
+
+            val fragment = if (hasTeam) {
+                TeamDetailsBySubjectFragment()
+            } else {
+                val subjectCode = Subject.subjectCode // 과목 코드 가져오기
+                replaceTeamBuildOverviewFragment(subjectCode)
+                TeamBuildOverviewFragment() // 또는 해당 Fragment의 인스턴스 생성
+            }
+
+            // 백 스택에서 모든 기존 프래그먼트를 제거하고 새로운 프래그먼트를 새로운 스택에 추가
+            parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.home, fragment) // 기존 홈 프래그먼트를 새로운 프래그먼트로 대체
+                .addToBackStack(null)
+                .commit()
+
+        }
 
         return view
     }

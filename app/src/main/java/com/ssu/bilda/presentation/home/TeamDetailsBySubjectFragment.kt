@@ -1,3 +1,10 @@
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.ssu.bilda.databinding.FragmentTeamDetailsBySubjectBinding
+
 //package com.ssu.bilda.presentation.home
 //
 //import android.os.Bundle
@@ -16,19 +23,19 @@
 //import retrofit2.Callback
 //import retrofit2.Response
 //
-//class TeamDetailsBySubjectFragment : Fragment() {
+class TeamDetailsBySubjectFragment : Fragment() {
 //
 //    private val retrofit = RetrofitImpl.authenticatedRetrofit // 토큰이 필요한 Retrofit 객체
-//    private var _binding: FragmentTeamDetailsBySubjectBinding? = null
-//    private val binding get() = _binding!! // 뷰 바인딩 인스턴스를 가져옵니다.
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        _binding = FragmentTeamDetailsBySubjectBinding.inflate(inflater, container, false)
-//        return binding.root
-//    }
+    private var _binding: FragmentTeamDetailsBySubjectBinding? = null
+    private val binding get() = _binding!! // 뷰 바인딩 인스턴스를 가져옵니다.
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentTeamDetailsBySubjectBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 //
 //    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 //        super.onViewCreated(view, savedInstanceState)
@@ -75,4 +82,4 @@
 //        super.onDestroyView()
 //        _binding = null // 뷰 바인딩 인스턴스를 정리합니다.
 //    }
-//}
+}
