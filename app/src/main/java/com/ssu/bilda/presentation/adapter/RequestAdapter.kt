@@ -38,7 +38,7 @@ class RequestAdapter(private val teamId: Long, private val context: Context) : R
         val userData = requestList[position]
 
         // TextView에 사용자 이름 설정
-        holder.requestNameTextView.text = userData.userName
+        holder.requestNameTextView.text = userData.nickName
 
         // Reject 버튼 클릭 처리
         holder.rejectButton.setOnClickListener {
