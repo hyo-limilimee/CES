@@ -100,14 +100,6 @@ class MyInfoFragment : Fragment() {
             showLogoutDialog()
         }
 
-        val withdrawalButton: FrameLayout = rootView.findViewById(R.id.fl_tv_withdrawal)
-
-        // "저장" 버튼에 클릭 리스너 설정
-        withdrawalButton.setOnClickListener {
-            // "저장" 버튼을 클릭했을 때 대화 상자 표시
-            showWithdrawalDialog()
-        }
-
         rootView.findViewById<View>(R.id.fl_ic_my_info_pw_change_btn).setOnClickListener {
             // ChangePassWordActivity로 전환하는 코드
             val intent = Intent(activity, ChangePasswordActivity::class.java)
