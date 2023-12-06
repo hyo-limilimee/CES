@@ -1,6 +1,5 @@
 package com.ssu.bilda.presentation.home
 
-import TeamDetailsBySubjectFragment
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -52,13 +51,8 @@ class HomeFragment : Fragment() {
         // Retrofit을 사용하여 과목 가져오기
         fetchSubjects()
 
-        // SubjectAdapter의 클릭 리스너 설정
-        adapter.setOnItemClickListener { selectedSubject ->
-            // 아이템이 클릭되었을 때 수행할 동작 구현
-            replaceFragment(SubjectStatusFragment.newInstance(selectedSubject.title))
-        }
 
-         adapter.setOnItemClickListener { Subject ->
+        adapter.setOnItemClickListener { Subject ->
             val hasTeam = Subject.hasTeam
 
             val fragment = if (hasTeam) {
@@ -76,6 +70,11 @@ class HomeFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
 
+        }
+
+        adapter.setOnItemClickListener { selectedSubject ->
+            // 아이템이 클릭되었을 때 수행할 동작 구현
+            replaceFragment(TeamDetailsBySubjectFragment.newInstance(selectedSubject.title))
         }
 
         return view

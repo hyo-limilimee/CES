@@ -114,5 +114,4 @@ class SubjectStatusFragment : Fragment() {
             .replace(R.id.fl_content, fragment)
             .commit()
     }
-
 }

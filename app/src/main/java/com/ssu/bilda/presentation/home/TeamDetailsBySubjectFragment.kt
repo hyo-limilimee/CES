@@ -1,85 +1,121 @@
+package com.ssu.bilda.presentation.home
+
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.ssu.bilda.databinding.FragmentTeamDetailsBySubjectBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.ssu.bilda.R
+import com.ssu.bilda.data.remote.RetrofitImpl
+import com.ssu.bilda.data.remote.UserSharedPreferences
+import com.ssu.bilda.data.service.EvaluationService
+import com.ssu.bilda.presentation.adapter.HomeTeamMemberAdapter
+import com.ssu.bilda.presentation.evaluate.TeammateEvalutionFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-//package com.ssu.bilda.presentation.home
-//
-//import android.os.Bundle
-//import android.view.LayoutInflater
-//import android.view.View
-//import android.view.ViewGroup
-//import androidx.fragment.app.Fragment
-//import androidx.recyclerview.widget.LinearLayoutManager
-//import com.ssu.bilda.data.remote.RetrofitImpl
-//import com.ssu.bilda.data.remote.response.TeamInfoResponse
-//import com.ssu.bilda.data.remote.response.TeamResponseDTO
-//import com.ssu.bilda.data.service.TeamService
-//import com.ssu.bilda.databinding.FragmentTeamDetailsBySubjectBinding // 뷰 바인딩을 가져옵니다.
-//import com.ssu.bilda.presentation.adapter.TeamMembersAdapter
-//import retrofit2.Call
-//import retrofit2.Callback
-//import retrofit2.Response
-//
+
 class TeamDetailsBySubjectFragment : Fragment() {
-//
-//    private val retrofit = RetrofitImpl.authenticatedRetrofit // 토큰이 필요한 Retrofit 객체
-    private var _binding: FragmentTeamDetailsBySubjectBinding? = null
-    private val binding get() = _binding!! // 뷰 바인딩 인스턴스를 가져옵니다.
+    private lateinit var teammateNameAdapter: HomeTeamMemberAdapter
+
+    companion object {
+        fun newInstance(title: String): TeamDetailsBySubjectFragment {
+            val fragment = TeamDetailsBySubjectFragment()
+            val args = Bundle()
+            args.putString("title", title)
+
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentTeamDetailsBySubjectBinding.inflate(inflater, container, false)
-        return binding.root
+        val view = inflater.inflate(R.layout.fragment_team_details_by_subject, container, false)
+        val title = arguments?.getString("title", "") ?: ""
+
+
+        val recyclerView: RecyclerView = view.findViewById(R.id.rcv_home_team_members)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        teammateNameAdapter = HomeTeamMemberAdapter(requireContext(), emptyList())
+        recyclerView.adapter = teammateNameAdapter
+
+        fetchTeammateNames(title)
+
+        val tvSubjectName: TextView = view.findViewById(R.id.tv_home_subject)
+        tvSubjectName.text = title
+
+        teammateNameAdapter.setOnItemClickListener { selectedMember ->
+            val bundle = Bundle()
+            bundle.putInt("selectedMemberId", selectedMember.userId)
+            bundle.putString("selectedMemberName", selectedMember.name)
+
+            val teammateEvaluationFragment = TeammateEvalutionFragment()
+            teammateEvaluationFragment.arguments = bundle  // 번들을 프래그먼트에 추가
+            replaceFragment(teammateEvaluationFragment, bundle)
+        }
+        return view
     }
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        val teamId = "YOUR_TEAM_ID_HERE" // 팀 ID 가져오기
-//        fetchTeamInfo(teamId.toLong())
-//    }
-//
-//    private fun fetchTeamInfo(teamId: Long) {
-//        val apiService = retrofit.create(TeamService::class.java)
-//        apiService.getTeamInfo(teamId).enqueue(object : Callback<TeamInfoResponse> {
-//            override fun onResponse(call: Call<TeamResponseDTO>, response: Response<TeamInfo>) {
-//                if (response.isSuccessful) {
-//                    val teamResponse = response.body()
-//                    teamResponse?.let {
-//                        updateRecyclerView(it)
-//                    }
-//                } else {
-//                    // Handle error cases
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<TeamResponseDTO>, t: Throwable) {
-//                // Handle failure cases
-//            }
-//        })
-//    }
-//
-//    private fun updateRecyclerView(teamResponse: TeamResponseDTO) {
-//        val members = mutableListOf(teamResponse.leaderName to "Leader") // 리더 추가
-//
-//        teamResponse.members.forEach {
-//            members.add(it.name to "Member")
-//        }
-//
-//        val adapter = TeamMembersAdapter(members)
-//        binding.rcvHomeTeamMembers.layoutManager = LinearLayoutManager(requireContext())
-//        binding.rcvHomeTeamMembers.adapter = adapter
-//
-//        binding.tvHomeSubject.text = teamResponse.subjectTitle // subjectTitle 반영
-//    }
-//
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null // 뷰 바인딩 인스턴스를 정리합니다.
-//    }
+
+    private fun fetchTeammateNames(title: String) {
+        Log.d("TeamDetailsBySubjectFragment", "Fetching teammates for subject: $title") // 주제 확인 로그 추가
+
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                val response = RetrofitImpl.authenticatedRetrofit
+                    .create(EvaluationService::class.java)
+                    .getUserTeams()
+
+                Log.d("TeamDetailsBySubjectFragment", "Raw Response: ${response.raw()}")
+
+                if (response.isSuccessful) {
+                    val teamsWithMembers = response.body()?.result
+                    teamsWithMembers?.let { teams ->
+                        // 일치하는 팀 찾기
+                        val selectedTeams = teams.filter { team ->
+                            team.subjectTitle == title
+                        }
+
+                        Log.d("TeamDetailsBySubjectFragment", "Selected Teams: $selectedTeams")
+
+                        if (selectedTeams.isNotEmpty()) {
+                            // 여러 팀이 일치할 수 있으므로 첫 번째 팀을 선택
+                            val selectedTeam = selectedTeams.first()
+
+                            // 선택된 팀의 멤버들을 리사이클러뷰에 추가
+                            val teamMembers = selectedTeam.members
+                            Log.d("TeamDetailsBySubjectFragment", "Selected Team: $selectedTeam")
+                            Log.d("TeamDetailsBySubjectFragment", "Team Members: $teamMembers")
+
+                            teammateNameAdapter.updateData(teamMembers)
+
+                            val responseBody = response.body()?.toString()
+                            Log.d("TeamDetailsBySubjectFragment", "Response Body: $responseBody")
+                        } else {
+                            Log.d("TeamDetailsBySubjectFragment", "No teams found for subject: $title")
+                        }
+                    }
+                } else {
+                    Log.e("TeamDetailsBySubjectFragment", "Error: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                Log.e("TeamDetailsBySubjectFragment", "Exception: ${e.message}", e)
+                teammateNameAdapter.updateData(emptyList())
+            }
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment, bundle: Bundle?) {
+        fragment.arguments = bundle
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fl_content, fragment)
+            .commit()
+    }
 }
