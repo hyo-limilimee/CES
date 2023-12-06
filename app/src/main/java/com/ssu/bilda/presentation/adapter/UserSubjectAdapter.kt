@@ -39,6 +39,15 @@ class UserSubjectAdapter(private var subjects: List<SubjectWithTeamStatus>) :
     inner class SubjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textView: TextView = itemView.findViewById(R.id.tv_item_home_subject)
 
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClick?.invoke(subjects[position])
+                }
+            }
+        }
+
         fun bind(subject: SubjectWithTeamStatus) {
             textView.text = subject.title
 
