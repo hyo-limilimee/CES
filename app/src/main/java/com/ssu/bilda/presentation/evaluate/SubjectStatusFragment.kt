@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
@@ -14,6 +15,7 @@ import com.ssu.bilda.data.common.EvaluationTeam
 import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.data.remote.UserSharedPreferences
 import com.ssu.bilda.data.service.EvaluationService
+import com.ssu.bilda.data.service.EvaluationStatusService
 import com.ssu.bilda.presentation.adapter.TeammateNameAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -54,19 +56,56 @@ class SubjectStatusFragment : Fragment() {
 
         fetchTeammateNames(title)
 
-
-        teammateNameAdapter.setOnItemClickListener { selectedMember ->
-            val bundle = Bundle()
-            bundle.putInt("selectedMemberId", selectedMember.userId)
-            bundle.putString("selectedMemberName", selectedMember.name)
-
-            val teammateEvaluationFragment = TeammateEvalutionFragment()
-            teammateEvaluationFragment.arguments = bundle  // 번들을 프래그먼트에 추가
-            replaceFragment(teammateEvaluationFragment, bundle)
-        }
         return view
     }
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        teammateNameAdapter.setOnItemClickListener { selectedMember ->
+            Log.d(
+                "SubjectStatusFragment",
+                "Selected Member ID: ${selectedMember.userId}, Name: ${selectedMember.name}"
+            )
+            GlobalScope.launch(Dispatchers.Main) {
+                try {
+                    val response = RetrofitImpl.authenticatedRetrofit
+                        .create(EvaluationStatusService::class.java)
+                        .getEvaluationStatus(currentTeamId.toLong())
+
+                    if (response.isNotEmpty()) {
+                        val evaluationStatus = response[0]
+                        Log.d(
+                            "SubjectStatusFragment",
+                            "Has Evaluated: ${evaluationStatus.hasEvaluated}"
+                        )
+                        if (evaluationStatus.hasEvaluated) {
+                            // 토스트 메시지 보여주기
+                            Toast.makeText(requireContext(), "이미 평가한 사람입니다", Toast.LENGTH_SHORT)
+                                .show()
+                        } else {
+                            // 평가되지 않은 경우, 번들 만들어서 Fragment 전환
+                            val bundle = Bundle()
+                            bundle.putInt("selectedMemberId", selectedMember.userId)
+                            bundle.putString("selectedMemberName", selectedMember.name)
+
+                            val teammateEvaluationFragment = TeammateEvalutionFragment()
+                            teammateEvaluationFragment.arguments = bundle
+                            replaceFragment(teammateEvaluationFragment, bundle)
+                        }
+                    }
+                } catch (e: Exception) {
+                    // 예외 처리
+                    Log.e("SubjectStatusFragment", "예외: ${e.message}", e)
+                    Toast.makeText(requireContext(), "다시 시도 해주세요", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+
+    private var currentTeamId: Int = 0 // 팀아이디 초기화
     private fun fetchTeammateNames(title: String) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
@@ -92,6 +131,8 @@ class SubjectStatusFragment : Fragment() {
                             val teamMembers = selectedTeam.members
                             teammateNameAdapter.updateData(teamMembers)
 
+                            currentTeamId = selectedTeam.teamId
+
                             val responseBody = response.body()?.toString()
                             Log.d("SubjectStatusFragment", "Response Body: $responseBody")
                         } else {
@@ -114,4 +155,5 @@ class SubjectStatusFragment : Fragment() {
             .replace(R.id.fl_content, fragment)
             .commit()
     }
+
 }
