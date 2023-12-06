@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.content.Context
+import android.os.Bundle
 import android.widget.Toast
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
 import com.ssu.bilda.data.common.UserData
@@ -16,6 +18,7 @@ import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.data.remote.response.BaseResponse
 import com.ssu.bilda.data.service.TeamAcceptRequestService
 import com.ssu.bilda.data.service.TeamRejectRequestService
+import com.ssu.bilda.presentation.teambuild.ProfileReferFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,7 +40,7 @@ class RequestAdapter(private val teamId: Long, private val context: Context) : R
     override fun onBindViewHolder(holder: RequestViewHolder, position: Int) {
         val userData = requestList[position]
 
-        // TextView에 사용자 이름 설정
+        // TextVie에 닉네임 설정
         holder.requestNameTextView.text = userData.nickName
 
         // Reject 버튼 클릭 처리
@@ -52,6 +55,26 @@ class RequestAdapter(private val teamId: Long, private val context: Context) : R
             val userId = userData.userId
             acceptJoinRequest(teamId, userId)
         }
+
+        // "프로필 열람" 버튼에 대한 OnClickListener 설정
+        holder.flProfileShowBtn.setOnClickListener {
+            // ProfileReferFragment를 열고 userId를 넘김
+            val fragmentManager = (holder.itemView.context as FragmentActivity).supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+
+            // ProfileReferFragment의 실제 클래스 이름으로 교체
+            val profileReferFragment = ProfileReferFragment()
+
+            // userId를 인자로 전달 (userId를 String으로 변환)
+            val bundle = Bundle()
+            bundle.putString("userId", userData.userId.toString())
+            profileReferFragment.arguments = bundle
+
+            // Fragment 트랜잭션 수행
+            fragmentTransaction.replace(R.id.fl_content, profileReferFragment)
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     override fun getItemCount(): Int {
@@ -62,6 +85,7 @@ class RequestAdapter(private val teamId: Long, private val context: Context) : R
         val requestNameTextView: TextView = itemView.findViewById(R.id.tv_request_name)
         val rejectButton: FrameLayout = itemView.findViewById(R.id.fl_reject_btn)
         val acceptButton: FrameLayout = itemView.findViewById(R.id.fl_accept_btn)
+        val flProfileShowBtn: FrameLayout = itemView.findViewById(R.id.fl_ic_profile_show_btn)
     }
 
     private fun rejectJoinRequest(teamId: Long, userId: Long) {
