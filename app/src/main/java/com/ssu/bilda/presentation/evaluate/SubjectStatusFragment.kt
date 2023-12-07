@@ -60,8 +60,10 @@ class SubjectStatusFragment : Fragment() {
             bundle.putInt("selectedMemberId", selectedMember.userId)
             bundle.putString("selectedMemberName", selectedMember.name)
 
+
             val teammateEvaluationFragment = TeammateEvalutionFragment()
             teammateEvaluationFragment.arguments = bundle  // 번들을 프래그먼트에 추가
+
             replaceFragment(teammateEvaluationFragment, bundle)
         }
         return view
@@ -88,12 +90,16 @@ class SubjectStatusFragment : Fragment() {
                             // 여러 팀이 일치할 수 있으므로 첫 번째 팀을 선택
                             val selectedTeam = selectedTeams.first()
 
+                            val teamId = selectedTeam.teamId
+                            Log.d("SubjectStatusFragment", "teamId: $teamId")
+
                             // 선택된 팀의 멤버들을 리사이클러뷰에 추가
                             val teamMembers = selectedTeam.members
                             teammateNameAdapter.updateData(teamMembers)
 
                             val responseBody = response.body()?.toString()
                             Log.d("SubjectStatusFragment", "Response Body: $responseBody")
+
                         } else {
                             Log.d("SubjectStatusFragment", "No teams found for subject: $title")
                         }

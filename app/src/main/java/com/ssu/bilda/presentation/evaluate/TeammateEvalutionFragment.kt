@@ -44,14 +44,21 @@ class TeammateEvalutionFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_teammate_evalution, container, false)
         val selectedMemberName = arguments?.getString("selectedMemberName", "")
 
+
         val selectedMemberId = arguments?.getInt("selectedMemberId", 0) ?: 0
+        val teamId = arguments?.getInt("teamId", 0) ?: 0 // Retrieve teamId
+
         Log.d("TeammateEvalutionFragment", "받은 userId: $selectedMemberId")
+        Log.d("TeammateEvalutionFragment", "받은 teamId: $teamId")
+
 
         // Find the TextView
         val tvTeammateEvaluationName: TextView = rootView.findViewById(R.id.tv_teammate_evaluation_name)
 
         // Set the selected teammate's name to the TextView
         tvTeammateEvaluationName.text = selectedMemberName
+
+
 
 
         val rightArrowBtn: FrameLayout =
