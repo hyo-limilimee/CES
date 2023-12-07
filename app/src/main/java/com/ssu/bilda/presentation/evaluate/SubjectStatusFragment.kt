@@ -22,6 +22,7 @@ import kotlinx.coroutines.launch
 class SubjectStatusFragment : Fragment() {
 
     private lateinit var teammateNameAdapter: TeammateNameAdapter
+    private var teamsWithMembers: List<EvaluationTeam>? = null
 
     companion object {
         fun newInstance(title: String): SubjectStatusFragment {
@@ -55,15 +56,14 @@ class SubjectStatusFragment : Fragment() {
         fetchTeammateNames(title)
 
 
-        teammateNameAdapter.setOnItemClickListener { selectedMember ->
-            val bundle = Bundle()
-            bundle.putInt("selectedMemberId", selectedMember.userId)
-            bundle.putString("selectedMemberName", selectedMember.name)
-
+        teammateNameAdapter.setOnItemClickListener { selectedMember, teamId ->
+            val bundle = Bundle().apply {
+                putInt("selectedMemberId", selectedMember.userId)
+                putString("selectedMemberName", selectedMember.name)
+                putInt("teamId", teamId)
+            }
 
             val teammateEvaluationFragment = TeammateEvalutionFragment()
-            teammateEvaluationFragment.arguments = bundle  // 번들을 프래그먼트에 추가
-
             replaceFragment(teammateEvaluationFragment, bundle)
         }
         return view
@@ -81,27 +81,32 @@ class SubjectStatusFragment : Fragment() {
                 if (response.isSuccessful) {
                     val teamsWithMembers = response.body()?.result
                     teamsWithMembers?.let { teams ->
-                        // 일치하는 팀 찾기
-                        val selectedTeams = teams.filter { team ->
-                            team.subjectTitle == title
-                        }
-
-                        if (selectedTeams.isNotEmpty()) {
-                            // 여러 팀이 일치할 수 있으므로 첫 번째 팀을 선택
-                            val selectedTeam = selectedTeams.first()
-
-                            val teamId = selectedTeam.teamId
-                            Log.d("SubjectStatusFragment", "teamId: $teamId")
-
-                            // 선택된 팀의 멤버들을 리사이클러뷰에 추가
-                            val teamMembers = selectedTeam.members
-                            teammateNameAdapter.updateData(teamMembers)
-
-                            val responseBody = response.body()?.toString()
-                            Log.d("SubjectStatusFragment", "Response Body: $responseBody")
-
+                        if (teams.isEmpty()) {
+                            Log.d("SubjectStatusFragment", "No teams found.")
                         } else {
-                            Log.d("SubjectStatusFragment", "No teams found for subject: $title")
+                            // 일치하는 팀 찾기
+                            val selectedTeams = teams.filter { team ->
+                                team.subjectTitle == title
+                            }
+
+                            Log.d("SubjectStatusFragment", "Selected Teams: $selectedTeams")
+
+                            if (selectedTeams.isNotEmpty()) {
+                                // 여러 팀이 일치할 수 있으므로 첫 번째 팀을 선택
+                                val selectedTeam = selectedTeams.first()
+
+                                val teamId = selectedTeam.teamId
+                                Log.d("SubjectStatusFragment", "teamId: $teamId")
+
+                                // 선택된 팀의 멤버들을 리사이클러뷰에 추가
+                                val teamMembers = selectedTeam.members
+                                teammateNameAdapter.updateData(teamMembers, teamId)
+
+                                val responseBody = response.body()?.toString()
+                                Log.d("SubjectStatusFragment", "Response Body: $responseBody")
+                            } else {
+                                Log.d("SubjectStatusFragment", "No teams found for subject: $title")
+                            }
                         }
                     }
                 } else {
@@ -109,13 +114,31 @@ class SubjectStatusFragment : Fragment() {
                 }
             } catch (e: Exception) {
                 Log.e("SubjectStatusFragment", "Exception: ${e.message}", e)
-                teammateNameAdapter.updateData(emptyList())
+                teammateNameAdapter.updateData(emptyList(), -1) // Pass the default teamId, you can change it accordingly
             }
         }
     }
 
+
+    private fun findTeamIdByMember(teams: List<EvaluationTeam>?, memberId: Int): Int {
+        teams?.let { teamsList ->
+            for (team in teamsList) {
+                for (member in team.members) {
+                    if (member.userId == memberId) {
+                        return team.teamId
+                    }
+                }
+            }
+        }
+        return -1
+    }
+
+
     private fun replaceFragment(fragment: Fragment, bundle: Bundle?) {
-        fragment.arguments = bundle
+        bundle?.let {
+            fragment.arguments = it
+        }
+
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fl_content, fragment)
             .commit()

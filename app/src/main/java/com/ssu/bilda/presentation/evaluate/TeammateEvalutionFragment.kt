@@ -46,7 +46,7 @@ class TeammateEvalutionFragment : Fragment() {
 
 
         val selectedMemberId = arguments?.getInt("selectedMemberId", 0) ?: 0
-        val teamId = arguments?.getInt("teamId", 0) ?: 0 // Retrieve teamId
+        val teamId = arguments?.getInt("teamId", 0) ?: 0
 
         Log.d("TeammateEvalutionFragment", "받은 userId: $selectedMemberId")
         Log.d("TeammateEvalutionFragment", "받은 teamId: $teamId")
