@@ -8,7 +8,6 @@
     <title>영화 목록 및 트레일러</title>
     <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./resources/css/movieStyle.css" />
-    <link rel="stylesheet" href="./resources/css/movieStyle.css" />
     <link rel="stylesheet" href="./resources/css/MovieList.css" />
     
 </head>
@@ -41,37 +40,83 @@
     }
 
     .movie-rank span {
+    	/* margin-bottom: 5px; */
         font-size: 1.5rem;
-        margin-bottom: 5px;
+        display: inline-block;
+        border-radius : 50%;
+        width : 30px;
+        line-height : 30px;
+        hegiht : auto;
+        text-align : center;
+        background-color : #ff0000;
     }
 
-    .movie-poster img {
-        width: 150px; /* 원하는 이미지 폭 설정 */
-        height: auto;
+    
+    .card-container h3{
+    	text-align : center;
     }
+    
+    .card-container p{
+    	text-align : center;
+    	
+    }
+   
+    .movie-poster-rank img {
+        width: 100%; /* 원하는 이미지 폭 설정 */
+        height: 150px; /* 원하는 이미지 높이 설정 */
+        object-fit: cover; /* 이미지 비율 유지 및 빈 공간 없이 채우기 */
+        margin-bottom: 10px;
+        font-size : 20;
+        
+    }
+    
+    .movie-poster img{
+    	width : 150px;
+    	height : auto;
+    }
+    
+    footer{
+    position : fixed;
+    bottom : 0;
+    left : 0;
+    }
+    
+    .btn-red{
+    background-color : #008000;
+    font-size: 0.8rem;
+    }
+    
+ 	.jumbotron {
+        margin-bottom: 10px; /* 여백 제거 */
+    }
+
 </style>
+    
+    
 <body>	
 <%
 	HttpSession session2 = request.getSession();
 	String username = (String)session2.getAttribute("username");
 %>
+
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
   <a class="navbar-brand" href="movies.jsp">Web시네마</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-    
+    <ul class="navbar-nav mr-auto"> <!-- Add mr-auto class here -->
        <li class="nav-item">
-        <a class="nav-link" href="./cart.jsp">장바구니</a>
+        <a class="nav-link" href="./cart.jsp">예매내역</a>
        </li>
        <li class="nav-item">
         <a class="nav-link" href="./addMovie.jsp">영화 등록</a>
        </li>
+    </ul>
+    <ul class="navbar-nav"> <!-- Separate ul for login and register -->
 		<%
 			if (username != null) {
-				out.print("<a class=\"navbar-brand\" href=\"./welcome.jsp\">" + username + "</a>");
+				out.print("<a class=\"navbar-brand\" href=\"./orderConfirmation.jsp\">" + username + "</a>");
 			} else {
 		%>
       <li class="nav-item">
@@ -86,6 +131,9 @@
     </ul>
   </div>  
 </nav>
+
+
+
 <div class="jumbotron">
     <h3 class="title"><%= "예매율 순위" %></h3>
     </div>
@@ -125,36 +173,33 @@
 %>
 
 <div class="container">
-    <div class="row" align="center">
+    <div class="row">
         <%
-            for (int i = 0; i < listOfMovies.size(); i++) {
-                Movie movie = listOfMovies.get(i);
+            int count = 0;
+            for (Movie movie : listOfMovies) {
         %>
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
             <div class="card-container">
                 <div class="movie-poster-rank">
-                    <img src="resources/images/<%= movie.getFilename() %>" style="width: 100%">
+                    <img src="resources/images/<%= movie.getFilename() %>" class="img-fluid" >
                 </div>
                 <h3><%= movie.getTitle() %></h3>
-							<%
-								int subLen = 20;
-								String desc = movie.getDescription();
-								
-								if (desc.length() > subLen) {
-									desc = desc.substring(0, subLen);
-									desc += "...";
-								}
-								
-							%>
-                <p style="white-space: no-wrap; overflow: hidden; text-overflow: ellipsis;"><%= desc %></p>
-                <p><a href="./movie.jsp?id=<%=movie.getMovieId()%>" class="btn btn-secondary btn-red" role="button"> 상세 정보 &raquo;</a>
+               
+                <p style="white-space: no-wrap; overflow: hidden; text-overflow: ellipsis;"></p>
+                <p><a href="./movie.jsp?id=<%= movie.getMovieId() %>" class="btn btn-secondary btn-red" role="button"> 상세 정보 &raquo;</a></p>
             </div>
         </div>
         <%
+            count++;
+            // 한 줄에 3개씩 이미지를 출력하고 줄바꿈
+            if (count % 3 == 0) {
+        %>
+    </div><div class="row">
+        <%
             }
+        }
         %>
     </div>
-    <hr>
 </div>
 
 <div class="container">
