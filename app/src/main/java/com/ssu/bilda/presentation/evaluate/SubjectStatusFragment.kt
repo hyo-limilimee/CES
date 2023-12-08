@@ -14,6 +14,7 @@ import com.ssu.bilda.data.common.EvaluationTeam
 import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.data.remote.UserSharedPreferences
 import com.ssu.bilda.data.service.EvaluationService
+import com.ssu.bilda.data.service.EvaluationStatusService
 import com.ssu.bilda.presentation.adapter.TeammateNameAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -22,7 +23,6 @@ import kotlinx.coroutines.launch
 class SubjectStatusFragment : Fragment() {
 
     private lateinit var teammateNameAdapter: TeammateNameAdapter
-    private var teamsWithMembers: List<EvaluationTeam>? = null
 
     companion object {
         fun newInstance(title: String): SubjectStatusFragment {
@@ -56,14 +56,13 @@ class SubjectStatusFragment : Fragment() {
         fetchTeammateNames(title)
 
 
-        teammateNameAdapter.setOnItemClickListener { selectedMember, teamId ->
-            val bundle = Bundle().apply {
-                putInt("selectedMemberId", selectedMember.userId)
-                putString("selectedMemberName", selectedMember.name)
-                putInt("teamId", teamId)
-            }
+        teammateNameAdapter.setOnItemClickListener { selectedMember ->
+            val bundle = Bundle()
+            bundle.putInt("selectedMemberId", selectedMember.userId)
+            bundle.putString("selectedMemberName", selectedMember.name)
 
             val teammateEvaluationFragment = TeammateEvalutionFragment()
+            teammateEvaluationFragment.arguments = bundle  // 번들을 프래그먼트에 추가
             replaceFragment(teammateEvaluationFragment, bundle)
         }
         return view
