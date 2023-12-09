@@ -74,7 +74,7 @@ class HomeFragment : Fragment() {
 
         adapter.setOnItemClickListener { selectedSubject ->
             // 아이템이 클릭되었을 때 수행할 동작 구현
-            replaceFragment(TeamDetailsBySubjectFragment.newInstance(selectedSubject.title))
+            replaceFragment(SubjectStatusFragment.newInstance(selectedSubject.title))
         }
 
         return view
