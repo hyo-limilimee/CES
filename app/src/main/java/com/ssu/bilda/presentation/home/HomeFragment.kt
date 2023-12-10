@@ -175,14 +175,4 @@ class HomeFragment : Fragment() {
 //            .commit()
 //    }
 
-    private fun replaceTeamBuildOverviewFragment(subjectCode: Long) {
-        val teamBuildOverviewFragment = TeamBuildOverviewFragment()
-        val bundle = Bundle()
-        bundle.putLong("subjectCode", subjectCode)
-        teamBuildOverviewFragment.arguments = bundle
-
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.home, teamBuildOverviewFragment)
-        transaction.commitAllowingStateLoss()
-    }
 }

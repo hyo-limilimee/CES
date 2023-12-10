@@ -48,8 +48,7 @@ class TeamBuildWritingFragment : Fragment() {
 
         // "작성완료" 버튼에 클릭 리스너 설정
         doneBtn.setOnClickListener {
-
-            showDoneDialog()
+            showDoneDialog(subjectId)
         }
 
         // spinner 데이터
@@ -90,14 +89,14 @@ class TeamBuildWritingFragment : Fragment() {
         datePickerDialog.show()
     }
 
-    private fun showDoneDialog() {
+    private fun showDoneDialog(subjectId: Int) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("") // 대화 상자의 제목 설정
         builder.setMessage("한 번 작성한 글은 수정이 불가능합니다. 작성 완료하시겠습니까?") // 메시지 설정
 
         builder.setPositiveButton("네") { dialog, which ->
             // "저장" 버튼 클릭 처리 (저장 동작)
-            sendTeamCreateRequest() // 팀 생성 요청 보내는 함수 호출
+            sendTeamCreateRequest(subjectId) // 팀 생성 요청 보내는 함수 호출
             dialog.dismiss() // 대화 상자 닫기
         }
 
@@ -111,11 +110,7 @@ class TeamBuildWritingFragment : Fragment() {
         dialog.show()
     }
 
-    private fun sendTeamCreateRequest() {
-        // Retrieve subjectId from arguments
-        val subjectId = arguments?.getInt("subjectCode") ?: 0
-        Log.d("TeamBuildWriting", "Received subjectId: $subjectId") // Log the received subjectId
-
+    private fun sendTeamCreateRequest(subjectId: Int) {
         // UI 요소에서 값을 가져오기
         val teamTitle = view?.findViewById<EditText>(R.id.tv_teambuild_writing_title)?.text.toString()
         val teamInfoMessage = view?.findViewById<EditText>(R.id.tv_teambuild_writing_content)?.text.toString()
