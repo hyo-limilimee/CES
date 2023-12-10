@@ -31,8 +31,10 @@ class TeamBuildWritingFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_team_build_writing, container, false)
 
-        val subjectId = arguments?.getLong("subjectCode") ?: 0
-        Log.d("TeamBuildWriting", "Received subjectId: $subjectId") // Log the received subjectId
+        val subjectCode = arguments?.getLong("subjectCode") ?: 0
+        Log.d("TeamBuildWriting", "Received subjectId: $subjectCode")
+        val subjectId = subjectCode.toInt()
+        Log.d("TeamBuildWriting", "Converted subjectId to Int: $subjectId")
 
 
         val flIcSelectTerm: FrameLayout = view.findViewById(R.id.fl_ic_select_term)
@@ -128,6 +130,8 @@ class TeamBuildWritingFragment : Fragment() {
             maxMember = maxMember,
             teamInfoMessage = teamInfoMessage
         )
+
+        Log.d("TeamBuildWriting", "Request: $teamCreateRequest")
 
         // Retrofit을 사용하여 서버로 팀 생성 요청 보내기
         GlobalScope.launch(Dispatchers.IO) {
