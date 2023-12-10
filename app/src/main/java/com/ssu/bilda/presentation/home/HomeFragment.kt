@@ -31,6 +31,7 @@ import retrofit2.Response
 class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: UserSubjectAdapter
+    private var subjectCode: Long = 0 //과목 코드 기본값
 
     private val evaluationService: EvaluationService by lazy {
         RetrofitImpl.authenticatedRetrofit.create(EvaluationService::class.java)
@@ -166,11 +167,11 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fl_content, fragment)
-            .commit()
-    }
+//    private fun replaceFragment(fragment: Fragment) {
+//        requireActivity().supportFragmentManager.beginTransaction()
+//            .replace(R.id.fl_content, fragment)
+//            .commit()
+//    }
 
     private fun replaceTeamBuildOverviewFragment(subjectCode: Long) {
         val teamBuildOverviewFragment = TeamBuildOverviewFragment()
