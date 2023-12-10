@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
@@ -14,10 +15,12 @@ import com.ssu.bilda.data.common.EvaluationTeam
 import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.data.remote.UserSharedPreferences
 import com.ssu.bilda.data.service.EvaluationService
+import com.ssu.bilda.data.service.EvaluationStatusService
 import com.ssu.bilda.presentation.adapter.TeammateNameAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SubjectStatusFragment : Fragment() {
 
@@ -67,6 +70,62 @@ class SubjectStatusFragment : Fragment() {
             replaceFragment(teammateEvaluationFragment, bundle)
         }
         return view
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        teammateNameAdapter.setOnItemClickListener { selectedMember, teamId ->
+            Log.d(
+                "SubjectStatusFragment",
+                "Selected Member ID: ${selectedMember.userId}, Name: ${selectedMember.name}"
+            )
+            GlobalScope.launch(Dispatchers.Main) {
+                try {
+                    val response = RetrofitImpl.authenticatedRetrofit
+                        .create(EvaluationStatusService::class.java)
+                        .getEvaluationStatus(teamId.toLong())
+
+                    if (response.isNotEmpty()) {
+                        val evaluationStatus = response[0]
+                        Log.d(
+                            "SubjectStatusFragment",
+                            "Has Evaluated: ${evaluationStatus.hasEvaluated}"
+                        )
+
+                        if (evaluationStatus.hasEvaluated) {
+                            // 이미 평가된 경우
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "이미 평가한 사람입니다",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } else {
+                            // 평가되지 않은 경우, 번들 만들어서 Fragment 전환
+                            val bundle = Bundle().apply {
+                                putInt("selectedMemberId", selectedMember.userId)
+                                putString("selectedMemberName", selectedMember.name)
+                                putInt("teamId", teamId)
+                            }
+
+                            val teammateEvaluationFragment = TeammateEvalutionFragment()
+                            replaceFragment(teammateEvaluationFragment, bundle)
+                        }
+                    }
+                } catch (e: Exception) {
+                    // 예외 처리
+                    Log.e("SubjectStatusFragment", "예외: ${e.message}", e)
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            requireContext(),
+                            "다시 시도 해주세요",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }
     }
 
     private fun fetchTeammateNames(title: String) {
