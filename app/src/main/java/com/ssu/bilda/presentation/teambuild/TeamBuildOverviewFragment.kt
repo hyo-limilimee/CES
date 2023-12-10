@@ -17,7 +17,6 @@ import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.data.remote.response.ResponseDtoListTeamsOfSubjectDTO
 import com.ssu.bilda.data.remote.response.TeamsOfSubjectDTO
 import com.ssu.bilda.data.service.TeamService
-import com.ssu.bilda.databinding.FragmentTeamBuildOverviewBinding
 import com.ssu.bilda.presentation.adapter.TeamsAdapter
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +26,7 @@ class TeamBuildOverviewFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var teamsAdapter: TeamsAdapter
     private var receivedSubjectCode: Long = 0L
+    private lateinit var teamService: TeamService // Retrofit Service
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +40,8 @@ class TeamBuildOverviewFragment : Fragment() {
         teamsAdapter = TeamsAdapter(emptyList())
         recyclerView.adapter = teamsAdapter
 
+        teamService = RetrofitImpl.authenticatedRetrofit.create(TeamService::class.java)
+
         return view
     }
 
@@ -50,66 +52,52 @@ class TeamBuildOverviewFragment : Fragment() {
         receivedSubjectCode = arguments?.getLong("subjectCode") ?: 0
         Log.d("TeamBuildOverview", "받은 subjectCode: $receivedSubjectCode")
 
+        fetchTeamsBySubject(receivedSubjectCode)
+
         // btn_teambuild_write 클릭 이벤트 처리
         val btnTeambuildWrite = view.findViewById<Button>(R.id.btn_teambuild_write)
         btnTeambuildWrite.setOnClickListener {
             navigateToTeambuildWritingFragment(receivedSubjectCode)
         }
 
-        //    private fun fetchTeamsBySubject(subjectId: Long) {
-//        val termsService = RetrofitImpl.authenticatedRetrofit.create(TeamService::class.java)
-//        val call = termsService.getTeamsBySubject(subjectId)
-//
-//        call.enqueue(object : Callback<ResponseDtoListTeamsOfSubjectDTO> {
-//            override fun onResponse(
-//                call: Call<ResponseDtoListTeamsOfSubjectDTO>,
-//                response: Response<ResponseDtoListTeamsOfSubjectDTO>
-//            ) {
-//                if (response.isSuccessful) {
-//                    val teamsResponse = response.body()
-//                    teamsResponse?.let { teams ->
-//
-//                        Log.d("TeamBuildOverview", "팀 응답: $teams")
-//
-//                        val teamsListDTO: List<TeamsOfSubjectDTO> = teams.result
-//                        val teamsList: MutableList<TeamsOfSubject> = mutableListOf()
-//
-//                        for (teamDTO in teamsListDTO) {
-//                            Log.d("TeamBuildOverview", "teamId: ${teamDTO.teamId}, teamTitle: ${teamDTO.teamTitle}, subjectName: ${teamDTO.subjectName}, recruitmentStatus: ${teamDTO.recruitmentStatus}, memberNum: ${teamDTO.memberNum}, maxMemberNum: ${teamDTO.maxMemberNum}")
-//                            val team = TeamsOfSubject(
-//                                teamDTO.teamId,
-//                                teamDTO.teamTitle,
-//                                teamDTO.subjectName,
-//                                RecruitmentStatus.valueOf(teamDTO.recruitmentStatus), // Enum 값으로 변경
-//                                teamDTO.memberNum,
-//                                teamDTO.maxMemberNum
-//                            )
-//                            teamsList.add(team)
-//                        }
-//
-//                        // RecyclerView 어댑터 데이터 업데이트
-//                        teamsAdapter.updateTeams(teamsList)
-//                        // RecyclerView 아이템에 데이터 반영
-//                        val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-//                        val firstVisiblePosition = layoutManager.findFirstVisibleItemPosition()
-//                        val lastVisiblePosition = layoutManager.findLastVisibleItemPosition()
-//
-//                        for (i in firstVisiblePosition..lastVisiblePosition) {
-//                            val viewHolder = recyclerView.findViewHolderForAdapterPosition(i) as? TeamsAdapter.TeamsViewHolder
-//                            viewHolder?.bindData(teamsList[i])
-//                        }
-//                    }
-//                } else {
-//                    Log.e("TeamBuildOverview", "응답 실패: ${response.code()}")
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ResponseDtoListTeamsOfSubjectDTO>, t: Throwable) {
-//                // Handle failure
-//            }
-//        })
-//    }
+    }
 
+    private fun fetchTeamsBySubject(subjectId: Long) {
+        teamService.getTeamsBySubject(subjectId).enqueue(object : Callback<ResponseDtoListTeamsOfSubjectDTO> {
+            override fun onResponse(
+                call: Call<ResponseDtoListTeamsOfSubjectDTO>,
+                response: Response<ResponseDtoListTeamsOfSubjectDTO>
+            ) {
+                if (response.isSuccessful) {
+                    val teamsResponse = response.body()
+                    teamsResponse?.let { teams ->
+                        val teamsListDTO: List<TeamsOfSubjectDTO> = teams.result
+                        val teamsList: MutableList<TeamsOfSubject> = mutableListOf()
+
+                        for (teamDTO in teamsListDTO) {
+                            val team = TeamsOfSubject(
+                                teamDTO.teamId,
+                                teamDTO.teamTitle,
+                                teamDTO.subjectName,
+                                RecruitmentStatus.valueOf(teamDTO.recruitmentStatus),
+                                teamDTO.memberNum,
+                                teamDTO.maxMemberNum
+                            )
+                            teamsList.add(team)
+                        }
+
+                        teamsAdapter = TeamsAdapter(teamsList)
+                        recyclerView.adapter = teamsAdapter
+                    }
+                } else {
+                    Log.e("TeamBuildOverview", "응답 실패: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseDtoListTeamsOfSubjectDTO>, t: Throwable) {
+                Log.e("TeamBuildOverview", "네트워크 오류: ${t.message}")
+            }
+        })
     }
 
 

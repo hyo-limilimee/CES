@@ -1,42 +1,40 @@
 package com.ssu.bilda.presentation.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.ssu.bilda.R
 import com.ssu.bilda.data.common.TeamsOfSubject
-import com.ssu.bilda.databinding.ItemRcvTeambuildNameBinding
 
-class TeamsAdapter(private var teamsList: List<TeamsOfSubject>) :
+class TeamsAdapter(private val teams: List<TeamsOfSubject>) :
     RecyclerView.Adapter<TeamsAdapter.TeamsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamsViewHolder {
-        val binding = ItemRcvTeambuildNameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return TeamsViewHolder(binding)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_rcv_teambuild_name, parent, false)
+        return TeamsViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: TeamsViewHolder, position: Int) {
-        holder.bind(teamsList[position])
+        val team = teams[position]
+        holder.bind(team)
     }
 
-    override fun getItemCount(): Int {
-        return teamsList.size
-    }
+    override fun getItemCount(): Int = teams.size
 
-    fun updateTeams(newTeamsList: List<TeamsOfSubject>) {
-        teamsList = newTeamsList
-        notifyDataSetChanged()
-    }
-
-    inner class TeamsViewHolder(private val binding: ItemRcvTeambuildNameBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class TeamsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val teamName: TextView = itemView.findViewById(R.id.tv_teambuild_name)
+        private val teamIng: TextView = itemView.findViewById(R.id.tv_teambuild_ing)
+        private val teamSlash: TextView = itemView.findViewById(R.id.tv_teambuild_slash)
+        private val teamMax: TextView = itemView.findViewById(R.id.tv_teambuild_max)
 
         fun bind(team: TeamsOfSubject) {
-            binding.tvTeambuildName.text = team.teamTitle
-            binding.tvTeambuildIng.text = team.memberNum.toString()
-            binding.tvTeambuildMax.text = team.maxMemberNum.toString()
-        }
-        fun bindData(team: TeamsOfSubject) {
-            bind(team)
+            teamName.text = team.teamTitle
+            teamIng.text = team.memberNum.toString()
+            teamSlash.text = "/"
+            teamMax.text = team.maxMemberNum.toString()
         }
     }
 }
