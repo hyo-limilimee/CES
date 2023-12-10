@@ -31,6 +31,7 @@ import retrofit2.Response
 class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: UserSubjectAdapter
+    private var subjectCode: Long = 0 //과목 코드 기본값
 
     private val evaluationService: EvaluationService by lazy {
         RetrofitImpl.authenticatedRetrofit.create(EvaluationService::class.java)
@@ -147,6 +148,10 @@ class HomeFragment : Fragment() {
                 val response = evaluationService.getUserSubjects()
 
                 if (response.success) {
+
+                    response.result.firstOrNull()?.let { subject ->
+                        subjectCode = subject.subjectCode
+                    }
                     // 받은 과목으로 어댑터 업데이트
                     adapter.updateData(response.result)
                     Log.d("ProjectStatusFragment", "과목 불러오기 성공")
@@ -166,19 +171,18 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    private fun replaceFragment(fragment: Fragment) {
-//        requireActivity().supportFragmentManager.beginTransaction()
-//            .replace(R.id.fl_content, fragment)
-//            .commit()
-//    }
-
     private fun replaceTeamBuildOverviewFragment(subjectCode: Long) {
         val teamBuildOverviewFragment = TeamBuildOverviewFragment()
         val bundle = Bundle()
         bundle.putLong("subjectCode", subjectCode)
         teamBuildOverviewFragment.arguments = bundle
-        requireActivity().supportFragmentManager.beginTransaction()
+        Log.d("HomeFragment", "전달한 subjectCode: $subjectCode")
+
+        // 홈 프래그먼트를 백 스택에서 제거하고 새 프래그먼트로 대체
+        parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        parentFragmentManager.beginTransaction()
             .replace(R.id.home, teamBuildOverviewFragment)
             .commit()
     }
+
 }
