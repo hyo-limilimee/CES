@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
 import com.ssu.bilda.data.common.TeamsOfSubject
 
-class TeamsAdapter(private val teams: List<TeamsOfSubject>) :
+class TeamsAdapter(private var teams: List<TeamsOfSubject>, private val listener: OnItemClickListener) :
     RecyclerView.Adapter<TeamsAdapter.TeamsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamsViewHolder {
@@ -20,9 +20,17 @@ class TeamsAdapter(private val teams: List<TeamsOfSubject>) :
     override fun onBindViewHolder(holder: TeamsViewHolder, position: Int) {
         val team = teams[position]
         holder.bind(team)
+        holder.itemView.setOnClickListener {
+            listener.onItemClick(team.teamId)
+        }
     }
 
     override fun getItemCount(): Int = teams.size
+
+    fun updateTeams(newTeams: List<TeamsOfSubject>) {
+        teams = newTeams
+        notifyDataSetChanged()
+    }
 
     inner class TeamsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val teamName: TextView = itemView.findViewById(R.id.tv_teambuild_name)
@@ -36,5 +44,9 @@ class TeamsAdapter(private val teams: List<TeamsOfSubject>) :
             teamSlash.text = "/"
             teamMax.text = team.maxMemberNum.toString()
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(teamId: Long)
     }
 }

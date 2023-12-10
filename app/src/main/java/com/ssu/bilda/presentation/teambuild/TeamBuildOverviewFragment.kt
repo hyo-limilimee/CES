@@ -1,5 +1,7 @@
 package com.ssu.bilda.presentation.teambuild
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,22 +13,28 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
-import com.ssu.bilda.data.enums.RecruitmentStatus
+import com.ssu.bilda.data.common.TeamDetail
 import com.ssu.bilda.data.common.TeamsOfSubject
+import com.ssu.bilda.data.enums.RecruitmentStatus
 import com.ssu.bilda.data.remote.RetrofitImpl
 import com.ssu.bilda.data.remote.response.ResponseDtoListTeamsOfSubjectDTO
+import com.ssu.bilda.data.remote.response.TeamInfoResponse
 import com.ssu.bilda.data.remote.response.TeamsOfSubjectDTO
 import com.ssu.bilda.data.service.TeamService
 import com.ssu.bilda.presentation.adapter.TeamsAdapter
+import com.ssu.bilda.presentation.teambuild.TeamBuildPostViewGeneral
+import com.ssu.bilda.presentation.teambuild.TeamBuildPostViewLeader
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TeamBuildOverviewFragment : Fragment() {
+
+class TeamBuildOverviewFragment : Fragment(), TeamsAdapter.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var teamsAdapter: TeamsAdapter
     private var receivedSubjectCode: Long = 0L
     private lateinit var teamService: TeamService // Retrofit Service
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,10 +45,11 @@ class TeamBuildOverviewFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.rcv_teambuild_name)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        teamsAdapter = TeamsAdapter(emptyList())
+        teamsAdapter = TeamsAdapter(emptyList(), this)
         recyclerView.adapter = teamsAdapter
 
         teamService = RetrofitImpl.authenticatedRetrofit.create(TeamService::class.java)
+        sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
         return view
     }
@@ -48,22 +57,20 @@ class TeamBuildOverviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 이전에 전달된 subjectCode 확인
         receivedSubjectCode = arguments?.getLong("subjectCode") ?: 0
         Log.d("TeamBuildOverview", "받은 subjectCode: $receivedSubjectCode")
 
         fetchTeamsBySubject(receivedSubjectCode)
 
-        // btn_teambuild_write 클릭 이벤트 처리
         val btnTeambuildWrite = view.findViewById<Button>(R.id.btn_teambuild_write)
         btnTeambuildWrite.setOnClickListener {
             navigateToTeambuildWritingFragment(receivedSubjectCode)
         }
-
     }
 
     private fun fetchTeamsBySubject(subjectId: Long) {
-        teamService.getTeamsBySubject(subjectId).enqueue(object : Callback<ResponseDtoListTeamsOfSubjectDTO> {
+        teamService.getTeamsBySubject(subjectId).enqueue(object :
+            Callback<ResponseDtoListTeamsOfSubjectDTO> {
             override fun onResponse(
                 call: Call<ResponseDtoListTeamsOfSubjectDTO>,
                 response: Response<ResponseDtoListTeamsOfSubjectDTO>
@@ -86,8 +93,8 @@ class TeamBuildOverviewFragment : Fragment() {
                             teamsList.add(team)
                         }
 
-                        teamsAdapter = TeamsAdapter(teamsList)
-                        recyclerView.adapter = teamsAdapter
+                        teamsAdapter.updateTeams(teamsList)
+
                     }
                 } else {
                     Log.e("TeamBuildOverview", "응답 실패: ${response.code()}")
@@ -100,12 +107,11 @@ class TeamBuildOverviewFragment : Fragment() {
         })
     }
 
-
     private fun navigateToTeambuildWritingFragment(subjectCode: Long) {
         val teambuildWritingFragment = TeamBuildWritingFragment()
         val bundle = Bundle()
         bundle.putLong("subjectCode", subjectCode)
-        Log.d("TeamBuildOverview", "보낼 subjectCode: $subjectCode")  // 수정된 부분
+        Log.d("TeamBuildOverview", "보낼 subjectCode: $subjectCode")
         teambuildWritingFragment.arguments = bundle
         activity?.supportFragmentManager?.beginTransaction()?.apply {
             replace(R.id.fl_content, teambuildWritingFragment)
@@ -114,4 +120,65 @@ class TeamBuildOverviewFragment : Fragment() {
             commit()
         }
     }
+
+    override fun onItemClick(teamId: Long) {
+        fetchTeamInfo(teamId)
+    }
+
+    private fun fetchTeamInfo(teamId: Long) {
+        teamService.getTeamInfo(teamId).enqueue(object : Callback<TeamInfoResponse>  {
+            override fun onResponse(call: Call<TeamInfoResponse>, response: Response<TeamInfoResponse> ) {
+                if (response.isSuccessful) {
+                    val teamInfoResponse  = response.body()
+                    teamInfoResponse ?.let { teamInfo ->
+                        val leaderName = teamInfo.result.leaderName
+                        val sharedPreferencesName = sharedPreferences.getString("Name", "")
+
+                        if (leaderName == sharedPreferencesName) {
+                            navigateToTeamBuildPostViewLeader(teamId)
+                        } else {
+                            navigateToTeamBuildPostViewGeneral(teamId)
+                        }
+                    }
+                } else {
+                    Log.e("TeamBuildOverview", "응답 실패: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<TeamInfoResponse>, t: Throwable) {
+                Log.e("TeamBuildOverview", "네트워크 오류: ${t.message}")
+            }
+        })
+    }
+
+    private fun navigateToTeamBuildPostViewLeader(teamId: Long) {
+        val teamBuildPostViewLeader = TeamBuildPostViewLeader()
+
+        val bundle = Bundle()
+        bundle.putLong("teamId", teamId)
+        teamBuildPostViewLeader.arguments = bundle
+
+        activity?.supportFragmentManager?.beginTransaction()?.apply {
+            replace(R.id.fl_content, teamBuildPostViewLeader)
+            addToBackStack(null)
+            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            commit()
+        }
+    }
+
+    private fun navigateToTeamBuildPostViewGeneral(teamId: Long) {
+        val teamBuildPostViewGeneral = TeamBuildPostViewGeneral()
+
+        val bundle = Bundle()
+        bundle.putLong("teamId", teamId)
+        teamBuildPostViewGeneral.arguments = bundle
+
+        activity?.supportFragmentManager?.beginTransaction()?.apply {
+            replace(R.id.fl_content, teamBuildPostViewGeneral)
+            addToBackStack(null)
+            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            commit()
+        }
+    }
 }
+
