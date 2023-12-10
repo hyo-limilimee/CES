@@ -31,9 +31,11 @@ class TeamBuildWritingFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_team_build_writing, container, false)
 
-        // Retrieve subjectCode from arguments and rename it to subjectId
-        val subjectId = arguments?.getLong("subjectCode") ?: 0L
-        Log.d("TeamBuildWriting", "Received subjectId: $subjectId") // Log the received subjectId
+        val subjectCode = arguments?.getLong("subjectCode") ?: 0
+        Log.d("TeamBuildWriting", "Received subjectId: $subjectCode")
+        val subjectId = subjectCode.toInt()
+        Log.d("TeamBuildWriting", "Converted subjectId to Int: $subjectId")
+
 
         val flIcSelectTerm: FrameLayout = view.findViewById(R.id.fl_ic_select_term)
         val tvSelectedDate: TextView = view.findViewById(R.id.tv_selected_date)
@@ -46,8 +48,7 @@ class TeamBuildWritingFragment : Fragment() {
 
         // "작성완료" 버튼에 클릭 리스너 설정
         doneBtn.setOnClickListener {
-
-            showDoneDialog()
+            showDoneDialog(subjectId)
         }
 
         // spinner 데이터
@@ -88,14 +89,14 @@ class TeamBuildWritingFragment : Fragment() {
         datePickerDialog.show()
     }
 
-    private fun showDoneDialog() {
+    private fun showDoneDialog(subjectId: Int) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("") // 대화 상자의 제목 설정
         builder.setMessage("한 번 작성한 글은 수정이 불가능합니다. 작성 완료하시겠습니까?") // 메시지 설정
 
         builder.setPositiveButton("네") { dialog, which ->
             // "저장" 버튼 클릭 처리 (저장 동작)
-            sendTeamCreateRequest() // 팀 생성 요청 보내는 함수 호출
+            sendTeamCreateRequest(subjectId) // 팀 생성 요청 보내는 함수 호출
             dialog.dismiss() // 대화 상자 닫기
         }
 
@@ -109,11 +110,7 @@ class TeamBuildWritingFragment : Fragment() {
         dialog.show()
     }
 
-    private fun sendTeamCreateRequest() {
-        // Retrieve subjectId from arguments
-        val subjectId = arguments?.getInt("subjectCode") ?: 0
-        Log.d("TeamBuildWriting", "Received subjectId: $subjectId") // Log the received subjectId
-
+    private fun sendTeamCreateRequest(subjectId: Int) {
         // UI 요소에서 값을 가져오기
         val teamTitle = view?.findViewById<EditText>(R.id.tv_teambuild_writing_title)?.text.toString()
         val teamInfoMessage = view?.findViewById<EditText>(R.id.tv_teambuild_writing_content)?.text.toString()
@@ -128,6 +125,8 @@ class TeamBuildWritingFragment : Fragment() {
             maxMember = maxMember,
             teamInfoMessage = teamInfoMessage
         )
+
+        Log.d("TeamBuildWriting", "Request: $teamCreateRequest")
 
         // Retrofit을 사용하여 서버로 팀 생성 요청 보내기
         GlobalScope.launch(Dispatchers.IO) {

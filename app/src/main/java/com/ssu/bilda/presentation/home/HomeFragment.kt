@@ -52,7 +52,6 @@ class HomeFragment : Fragment() {
         // Retrofit을 사용하여 과목 가져오기
         fetchSubjects()
 
-
         adapter.setOnItemClickListener { Subject ->
             val hasTeam = Subject.hasTeam
 
@@ -60,8 +59,11 @@ class HomeFragment : Fragment() {
                 TeamDetailsBySubjectFragment()
             } else {
                 val subjectCode = Subject.subjectCode // 과목 코드 가져오기
-                replaceTeamBuildOverviewFragment(subjectCode)
-                TeamBuildOverviewFragment() // 또는 해당 Fragment의 인스턴스 생성
+                val teamBuildOverviewFragment = TeamBuildOverviewFragment()
+                val bundle = Bundle()
+                bundle.putLong("subjectCode", subjectCode)
+                teamBuildOverviewFragment.arguments = bundle
+                teamBuildOverviewFragment
             }
 
             // 백 스택에서 모든 기존 프래그먼트를 제거하고 새로운 프래그먼트를 새로운 스택에 추가
@@ -70,11 +72,11 @@ class HomeFragment : Fragment() {
                 .replace(R.id.home, fragment) // 기존 홈 프래그먼트를 새로운 프래그먼트로 대체
                 .addToBackStack(null)
                 .commit()
-
         }
 
         return view
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -148,10 +150,6 @@ class HomeFragment : Fragment() {
                 val response = evaluationService.getUserSubjects()
 
                 if (response.success) {
-
-                    response.result.firstOrNull()?.let { subject ->
-                        subjectCode = subject.subjectCode
-                    }
                     // 받은 과목으로 어댑터 업데이트
                     adapter.updateData(response.result)
                     Log.d("ProjectStatusFragment", "과목 불러오기 성공")
@@ -171,18 +169,10 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun replaceTeamBuildOverviewFragment(subjectCode: Long) {
-        val teamBuildOverviewFragment = TeamBuildOverviewFragment()
-        val bundle = Bundle()
-        bundle.putLong("subjectCode", subjectCode)
-        teamBuildOverviewFragment.arguments = bundle
-        Log.d("HomeFragment", "전달한 subjectCode: $subjectCode")
-
-        // 홈 프래그먼트를 백 스택에서 제거하고 새 프래그먼트로 대체
-        parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.home, teamBuildOverviewFragment)
-            .commit()
-    }
+//    private fun replaceFragment(fragment: Fragment) {
+//        requireActivity().supportFragmentManager.beginTransaction()
+//            .replace(R.id.fl_content, fragment)
+//            .commit()
+//    }
 
 }
