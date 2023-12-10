@@ -108,17 +108,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textinput_signin_pw" />
 
-    <CheckBox
-        android:id="@+id/cb_signin_auto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="@font/suitebold"
-        android:text="자동 로그인"
-        android:textColor="@color/black"
-        android:textSize="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textinput_signin_pw" />
+<!--    <CheckBox-->
+<!--        android:id="@+id/cb_signin_auto"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        android:fontFamily="@font/suitebold"-->
+<!--        android:text="자동 로그인"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="12dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textinput_signin_pw" />-->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_signin"
