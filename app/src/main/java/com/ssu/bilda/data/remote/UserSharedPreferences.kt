@@ -86,6 +86,7 @@ object UserSharedPreferences {
         return prefs.getString("USER_StId", "").toString()
     }
 
+
     fun setUserDep(context: Context, input: Department) {
         val prefs: SharedPreferences =
             context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)

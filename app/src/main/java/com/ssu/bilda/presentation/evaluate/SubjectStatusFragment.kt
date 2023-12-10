@@ -43,12 +43,12 @@ class SubjectStatusFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_subject_status, container, false)
         val title = arguments?.getString("title", "") ?: ""
+        val userName = UserSharedPreferences.getUserName(requireContext()) // userName 가져오기
 
         val tvSubjectName: TextView = view.findViewById(R.id.tv_subject_name)
         tvSubjectName.text = title
 
         val tvEvaluationName: TextView = view.findViewById(R.id.tv_evaluation_name)
-        val userName = UserSharedPreferences.getUserName(requireContext())
         tvEvaluationName.text = userName
 
         val recyclerView: RecyclerView = view.findViewById(R.id.rv_teammate_name_list)
@@ -56,8 +56,7 @@ class SubjectStatusFragment : Fragment() {
         teammateNameAdapter = TeammateNameAdapter(requireContext(), emptyList())
         recyclerView.adapter = teammateNameAdapter
 
-        fetchTeammateNames(title)
-
+        fetchTeammateNames(title, userName) // userName 전달
 
         teammateNameAdapter.setOnItemClickListener { selectedMember, teamId ->
             val bundle = Bundle().apply {
@@ -71,64 +70,63 @@ class SubjectStatusFragment : Fragment() {
         }
         return view
     }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-        teammateNameAdapter.setOnItemClickListener { selectedMember, teamId ->
-            Log.d(
-                "SubjectStatusFragment",
-                "Selected Member ID: ${selectedMember.userId}, Name: ${selectedMember.name}"
-            )
-            GlobalScope.launch(Dispatchers.Main) {
-                try {
-                    val response = RetrofitImpl.authenticatedRetrofit
-                        .create(EvaluationStatusService::class.java)
-                        .getEvaluationStatus(teamId.toLong())
 
-                    if (response.isNotEmpty()) {
-                        val evaluationStatus = response[0]
-                        Log.d(
-                            "SubjectStatusFragment",
-                            "Has Evaluated: ${evaluationStatus.hasEvaluated}"
-                        )
 
-                        if (evaluationStatus.hasEvaluated) {
-                            // 이미 평가된 경우
-                            withContext(Dispatchers.Main) {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "이미 평가한 사람입니다",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
+    private fun fetchTeammateNames(title: String, userName: String) {
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                val response = RetrofitImpl.authenticatedRetrofit
+                    .create(EvaluationService::class.java)
+                    .getUserTeams()
+
+                Log.d("SubjectStatusFragment", "Raw Response: ${response.raw()}")
+
+                if (response.isSuccessful) {
+                    val teamsWithMembers = response.body()?.result
+                    teamsWithMembers?.let { teams ->
+                        if (teams.isEmpty()) {
+                            Log.d("SubjectStatusFragment", "No teams found.")
                         } else {
-                            // 평가되지 않은 경우, 번들 만들어서 Fragment 전환
-                            val bundle = Bundle().apply {
-                                putInt("selectedMemberId", selectedMember.userId)
-                                putString("selectedMemberName", selectedMember.name)
-                                putInt("teamId", teamId)
+                            // Find matching teams
+                            val selectedTeams = teams.filter { team ->
+                                team.subjectTitle == title
                             }
 
-                            val teammateEvaluationFragment = TeammateEvalutionFragment()
-                            replaceFragment(teammateEvaluationFragment, bundle)
+                            Log.d("SubjectStatusFragment", "Selected Teams: $selectedTeams")
+
+                            if (selectedTeams.isNotEmpty()) {
+                                // Select the first matching team
+                                val selectedTeam = selectedTeams.first()
+
+                                val teamId = selectedTeam.teamId
+                                Log.d("SubjectStatusFragment", "teamId: $teamId")
+
+                                // Filter team members based on names
+                                val teamMembers = selectedTeam.members.filterNot { member ->
+                                    member.name == userName
+                                }
+
+                                teammateNameAdapter.updateData(teamMembers, teamId)
+
+                                val responseBody = response.body()?.toString()
+                                Log.d("SubjectStatusFragment", "Response Body: $responseBody")
+                            } else {
+                                Log.d("SubjectStatusFragment", "No teams found for subject: $title")
+                            }
                         }
                     }
-                } catch (e: Exception) {
-                    // 예외 처리
-                    Log.e("SubjectStatusFragment", "예외: ${e.message}", e)
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            requireContext(),
-                            "다시 시도 해주세요",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                } else {
+                    Log.e("SubjectStatusFragment", "Error: ${response.code()}")
                 }
+            } catch (e: Exception) {
+                Log.e("SubjectStatusFragment", "Exception: ${e.message}", e)
+                teammateNameAdapter.updateData(emptyList(), -1) // Pass the default teamId, you can change it accordingly
             }
         }
     }
 
-    private fun fetchTeammateNames(title: String) {
+    private fun fetchTeammateNames(title: String, userId: Int) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val response = RetrofitImpl.authenticatedRetrofit
@@ -158,7 +156,10 @@ class SubjectStatusFragment : Fragment() {
                                 Log.d("SubjectStatusFragment", "teamId: $teamId")
 
                                 // 선택된 팀의 멤버들을 리사이클러뷰에 추가
-                                val teamMembers = selectedTeam.members
+                                val teamMembers = selectedTeam.members.filterNot { member ->
+                                    member.userId == userId
+                                }
+
                                 teammateNameAdapter.updateData(teamMembers, teamId)
 
                                 val responseBody = response.body()?.toString()
@@ -177,6 +178,7 @@ class SubjectStatusFragment : Fragment() {
             }
         }
     }
+
 
 
     private fun findTeamIdByMember(teams: List<EvaluationTeam>?, memberId: Int): Int {
