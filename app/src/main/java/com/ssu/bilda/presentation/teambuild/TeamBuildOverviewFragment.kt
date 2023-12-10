@@ -24,9 +24,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class TeamBuildOverviewFragment : Fragment() {
-    private var _binding: FragmentTeamBuildOverviewBinding? = null
-    private val binding get() = _binding!!
-
     private lateinit var recyclerView: RecyclerView
     private lateinit var teamsAdapter: TeamsAdapter
     private var receivedSubjectCode: Long = 0L
@@ -50,7 +47,7 @@ class TeamBuildOverviewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 이전에 전달된 subjectCode 확인
-        val receivedSubjectCode = arguments?.getLong("subjectCode", 0L) ?: 0L
+        receivedSubjectCode = arguments?.getLong("subjectCode") ?: 0
         Log.d("TeamBuildOverview", "받은 subjectCode: $receivedSubjectCode")
 
         // btn_teambuild_write 클릭 이벤트 처리
@@ -121,7 +118,6 @@ class TeamBuildOverviewFragment : Fragment() {
         val bundle = Bundle()
         bundle.putLong("subjectCode", subjectCode)
         teambuildWritingFragment.arguments = bundle
-        Log.d("TeamBuildOverview", "전달한 subjectCode: $subjectCode")
         activity?.supportFragmentManager?.beginTransaction()?.apply {
             replace(R.id.fl_content, teambuildWritingFragment)
             addToBackStack(null)

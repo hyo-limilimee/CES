@@ -52,7 +52,6 @@ class HomeFragment : Fragment() {
         // Retrofit을 사용하여 과목 가져오기
         fetchSubjects()
 
-
         adapter.setOnItemClickListener { Subject ->
             val hasTeam = Subject.hasTeam
 
@@ -60,8 +59,11 @@ class HomeFragment : Fragment() {
                 TeamDetailsBySubjectFragment()
             } else {
                 val subjectCode = Subject.subjectCode // 과목 코드 가져오기
-                replaceTeamBuildOverviewFragment(subjectCode)
-                TeamBuildOverviewFragment() // 또는 해당 Fragment의 인스턴스 생성
+                val teamBuildOverviewFragment = TeamBuildOverviewFragment()
+                val bundle = Bundle()
+                bundle.putLong("subjectCode", subjectCode)
+                teamBuildOverviewFragment.arguments = bundle
+                teamBuildOverviewFragment
             }
 
             // 백 스택에서 모든 기존 프래그먼트를 제거하고 새로운 프래그먼트를 새로운 스택에 추가
@@ -70,11 +72,11 @@ class HomeFragment : Fragment() {
                 .replace(R.id.home, fragment) // 기존 홈 프래그먼트를 새로운 프래그먼트로 대체
                 .addToBackStack(null)
                 .commit()
-
         }
 
         return view
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -178,8 +180,9 @@ class HomeFragment : Fragment() {
         val bundle = Bundle()
         bundle.putLong("subjectCode", subjectCode)
         teamBuildOverviewFragment.arguments = bundle
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.home, teamBuildOverviewFragment)
-            .commit()
+
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.home, teamBuildOverviewFragment)
+        transaction.commitAllowingStateLoss()
     }
 }

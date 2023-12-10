@@ -31,9 +31,9 @@ class TeamBuildWritingFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_team_build_writing, container, false)
 
-        // Retrieve subjectCode from arguments and rename it to subjectId
-        val subjectId = arguments?.getLong("subjectCode") ?: 0L
+        val subjectId = arguments?.getInt("subjectCode") ?: 0
         Log.d("TeamBuildWriting", "Received subjectId: $subjectId") // Log the received subjectId
+
 
         val flIcSelectTerm: FrameLayout = view.findViewById(R.id.fl_ic_select_term)
         val tvSelectedDate: TextView = view.findViewById(R.id.tv_selected_date)
