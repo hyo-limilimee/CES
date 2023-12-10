@@ -31,7 +31,7 @@ class TeamBuildWritingFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_team_build_writing, container, false)
 
-        val subjectId = arguments?.getInt("subjectCode") ?: 0
+        val subjectId = arguments?.getLong("subjectCode") ?: 0
         Log.d("TeamBuildWriting", "Received subjectId: $subjectId") // Log the received subjectId
 
 

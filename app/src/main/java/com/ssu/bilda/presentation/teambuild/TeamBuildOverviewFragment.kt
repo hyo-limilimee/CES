@@ -117,6 +117,7 @@ class TeamBuildOverviewFragment : Fragment() {
         val teambuildWritingFragment = TeamBuildWritingFragment()
         val bundle = Bundle()
         bundle.putLong("subjectCode", subjectCode)
+        Log.d("TeamBuildOverview", "보낼 subjectCode: $subjectCode")  // 수정된 부분
         teambuildWritingFragment.arguments = bundle
         activity?.supportFragmentManager?.beginTransaction()?.apply {
             replace(R.id.fl_content, teambuildWritingFragment)
