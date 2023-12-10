@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
-import com.ssu.bilda.data.common.TeamDetail
 import com.ssu.bilda.data.common.TeamsOfSubject
 import com.ssu.bilda.data.enums.RecruitmentStatus
 import com.ssu.bilda.data.remote.RetrofitImpl
@@ -22,12 +21,9 @@ import com.ssu.bilda.data.remote.response.TeamInfoResponse
 import com.ssu.bilda.data.remote.response.TeamsOfSubjectDTO
 import com.ssu.bilda.data.service.TeamService
 import com.ssu.bilda.presentation.adapter.TeamsAdapter
-import com.ssu.bilda.presentation.teambuild.TeamBuildPostViewGeneral
-import com.ssu.bilda.presentation.teambuild.TeamBuildPostViewLeader
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 class TeamBuildOverviewFragment : Fragment(), TeamsAdapter.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
@@ -61,11 +57,6 @@ class TeamBuildOverviewFragment : Fragment(), TeamsAdapter.OnItemClickListener {
         Log.d("TeamBuildOverview", "받은 subjectCode: $receivedSubjectCode")
 
         fetchTeamsBySubject(receivedSubjectCode)
-
-        val btnTeambuildWrite = view.findViewById<Button>(R.id.btn_teambuild_write)
-        btnTeambuildWrite.setOnClickListener {
-            navigateToTeambuildWritingFragment(receivedSubjectCode)
-        }
     }
 
     private fun fetchTeamsBySubject(subjectId: Long) {
@@ -95,6 +86,10 @@ class TeamBuildOverviewFragment : Fragment(), TeamsAdapter.OnItemClickListener {
 
                         teamsAdapter.updateTeams(teamsList)
 
+                        val subjectName = teamsList.firstOrNull()?.subjectName // 여기서는 첫 번째 팀의 subjectName을 가져옴
+                        subjectName?.let {
+                            setUpTeambuildWriteButton(receivedSubjectCode, it)
+                        }
                     }
                 } else {
                     Log.e("TeamBuildOverview", "응답 실패: ${response.code()}")
@@ -107,11 +102,19 @@ class TeamBuildOverviewFragment : Fragment(), TeamsAdapter.OnItemClickListener {
         })
     }
 
-    private fun navigateToTeambuildWritingFragment(subjectCode: Long) {
+    private fun setUpTeambuildWriteButton(subjectCode: Long, subjectName: String) {
+        val btnTeambuildWrite = requireView().findViewById<Button>(R.id.btn_teambuild_write)
+        btnTeambuildWrite.setOnClickListener {
+            navigateToTeambuildWritingFragment(subjectCode, subjectName)
+        }
+    }
+
+    private fun navigateToTeambuildWritingFragment(subjectCode: Long, subjectName: String) {
         val teambuildWritingFragment = TeamBuildWritingFragment()
         val bundle = Bundle()
         bundle.putLong("subjectCode", subjectCode)
-        Log.d("TeamBuildOverview", "보낼 subjectCode: $subjectCode")
+        bundle.putString("subjectName", subjectName)
+        Log.d("TeamBuildOverview", "보낼 subjectCode: $subjectCode, subjectName: $subjectName")
         teambuildWritingFragment.arguments = bundle
         activity?.supportFragmentManager?.beginTransaction()?.apply {
             replace(R.id.fl_content, teambuildWritingFragment)
@@ -127,7 +130,7 @@ class TeamBuildOverviewFragment : Fragment(), TeamsAdapter.OnItemClickListener {
 
     private fun fetchTeamInfo(teamId: Long) {
         teamService.getTeamInfo(teamId).enqueue(object : Callback<TeamInfoResponse>  {
-            override fun onResponse(call: Call<TeamInfoResponse>, response: Response<TeamInfoResponse> ) {
+            override fun onResponse(call: Call<TeamInfoResponse>, response: Response<TeamInfoResponse>) {
                 if (response.isSuccessful) {
                     val teamInfoResponse  = response.body()
                     teamInfoResponse ?.let { teamInfo ->
