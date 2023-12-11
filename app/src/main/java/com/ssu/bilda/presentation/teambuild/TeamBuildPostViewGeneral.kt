@@ -27,21 +27,20 @@ class TeamBuildPostViewGeneral : Fragment() {
 
 
     private lateinit var teamService: TeamService
-    private var currentTeamId: Long = 0 // 팀 ID를 저장하는 변수
+    private var currentTeamId: Long = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view =
-            inflater.inflate(R.layout.fragment_team_build_post_view_general, container, false)
+        // 레이아웃을 인플레이트합니다.
+        val view = inflater.inflate(R.layout.fragment_team_build_post_view_general, container, false)
 
-        // Make API call when the fragment is created
+        // 팀 정보를 가져옵니다.
         getTeamInfo(view)
 
+        // 가입 버튼에 대한 클릭 리스너를 설정합니다.
         val joinButton: Button = view.findViewById(R.id.tv_teambuild_require_btn)
-
         joinButton.setOnClickListener {
             sendTeamJoinRequest()
         }
@@ -53,10 +52,15 @@ class TeamBuildPostViewGeneral : Fragment() {
         val retrofit = RetrofitImpl.authenticatedRetrofit
         teamService = retrofit.create(TeamService::class.java)
 
-        val teamId = 1L // Replace with the desired teamId
-        currentTeamId = teamId // 팀 ID를 저장
+        // 팀 ID를 가져옵니다.
+        val arguments = arguments
+        if (arguments != null && arguments.containsKey("teamId")) {
+            currentTeamId = arguments.getLong("teamId")
+            Log.d("TeamBuildPostViewGeneral", "팀 아이디: $currentTeamId")
+        }
 
-        val call = teamService.getTeamInfo(teamId)
+        // API 호출을 위한 서비스 메서드를 호출합니다.
+        val call = teamService.getTeamInfo(currentTeamId)
         call.enqueue(object : Callback<TeamInfoResponse> {
             override fun onResponse(
                 call: Call<TeamInfoResponse>,
@@ -67,7 +71,7 @@ class TeamBuildPostViewGeneral : Fragment() {
                     if (teamInfoResponse != null) {
                         val teamDetail: TeamDetail = teamInfoResponse.result
 
-                        // 텍스트 뷰 세팅
+                        // TextView 설정
                         val subjectNameTextView: TextView? = view.findViewById(R.id.tv_subject_name)
                         val teamBuildTitleTextView: TextView? =
                             view.findViewById(R.id.et_teambuild_title)
@@ -84,11 +88,11 @@ class TeamBuildPostViewGeneral : Fragment() {
                         val teammateAdapter = TeammateProfileAdapter(teamDetail.members)
                         teammateRecyclerView.adapter = teammateAdapter
 
-                        // 리싸이클러뷰 아이템 수 가져오기
+                        // RecyclerView 아이템 수 가져오기
                         val recyclerViewItemCount = teammateAdapter.itemCount
 
                         // 리스폰스에서 받은 maxCount 값
-                        val maxCount = teamDetail.maxNumber // 이 부분은 실제 데이터에 따라서 변경되어야 합니다.
+                        val maxCount = teamDetail.maxNumber
 
                         // 텍스트뷰에 설정할 문자열 생성
                         val displayText = "$recyclerViewItemCount/$maxCount"
@@ -109,16 +113,18 @@ class TeamBuildPostViewGeneral : Fragment() {
             }
 
             override fun onFailure(call: Call<TeamInfoResponse>, t: Throwable) {
-                // Handle failure
-                Log.e("API Error", "Failed to make API call: ${t.message}")
+                // 실패 처리
+                Log.e("API 오류", "API 호출 실패: ${t.message}")
             }
         })
     }
+
 
     private fun sendTeamJoinRequest() {
         val retrofit = RetrofitImpl.authenticatedRetrofit
         val teamJoinRequestService = retrofit.create(TeamJoinRequestService::class.java)
 
+        // 팀 가입 요청을 보냅니다.
         val call = teamJoinRequestService.joinTeam(currentTeamId)
 
         call.enqueue(object : Callback<BaseResponse<Any>> {
@@ -127,23 +133,23 @@ class TeamBuildPostViewGeneral : Fragment() {
                 response: Response<BaseResponse<Any>>
             ) {
                 if (response.isSuccessful) {
-                    // Team join request successful
+                    // 팀 가입 요청 성공
                     Log.d("TeamJoinRequest", "팀 가입 요청 성공")
                     showToast("팀 가입 요청이 완료되었습니다.")
-                    // TODO: Handle the success case, e.g., show a message to the user
+                    // TODO: 성공 시 처리, 예를 들어 사용자에게 메시지 표시
                 } else {
-                    // Team join request failed
+                    // 팀 가입 요청 실패
                     Log.e("TeamJoinRequest", "오류: ${response.code()}, ${response.message()}")
                     showToast("팀 가입 요청에 실패했습니다.")
-                    // TODO: Handle the error case, e.g., show an error message to the user
+                    // TODO: 오류 시 처리, 예를 들어 사용자에게 오류 메시지 표시
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<Any>>, t: Throwable) {
-                // Handle failure
+                // 실패 처리
                 Log.e("TeamJoinRequest", "실패: ${t.message}")
                 showToast("팀 가입 요청에 실패했습니다.")
-                // TODO: Handle the failure case, e.g., show an error message to the user
+                // TODO: 실패 시 처리, 예를 들어 사용자에게 오류 메시지 표시
             }
         })
     }

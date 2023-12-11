@@ -39,6 +39,13 @@ class ProfileReferFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile_refer, container, false)
 
+        // 좌상단 뒤로가기 버튼 설정
+        val rightArrowBtn: FrameLayout = view.findViewById(R.id.fl_black_left_arrow_btn)
+
+        rightArrowBtn.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
         // 전공 정보 설정
         val tvMajorName: TextView = view.findViewById(R.id.tv_major_name)
         val userDep = UserSharedPreferences.getUserDep(requireContext())
@@ -176,18 +183,6 @@ class ProfileReferFragment : Fragment() {
         yAxis.axisMinimum = 0f
         yAxis.axisMaximum = 100f
 
-
-        // 좌상단 뒤로가기 버튼 설정
-        val rightArrowBtn: FrameLayout = view.findViewById(R.id.fl_black_left_arrow_btn)
-
-        rightArrowBtn.setOnClickListener {
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-//            val profileFragment = ProfileFragment()
-//            transaction.replace(R.id.fl_content, profileFragment)
-
-            // 꼭 commit을 해줘야 바뀐다.
-            transaction.commit()
-        }
 
         return view
     }
