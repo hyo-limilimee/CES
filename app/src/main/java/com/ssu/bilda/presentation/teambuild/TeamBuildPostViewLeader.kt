@@ -19,10 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TeamBuildPostViewLeader : Fragment() {
-
-
-    class TeamBuildPostViewLeader : Fragment() {
+ class TeamBuildPostViewLeader : Fragment() {
 
         override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -121,4 +118,3 @@ class TeamBuildPostViewLeader : Fragment() {
             })
         }
     }
-}
