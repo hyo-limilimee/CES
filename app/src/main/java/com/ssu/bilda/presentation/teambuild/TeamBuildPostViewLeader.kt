@@ -20,13 +20,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class TeamBuildPostViewLeader : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.fragment_team_build_post_view_leader, container, false)
 
+        // 팀 정보 및 팀 아이디를 가져옵니다.
         getTeamInfo(view)
 
         val finishButton = view.findViewById<Button>(R.id.tv_teambuild_check_request_btn)
@@ -35,6 +36,10 @@ class TeamBuildPostViewLeader : Fragment() {
         finishButton.setOnClickListener {
             val teamId = 1L // 여기에 실제 팀 아이디를 설정
 
+            // 로그로 팀 아이디 출력
+            Log.d("TeamBuildPostViewLeader", "팀 아이디: $teamId")
+
+            // AcceptJoinRequestFragment로 전환
             val acceptJoinRequestFragment = AcceptJoinRequestFragment.newInstance(teamId)
 
             requireActivity().supportFragmentManager.beginTransaction()
@@ -45,6 +50,7 @@ class TeamBuildPostViewLeader : Fragment() {
 
         return view
     }
+
     private fun getTeamInfo(view: View) {
         val retrofit = RetrofitImpl.authenticatedRetrofit
         val teamService = retrofit.create(TeamService::class.java)
