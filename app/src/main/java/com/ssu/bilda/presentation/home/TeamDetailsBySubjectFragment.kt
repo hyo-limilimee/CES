@@ -5,7 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +19,7 @@ import com.ssu.bilda.data.service.EvaluationService
 import com.ssu.bilda.data.service.TeamService
 import com.ssu.bilda.presentation.adapter.HomeTeamMemberAdapter
 import com.ssu.bilda.presentation.evaluate.TeammateEvalutionFragment
+import com.ssu.bilda.presentation.teambuild.TeamBuildPostViewLeader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -28,6 +31,7 @@ import retrofit2.Response
 class TeamDetailsBySubjectFragment : Fragment() {
     private var selectedTeamId: Int = 0; //팀아이디 저장
     private lateinit var teammateNameAdapter: HomeTeamMemberAdapter
+
 
     companion object {
         fun newInstance(title: String): TeamDetailsBySubjectFragment {
@@ -103,6 +107,37 @@ class TeamDetailsBySubjectFragment : Fragment() {
                         if (selectedTeams.isNotEmpty()) {
                             // 여러 팀이 일치할 수 있으므로 첫 번째 팀을 선택
                             val selectedTeam = selectedTeams.first()
+                            val leaderName = selectedTeam.leaderName // 팀 리더의 이름
+                            val sharedPreferencesName = UserSharedPreferences.getUserName(requireContext()) // SharedPreferences에서 저장된 유저 이름
+
+                            if (leaderName == sharedPreferencesName) {
+                                // 리더와 쉐어드 프리퍼런스에 저장된 유저 이름이 일치할 때 버튼을 활성화
+                                val btnMove: Button = view?.findViewById(R.id.btn_move) ?: return@launch
+                                btnMove.isEnabled = true
+
+                                // 버튼 클릭 시 이벤트 처리
+                                btnMove.setOnClickListener {
+                                    // TeamBuildPostViewLeader 프래그먼트로 teamId 전달하며 화면 전환
+                                    val bundle = Bundle()
+                                    bundle.putInt("teamId", selectedTeamId)
+                                    val teamBuildPostViewLeader = TeamBuildPostViewLeader()
+                                    teamBuildPostViewLeader.arguments = bundle
+                                    requireActivity().supportFragmentManager.beginTransaction()
+                                        .replace(R.id.fl_content, teamBuildPostViewLeader)
+                                        .addToBackStack(null)
+                                        .commit()
+                                }
+                            } else {
+                                // 리더와 쉐어드 프리퍼런스에 저장된 유저 이름이 다를 때
+                                val btnMove: Button = view?.findViewById(R.id.btn_move) ?: return@launch
+                                btnMove.isEnabled = false // 버튼 비활성화
+
+                                btnMove.setOnClickListener {
+                                    // 토스트 메시지 표시
+                                    Toast.makeText(requireContext(), "리더만 클릭 가능합니다", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+
 
                             selectedTeamId = selectedTeam.teamId
 
