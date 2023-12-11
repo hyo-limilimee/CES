@@ -51,6 +51,14 @@ class TeamBuildWritingFragment : Fragment() {
             showDoneDialog(subjectId)
         }
 
+        val subjectNameTextView: TextView = view.findViewById(R.id.tv_subject_name)
+
+        // subjectName은 arguments로 전달받은 값입니다.
+        val subjectName = arguments?.getString("subjectName") ?: "기본 값"
+
+        // TextView에 값을 설정합니다.
+        subjectNameTextView.text = subjectName
+
         // spinner 데이터
         val data = listOf("2","3","4","5","6")
 
