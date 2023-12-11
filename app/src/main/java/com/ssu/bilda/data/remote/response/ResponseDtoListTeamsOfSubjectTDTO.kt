@@ -1,5 +1,7 @@
 package com.ssu.bilda.data.remote.response
 
+import com.google.gson.annotations.SerializedName
+
 //과목별팀
 data class ResponseDtoListTeamsOfSubjectDTO(
     val success: Boolean,
@@ -9,6 +11,7 @@ data class ResponseDtoListTeamsOfSubjectDTO(
 )
 
 data class TeamsOfSubjectDTO(
+    @SerializedName("teamId")
     val teamId: Long,
     val teamTitle: String,
     val subjectName: String,
