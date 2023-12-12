@@ -31,6 +31,10 @@ import retrofit2.Response
             // 인수에서 teamId를 가져옴
             val teamId = arguments?.getLong("teamId", 0L) ?: 0L
 
+            // 로그 추가
+            Log.d("TeamBuildPostViewLeader", "팀 아이디: $teamId")
+
+
             // 팀 정보 및 팀 아이디를 가져옵니다.
             getTeamInfo(view, teamId)
 
