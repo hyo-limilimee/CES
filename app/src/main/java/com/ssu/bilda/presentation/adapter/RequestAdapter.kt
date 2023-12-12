@@ -85,7 +85,7 @@ class RequestAdapter(private val teamId: Long, private val context: Context) : R
         val requestNameTextView: TextView = itemView.findViewById(R.id.tv_request_name)
         val rejectButton: FrameLayout = itemView.findViewById(R.id.fl_reject_btn)
         val acceptButton: FrameLayout = itemView.findViewById(R.id.fl_accept_btn)
-        val flProfileShowBtn: FrameLayout = itemView.findViewById(R.id.fl_ic_profile_show_btn)
+        val flProfileShowBtn: FrameLayout = itemView.findViewById(R.id.fl_teammate_name_btn)
     }
 
     private fun rejectJoinRequest(teamId: Long, userId: Long) {
@@ -106,7 +106,7 @@ class RequestAdapter(private val teamId: Long, private val context: Context) : R
                         Log.d("RejectJoinRequest", "success: ${rejectResponse.success}")
                         Log.d("RejectJoinRequest", "code: ${rejectResponse.code}")
                         Log.d("RejectJoinRequest", "message: ${rejectResponse.message}")
-                        
+
                         showToast("참가 요청을 거절했습니다.")
                     } else {
                         Log.e("RejectJoinRequest", "응답 바디가 null입니다.")

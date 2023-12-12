@@ -76,7 +76,7 @@ import retrofit2.Response
                             val subjectNameTextView: TextView? =
                                 view.findViewById(R.id.tv_subject_name)
                             val teamBuildTitleTextView: TextView? =
-                                view.findViewById(R.id.et_teambuild_title)
+                                view.findViewById(R.id.tv_teambuild_title)
                             val teamBuildMessageTextView: TextView? =
                                 view.findViewById(R.id.tv_teambuild_writing_content)
 
