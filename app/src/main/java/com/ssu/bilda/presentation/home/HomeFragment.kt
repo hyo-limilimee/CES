@@ -56,7 +56,11 @@ class HomeFragment : Fragment() {
             val hasTeam = Subject.hasTeam
 
             val fragment = if (hasTeam) {
-                TeamDetailsBySubjectFragment()
+                val bundle = Bundle()
+                bundle.putString("title", Subject.title) // 여기서 subject.title은 실제로 있는 속성 이름일 수 있어
+                val teamDetailsFragment = TeamDetailsBySubjectFragment()
+                teamDetailsFragment.arguments = bundle
+                teamDetailsFragment
             } else {
                 val subjectCode = Subject.subjectCode // 과목 코드 가져오기
                 val teamBuildOverviewFragment = TeamBuildOverviewFragment()
@@ -168,11 +172,5 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
-//    private fun replaceFragment(fragment: Fragment) {
-//        requireActivity().supportFragmentManager.beginTransaction()
-//            .replace(R.id.fl_content, fragment)
-//            .commit()
-//    }
 
 }

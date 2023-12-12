@@ -93,13 +93,13 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_ssblue_circle" />
 
-        <TextView
-            android:id="@+id/tv_home_ing_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/suitebold"
-            android:text="1"
-            android:textColor="@color/white" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_home_ing_count"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/suitebold"-->
+<!--            android:text="1"-->
+<!--            android:textColor="@color/white" />-->
     </FrameLayout>
 
     <ImageView
@@ -126,13 +126,13 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_beige_circle" />
 
-        <TextView
-            android:id="@+id/tv_home_end_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/suitebold"
-            android:text="0"
-            android:textColor="@color/white" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_home_end_count"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/suitebold"-->
+<!--            android:text="0"-->
+<!--            android:textColor="@color/white" />-->
     </FrameLayout>
 
 
