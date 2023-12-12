@@ -119,7 +119,9 @@ class TeamDetailsBySubjectFragment : Fragment() {
                                 btnMove.setOnClickListener {
                                     // TeamBuildPostViewLeader 프래그먼트로 teamId 전달하며 화면 전환
                                     val bundle = Bundle()
-                                    bundle.putInt("teamId", selectedTeamId)
+                                    val selectedTeamIdLong = selectedTeamId.toLong() // Int를 Long으로 변환
+                                    bundle.putLong("teamId", selectedTeamIdLong)
+                                    Log.d("TeamBuildPostViewLeader", "팀 아이디 전달: $selectedTeamIdLong")
                                     val teamBuildPostViewLeader = TeamBuildPostViewLeader()
                                     teamBuildPostViewLeader.arguments = bundle
                                     requireActivity().supportFragmentManager.beginTransaction()
