@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssu.bilda.R
@@ -71,8 +72,6 @@ class SubjectStatusFragment : Fragment() {
         return view
     }
 
-
-
     private fun fetchTeammateNames(title: String, userName: String) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
@@ -87,15 +86,20 @@ class SubjectStatusFragment : Fragment() {
                     teamsWithMembers?.let { teams ->
                         if (teams.isEmpty()) {
                             Log.d("SubjectStatusFragment", "No teams found.")
+                            // Show ic_empty ImageView when no teams are found
+                            view?.findViewById<AppCompatImageView>(R.id.ic_empty)?.visibility = View.VISIBLE
                         } else {
                             // Find matching teams
                             val selectedTeams = teams.filter { team ->
-                                team.subjectTitle == title
+                                team.subjectTitle == title && team.completeStatus == "COMPLETE"
                             }
 
                             Log.d("SubjectStatusFragment", "Selected Teams: $selectedTeams")
 
                             if (selectedTeams.isNotEmpty()) {
+                                // Hide ic_empty ImageView when teams are found
+                                view?.findViewById<AppCompatImageView>(R.id.ic_empty)?.visibility = View.INVISIBLE
+
                                 // Select the first matching team
                                 val selectedTeam = selectedTeams.first()
 
@@ -112,7 +116,12 @@ class SubjectStatusFragment : Fragment() {
                                 val responseBody = response.body()?.toString()
                                 Log.d("SubjectStatusFragment", "Response Body: $responseBody")
                             } else {
-                                Log.d("SubjectStatusFragment", "No teams found for subject: $title")
+                                Log.d("SubjectStatusFragment", "No teams found for subject: $title or no COMPLETE teams found")
+                                // Show ic_empty ImageView when no matching or COMPLETE teams are found
+                                view?.findViewById<AppCompatImageView>(R.id.ic_empty)?.visibility = View.VISIBLE
+
+                                // Clear RecyclerView when no matching or COMPLETE teams found
+                                teammateNameAdapter.updateData(emptyList(), -1)
                             }
                         }
                     }
@@ -121,10 +130,15 @@ class SubjectStatusFragment : Fragment() {
                 }
             } catch (e: Exception) {
                 Log.e("SubjectStatusFragment", "Exception: ${e.message}", e)
-                teammateNameAdapter.updateData(emptyList(), -1) // Pass the default teamId, you can change it accordingly
+                // Show ic_empty ImageView when an exception occurs
+                view?.findViewById<AppCompatImageView>(R.id.ic_empty)?.visibility = View.VISIBLE
+
+                // Pass the default teamId, you can change it accordingly
+                teammateNameAdapter.updateData(emptyList(), -1)
             }
         }
     }
+
 
     private fun fetchTeammateNames(title: String, userId: Int) {
         GlobalScope.launch(Dispatchers.Main) {
