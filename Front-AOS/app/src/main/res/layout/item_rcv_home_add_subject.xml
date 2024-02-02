@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item_add_subject"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center_vertical"
+    android:layout_marginBottom="10dp"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_home_add_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:textAlignment="center"
+        tools:text="오픈 소스 기반 기초 설계"
+        android:fontFamily="@font/suitebold"
+        android:textColor="@color/black"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/tv_home_add_professor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:textAlignment="center"
+        tools:text="최종석"
+        android:fontFamily="@font/suitebold"
+        android:textColor="@color/black"
+        android:textSize="16dp"/>
+
+</LinearLayout>

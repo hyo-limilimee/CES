@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="10dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_teambuild_name">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_teambuild_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/suitebold"
+                android:gravity="center"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="19dp"
+                tools:text="멋진 프로젝트를 해봐요"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_teambuild_person"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="39dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_bnv_person"
+                app:layout_constraintStart_toEndOf="@+id/tv_teambuild_name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_teambuild_ing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/suiteregular"
+                android:textColor="@color/sgray"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="5dp"
+                android:textSize="18dp"
+                app:layout_constraintStart_toEndOf="@+id/iv_teambuild_person"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/tv_teambuild_slash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/suiteregular"
+                android:textColor="@color/sgray"
+                android:layout_marginTop="18dp"
+                android:textSize="18dp"
+                app:layout_constraintStart_toEndOf="@+id/tv_teambuild_ing"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="/" />
+
+            <TextView
+                android:id="@+id/tv_teambuild_max"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/suiteregular"
+                android:textColor="@color/sgray"
+                android:layout_marginTop="18dp"
+                android:textSize="18dp"
+                app:layout_constraintStart_toEndOf="@+id/tv_teambuild_slash"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="5" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</LinearLayout>
