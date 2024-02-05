@@ -1,0 +1,23 @@
+CREATE TEMPORARY TABLE TotalPayments AS
+SELECT
+    loan_number,
+    SUM(payment_amount) AS total_payment
+FROM
+    Payment
+GROUP BY
+    loan_number;
+
+DELETE FROM loan_branch
+WHERE loan_number IN (SELECT loan_number FROM TotalPayments);
+
+DELETE FROM Borrower
+WHERE loan_number IN (SELECT loan_number FROM TotalPayments);
+
+DELETE FROM payment
+WHERE loan_number IN (SELECT loan_number FROM TotalPayments);
+
+DELETE Loan FROM Loan
+JOIN TotalPayments ON Loan.loan_number = TotalPayments.loan_number
+WHERE TotalPayments.total_payment >= Loan.amount;
+
+DROP TEMPORARY TABLE IF EXISTS TotalPayments;

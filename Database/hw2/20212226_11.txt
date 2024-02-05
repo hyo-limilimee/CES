@@ -1,0 +1,14 @@
+WITH RECURSIVE ManagedEmployees AS (
+  SELECT employee_id, employee_name
+  FROM Employee
+  WHERE employee_name = '홍길동'
+  
+  UNION
+  
+  SELECT e.employee_id, e.employee_name
+  FROM Employee e
+  JOIN Manager_Worker mw ON e.employee_id = mw.employee_worker
+  JOIN ManagedEmployees m ON mw.employee_manager = m.employee_id
+)
+
+SELECT employee_name FROM ManagedEmployees;

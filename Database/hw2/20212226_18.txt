@@ -1,0 +1,8 @@
+CREATE VIEW only_account_customer AS
+SELECT DISTINCT c.customer_name, c.customer_city
+FROM Customer c
+JOIN Depositor d ON c.customer_id = d.customer_id
+WHERE c.customer_id NOT IN (
+    SELECT b.customer_id
+    FROM Borrower b
+);

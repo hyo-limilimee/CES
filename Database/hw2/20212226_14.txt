@@ -1,0 +1,6 @@
+ALTER TABLE manager_worker
+DROP FOREIGN KEY manager_worker_ibfk_2,
+ADD FOREIGN KEY (employee_worker) REFERENCES employee(employee_id) ON DELETE CASCADE;
+
+DELETE FROM Employee
+WHERE employee_id NOT IN (SELECT DISTINCT employee_id FROM Customer_Banker);

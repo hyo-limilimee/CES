@@ -1,0 +1,6 @@
+SELECT e.employee_name, COUNT(c.customer_id) AS customer_count
+FROM Employee e
+LEFT JOIN Customer_Banker cb ON e.employee_id = cb.employee_id
+LEFT JOIN Customer c ON cb.customer_id = c.customer_id
+GROUP BY e.employee_name
+HAVING customer_count >= 1;

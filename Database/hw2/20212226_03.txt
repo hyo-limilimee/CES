@@ -1,0 +1,4 @@
+SELECT employee_name, employee_length
+FROM Employee
+ORDER BY employee_length
+LIMIT 1;

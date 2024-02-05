@@ -1,0 +1,5 @@
+CREATE VIEW all_customer AS
+SELECT DISTINCT lb.branch_name, c.customer_name
+FROM Borrower b
+JOIN Loan_Branch lb ON b.loan_number = lb.loan_number
+JOIN Customer c ON b.customer_id = c.customer_id;

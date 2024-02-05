@@ -1,0 +1,5 @@
+SELECT DISTINCT c.customer_id, c.customer_name
+FROM Customer c
+JOIN Depositor d ON c.customer_id = d.customer_id
+LEFT JOIN Borrower b ON c.customer_id = b.customer_id
+WHERE b.loan_number IS NULL;

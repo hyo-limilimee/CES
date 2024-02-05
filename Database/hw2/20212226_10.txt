@@ -1,0 +1,8 @@
+SELECT DISTINCT c.customer_id, c.customer_name
+FROM Borrower b
+JOIN Customer c ON b.customer_id = c.customer_id
+JOIN Loan l ON b.loan_number = l.loan_number
+JOIN Loan_Branch lb ON l.loan_number = lb.loan_number
+JOIN Branch br ON lb.branch_name = br.branch_name
+WHERE br.branch_city = '서울';
+

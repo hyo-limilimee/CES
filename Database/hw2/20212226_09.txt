@@ -1,0 +1,4 @@
+SELECT DISTINCT b1.branch_name
+FROM Branch b1
+JOIN Branch b2 ON b1.branch_city = b2.branch_city AND b1.assets > b2.assets
+WHERE b1.branch_city = '부산';

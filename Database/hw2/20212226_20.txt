@@ -1,0 +1,6 @@
+CREATE VIEW customer_avg_balance AS
+SELECT c.customer_name, AVG(a.balance) AS avg_balance
+FROM Customer c
+JOIN Depositor d ON c.customer_id = d.customer_id
+JOIN Account a ON d.account_number = a.account_number
+GROUP BY c.customer_name;

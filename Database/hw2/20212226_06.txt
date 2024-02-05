@@ -1,0 +1,3 @@
+SELECT branch_name
+FROM Branch
+WHERE assets > (SELECT AVG(assets) FROM Branch);

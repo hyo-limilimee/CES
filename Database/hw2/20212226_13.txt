@@ -1,0 +1,12 @@
+UPDATE Customer
+SET customer_type = 'VIP'
+WHERE customer_id IN (
+  SELECT customer_id FROM (
+    SELECT c.customer_id
+    FROM Customer c
+    JOIN Depositor d ON c.customer_id = d.customer_id
+    JOIN Account a ON d.account_number = a.account_number
+    GROUP BY c.customer_id
+    HAVING SUM(a.balance) >= 100
+  ) AS subquery
+);

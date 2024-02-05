@@ -1,0 +1,5 @@
+SELECT SUM(l.amount) AS total_loan_amount
+FROM Customer c
+JOIN Borrower b ON c.customer_id = b.customer_id
+JOIN Loan l ON b.loan_number = l.loan_number
+WHERE c.customer_name LIKE '김%';
