@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My page"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="40dp"/>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="130dp">
+
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_name"
+                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:paddingBottom="30dp"
+                    android:layout_marginRight="10dp"/>
+                <TextView
+                    android:id="@+id/Name"
+                    android:text="null"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="13dp"
+                    android:paddingBottom="50dp" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_phone_number"
+                    android:textSize="20dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#000"
+                    android:paddingBottom="30dp"/>
+                <TextView
+                    android:id="@+id/Phone"
+                    android:text="null"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="13dp"
+                    android:paddingBottom="50dp" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_id"
+                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:layout_marginRight="10dp"
+                    android:paddingBottom="30dp"/>
+                <TextView
+                    android:id="@+id/Email"
+                    android:text="null"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="13dp"
+                    android:paddingBottom="50dp" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_password"
+                    android:textSize="20dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#000"
+                    android:paddingBottom="30dp"/>
+                <TextView
+                    android:id="@+id/Password"
+                    android:text="null"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="13dp"
+                    android:paddingBottom="50dp" />
+                <Button
+                    android:id="@+id/modifyPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="@string/text_modify"
+                    android:backgroundTint="#03A9F4"
+                    android:onClick="onBtnModify"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_language"
+                    android:textSize="20dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#000"
+                    android:paddingBottom="30dp"/>
+
+                <Button
+                    android:id="@+id/btnlanguageChange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="@string/text_language_setting"
+                    android:textSize="10dp"
+                    android:backgroundTint="#03A9F4"
+                    android:onClick="onBtnlanguage"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_darkmode"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingBottom="30dp"/>
+
+                <Button
+                    android:id="@+id/btndarkmodeChange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="@string/text_darkmode_setting"
+                    android:textSize="10dp"
+                    android:backgroundTint="#03A9F4"
+                    android:onClick="onBtndarkmode"/>
+            </TableRow>
+
+        </TableLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:name=".login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4">
+
+
+        </TableRow>
+
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="email"
+                tools:layout_editor_absoluteX="336dp"
+                tools:layout_editor_absoluteY="361dp">
+
+            </EditText>
+
+        </TableRow>
+
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="textPassword"
+                android:hint="password"
+                tools:layout_editor_absoluteX="336dp"
+                tools:layout_editor_absoluteY="489dp" />
+        </TableRow>
+
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="3">
+
+            <Button
+                android:id="@+id/signin_bt"
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                android:layout_weight="1"
+                android:text="@string/text_login"
+                android:backgroundTint="#03A9F4"
+                android:layout_gravity="center"
+                tools:layout_editor_absoluteX="392dp"
+                tools:layout_editor_absoluteY="816dp" />
+
+
+        </TableRow>
+
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3">
+
+            <Button
+                android:id="@+id/signup_bt"
+                android:layout_width="161dp"
+                android:layout_height="79dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/text_signup"
+                android:backgroundTint="#03A9F4"
+                tools:layout_editor_absoluteX="400dp"
+                tools:layout_editor_absoluteY="695dp" />
+
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="163dp"
+                android:layout_gravity="center"
+                android:src="@drawable/handicon">
+
+            </ImageView>
+
+        </TableRow>
+    </TableLayout>
+
+
+</LinearLayout>

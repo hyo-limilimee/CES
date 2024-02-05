@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/background">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="logout"
+            android:backgroundTint="#03A9F4"/>
+
+        <ImageView
+            android:src="@drawable/handicon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="100dp"/>
+
+        <ImageView
+            android:src="@drawable/hearticon"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="135dp"/>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            >
+
+            <TableRow>
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="100dp"
+                    android:maxWidth="100dp"
+                    android:paddingRight="20dp"
+                    android:onClick="onBtnCalendar"
+                    android:src="@drawable/calendaricon" />
+
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="100dp"
+                    android:maxWidth="100dp"
+                    android:paddingRight="20dp"
+                    android:onClick="onBtnPlace"
+                    android:src="@drawable/placeicon" />
+
+                <ImageButton
+                    android:id="@+id/setFriends"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="100dp"
+                    android:maxWidth="100dp"
+                    android:paddingRight="20dp"
+                    android:onClick="onBtnFriend"
+                    android:src="@drawable/friendicon" />
+
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="100dp"
+                    android:maxWidth="100dp"
+                    android:paddingRight="20dp"
+                    android:onClick="onBtnCalculator"
+                    android:src="@drawable/calculatoricon" />
+            </TableRow>
+
+            <TableRow>
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="100dp"
+                    android:maxWidth="100dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="20dp"
+                    android:onClick="onBtnMyPage"
+                    android:src="@drawable/mypageicon" />
+            </TableRow>
+
+        </TableLayout>
+
+
+    </FrameLayout>
+
+</LinearLayout>
